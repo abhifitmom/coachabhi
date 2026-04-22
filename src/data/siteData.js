@@ -3,10 +3,11 @@ export const siteConfig = {
   tagline: "Strength Coach for Women",
   instagram: "https://instagram.com/abhishekmunian",
   whatsapp: "https://wa.me/91XXXXXXXXXX",
+  calendlyLink: "https://calendly.com/abhishekmunian", // replace with real link
   email: "abhi@example.com",
   phone: "+91 XXXXXXXXXX",
   enrollLink: "#contact",
-  announcementBar: "New 90-Day Batch Starting Soon — Limited Spots Available · Book Now →",
+  announcementBar: "New 90-Day Batch Starting Soon — Limited Spots Available ·",
 };
 
 export const navLinks = [
@@ -34,14 +35,14 @@ export const heroData = {
 };
 
 export const memberFaces = [
-  { name: "Ratna Mam", detail: "42 · Mumbai · DR Healing" },
-  { name: "Shalini", detail: "35 · Pune · Transformation" },
-  { name: "Hannu Mam", detail: "38 · Delhi · Fat Loss" },
-  { name: "Priya S", detail: "31 · Bangalore · Post-Pregnancy" },
-  { name: "Meena R", detail: "40 · Hyderabad · Mommy Pooch" },
-  { name: "Kavya T", detail: "28 · Chennai · Strength" },
-  { name: "Deepa M", detail: "33 · Mumbai · Confidence" },
-  { name: "Anita K", detail: "45 · Pune · Body Recomp" },
+  { name: "Vinutha", detail: "Post Partum · Fat Loss" },
+  { name: "Darshi Mam", detail: "Fat Loss · Strength" },
+  { name: "Harshita", detail: "Weight Loss · Consistency" },
+  { name: "Hannu Mam", detail: "Hypothyroidism · Lost 15kg" },
+  { name: "Ramya Mam", detail: "63.8kg → 58.6kg" },
+  { name: "Jessica", detail: "Lost 20kg · Inflammation Reversed" },
+  { name: "Ratna Mam", detail: "ACL Recovery · Lost 10kg" },
+  { name: "Shalini", detail: "PCOS · Lost 12kg" },
 ];
 
 export const programs = [
@@ -253,10 +254,54 @@ export const landingPageData = {
     ],
   },
   transformations: [
-    { name: "Ratna Mam", location: "Hyderabad", age: 42, profession: "Homemaker", beforeKg: 78, afterKg: 68, struggle: "ACL reconstruction recovery, poor diet, inconsistent routine, post-surgery weakness", result: "Lost 10kg safely, improved strength, rebuilt confidence despite physical limitations" },
-    { name: "Shalini", location: "Pune", age: 35, profession: "Working Professional", beforeKg: 70, afterKg: 58, struggle: "PCOS, hormonal imbalance, difficulty controlling cravings, weight management issues", result: "Lost 12 Kg, improved health markers, balanced hormones, feels confident naturally" },
-    { name: "Hannu Mam", location: "Delhi", age: 38, profession: "Businesswoman", beforeKg: 70, afterKg: 55, struggle: "Busy schedule, emotional eating, inconsistent routine, lack of energy", result: "Lost 15 Kg, improved body shape, built consistency, better energy" },
-    { name: "Priya S", location: "Bangalore", age: 31, profession: "IT Professional", beforeKg: 102, afterKg: 94, struggle: "Busy IT schedule, working hours, difficulty sticking with diet plans", result: "Lost 8 Kg, improved daily activity, better energy, consistent habits" },
+    {
+      name: "Harshita",
+      location: "India",
+      age: null,
+      profession: "Client",
+      beforeKg: 76,
+      afterKg: 71,
+      struggle: "Inconsistent diet and exercise routine, difficulty staying consistent with fitness goals",
+      result: "Lost 5 Kg being consistent with diet and exercise program under Abhi's guidance",
+      image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776877640/Client_Transformation_Post_2_1_r5zqux.jpg",
+      subtitle: "Harshita dropped kgs being consistent with her diet and exercise program under our guidance."
+    },
+    {
+      name: "Hannu Mam",
+      location: "India",
+      age: null,
+      profession: "Client",
+      beforeKg: 70,
+      afterKg: 55,
+      struggle: "Hypothyroidism making weight loss extremely difficult despite multiple attempts",
+      result: "Lost 15 Kg despite having hypothyroidism through strength training and a therapeutic diet",
+      image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776877641/Client_Transformation_Post_2_jduyfh.jpg",
+      subtitle: "Despite having hypothyroidism, Hannu Mam was able to reduce weight through strength training and a therapeutic diet."
+    },
+    {
+      name: "Ramya Mam",
+      location: "India",
+      age: null,
+      profession: "Client",
+      beforeKg: 63.8,
+      afterKg: 58.6,
+      struggle: "Stubborn weight that wouldn't budge despite trying various diets and workout plans",
+      result: "Lost 5.2 Kg and achieved a visibly toned and fitter physique",
+      image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776877640/_Ramya_Mam_s_Transformation_zh3aen.jpg",
+      subtitle: "Ramya Mam's incredible body transformation with consistent effort and the right program."
+    },
+    {
+      name: "Jessica",
+      location: "India",
+      age: null,
+      profession: "Client",
+      beforeKg: null,
+      afterKg: null,
+      struggle: "Chronic inflammation, severe weight gain, poor health markers and low energy levels",
+      result: "Reversed chronic inflammation and lost 20 Kg in just 8 months",
+      image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776877646/9_yjrdwk.jpg",
+      subtitle: "Jessica reversed chronic inflammation and lost 20 kilos in 8 months."
+    },
   ],
   coach: {
     name: "Abhi",
@@ -283,7 +328,7 @@ export const landingPageData = {
   finalCta: {
     headline: "Ready To Transform Your Body In 90 Days?",
     subheadline: "Join 200+ mothers who chose results over excuses. Limited spots available.",
-    price: "Investment: ₹15,000 for 3 months · EMI Available",
+    // price: "Investment: ₹15,000 for 3 months · EMI Available",
     cta: "BOOK YOUR FREE STRATEGY CALL NOW →",
     guarantee: "🔒 7-Day Money Back Guarantee — No questions asked",
     whatsappCta: "Or message Abhi directly on WhatsApp →",

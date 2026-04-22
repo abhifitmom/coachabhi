@@ -13,8 +13,8 @@ const Founder = () => {
               backgroundColor: 'var(--color-surface-dark-raised)'
             }}>
               <img 
-                src="" 
-                alt="Abhi - Founder" 
+                src="https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776880637/SaveClip.App_614869571_18547982899034362_984992251545371894_n_tumqbq.jpg" 
+                alt="Abhi — Strength Coach for Women" 
                 style={{ width: '100%', height: '100%', objectFit: 'cover' }}
               />
             </div>

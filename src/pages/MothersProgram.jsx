@@ -31,9 +31,214 @@ const FAQItem = ({ question, answer }) => {
   );
 };
 
+const BookingModal = ({ isOpen, onClose, calendlyLink }) => {
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    mobile: ''
+  });
+  const [errors, setErrors] = useState({});
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // Close on escape key
+  React.useEffect(() => {
+    const handleEsc = (e) => {
+      if (e.key === 'Escape') onClose();
+    };
+    if (isOpen) {
+      document.addEventListener('keydown', handleEsc);
+      document.body.style.overflow = 'hidden';
+    }
+    return () => {
+      document.removeEventListener('keydown', handleEsc);
+      document.body.style.overflow = '';
+    };
+  }, [isOpen, onClose]);
+
+  if (!isOpen) return null;
+
+  const validate = () => {
+    const newErrors = {};
+    if (!formData.name.trim()) {
+      newErrors.name = 'Name is required';
+    }
+    if (!formData.email.trim()) {
+      newErrors.email = 'Email is required';
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
+      newErrors.email = 'Enter a valid email';
+    }
+    if (!formData.mobile.trim()) {
+      newErrors.mobile = 'Mobile number is required';
+    } else if (!/^[6-9]\d{9}$/.test(formData.mobile.replace(/\s/g, ''))) {
+      newErrors.mobile = 'Enter a valid 10-digit Indian mobile number';
+    }
+    return newErrors;
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+    // Clear error on type
+    if (errors[name]) {
+      setErrors(prev => ({ ...prev, [name]: '' }));
+    }
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    const newErrors = validate();
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+    setIsSubmitting(true);
+    // Small delay for UX then redirect
+    setTimeout(() => {
+      window.open(calendlyLink, '_blank');
+      onClose();
+      setIsSubmitting(false);
+      setFormData({ name: '', email: '', mobile: '' });
+    }, 800);
+  };
+
+  return (
+    <>
+      {/* Overlay */}
+      <div
+        className="booking-modal__overlay"
+        onClick={onClose}
+      />
+
+      {/* Modal */}
+      <div className="booking-modal" role="dialog" aria-modal="true">
+
+        {/* Close Button */}
+        <button
+          className="booking-modal__close"
+          onClick={onClose}
+          aria-label="Close"
+        >
+          ✕
+        </button>
+
+        {/* Header */}
+        <div className="booking-modal__header">
+          <div className="booking-modal__icon">📞</div>
+          <h2 className="booking-modal__title">
+            Book Your Free Strategy Call
+          </h2>
+          <p className="booking-modal__subtitle">
+            Fill in your details and we'll take you to schedule your call with Abhi
+          </p>
+        </div>
+
+        {/* Form */}
+        <form onSubmit={handleSubmit} className="booking-modal__form" noValidate>
+
+          {/* Name */}
+          <div className="booking-modal__field">
+            <label className="booking-modal__label" htmlFor="bm-name">
+              Full Name *
+            </label>
+            <input
+              id="bm-name"
+              name="name"
+              type="text"
+              placeholder="Enter your full name"
+              value={formData.name}
+              onChange={handleChange}
+              className={`booking-modal__input ${errors.name ? 'booking-modal__input--error' : ''}`}
+              autoComplete="name"
+            />
+            {errors.name && (
+              <span className="booking-modal__error">{errors.name}</span>
+            )}
+          </div>
+
+          {/* Email */}
+          <div className="booking-modal__field">
+            <label className="booking-modal__label" htmlFor="bm-email">
+              Email Address *
+            </label>
+            <input
+              id="bm-email"
+              name="email"
+              type="email"
+              placeholder="Enter your email"
+              value={formData.email}
+              onChange={handleChange}
+              className={`booking-modal__input ${errors.email ? 'booking-modal__input--error' : ''}`}
+              autoComplete="email"
+            />
+            {errors.email && (
+              <span className="booking-modal__error">{errors.email}</span>
+            )}
+          </div>
+
+          {/* Mobile */}
+          <div className="booking-modal__field">
+            <label className="booking-modal__label" htmlFor="bm-mobile">
+              Mobile Number *
+            </label>
+            <div className="booking-modal__phone-wrap">
+              <span className="booking-modal__phone-prefix">🇮🇳 +91</span>
+              <input
+                id="bm-mobile"
+                name="mobile"
+                type="tel"
+                placeholder="10-digit mobile number"
+                value={formData.mobile}
+                onChange={handleChange}
+                className={`booking-modal__input booking-modal__input--phone ${errors.mobile ? 'booking-modal__input--error' : ''}`}
+                maxLength={10}
+                autoComplete="tel"
+              />
+            </div>
+            {errors.mobile && (
+              <span className="booking-modal__error">{errors.mobile}</span>
+            )}
+          </div>
+
+          {/* Submit Button */}
+          <button
+            type="submit"
+            className="booking-modal__submit"
+            disabled={isSubmitting}
+          >
+            {isSubmitting ? (
+              <>
+                <span className="booking-modal__spinner" />
+                Taking you to schedule...
+              </>
+            ) : (
+              'Proceed to Book Call →'
+            )}
+          </button>
+
+          <p className="booking-modal__note">
+            🔒 Your information is safe. No spam, ever.
+          </p>
+
+        </form>
+      </div>
+    </>
+  );
+};
+
 /* ── Main Page ── */
 const MothersProgram = () => {
   const [showAnnouncement, setShowAnnouncement] = useState(true);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = (e) => {
+    e.preventDefault();
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
+
   const announcementHeight = showAnnouncement ? 40 : 0;
   const d = landingPageData;
 
@@ -55,7 +260,7 @@ const MothersProgram = () => {
           <Link to="/" className="lp-navbar__logo">
             {siteConfig.brand}
           </Link>
-          <a href={siteConfig.whatsapp} className="lp-navbar__cta">
+          <a href="#" onClick={openModal} className="lp-navbar__cta">
             Book Free Call
           </a>
         </div>
@@ -110,7 +315,7 @@ const MothersProgram = () => {
 
           {/* CTA */}
           <div className="lp-hero__cta-wrap">
-            <a href={siteConfig.whatsapp} className="lp-cta-btn">
+            <a href="#" onClick={openModal} className="lp-cta-btn">
               {d.hero.cta}
             </a>
             <p className="lp-cta-subtext">{d.hero.ctaSubtext}</p>
@@ -169,7 +374,7 @@ const MothersProgram = () => {
               ))}
             </div>
             <div className="lp-cta-center">
-              <a href={siteConfig.whatsapp} className="lp-cta-wide">
+              <a href="#" onClick={openModal} className="lp-cta-wide">
                 START YOUR TRANSFORMATION
               </a>
             </div>
@@ -193,7 +398,7 @@ const MothersProgram = () => {
               ))}
             </div>
             <div className="lp-cta-center">
-              <a href={siteConfig.whatsapp} className="lp-cta-wide">
+              <a href="#" onClick={openModal} className="lp-cta-wide">
                 BOOK CONSULTATION
               </a>
             </div>
@@ -214,8 +419,8 @@ const MothersProgram = () => {
                     {i === 0
                       ? <Phone size={24} />
                       : i === 1
-                      ? <ClipboardList size={24} />
-                      : <Target size={24} />}
+                        ? <ClipboardList size={24} />
+                        : <Target size={24} />}
                   </div>
                   <div className="lp-step__label">{step.step}</div>
                   <h3 className="lp-step__title">{step.title}</h3>
@@ -224,7 +429,7 @@ const MothersProgram = () => {
               ))}
             </div>
             <div className="lp-cta-center">
-              <a href={siteConfig.whatsapp} className="lp-cta-wide">
+              <a href="#" onClick={openModal} className="lp-cta-wide">
                 APPLY NOW
               </a>
             </div>
@@ -240,29 +445,59 @@ const MothersProgram = () => {
             <div className="lp-transformations-grid">
               {d.transformations.map((trans, i) => (
                 <div key={i} className="lp-transformation-card">
+
+                  {/* Header */}
                   <div className="lp-transformation-card__header">
                     <div className="lp-transformation-card__name">
-                      {trans.name} | {trans.location}
+                      {trans.name}
                     </div>
-                    <div className="lp-transformation-card__meta">
-                      Age {trans.age} · {trans.profession}
-                    </div>
+                    {trans.subtitle && (
+                      <p className="lp-transformation-card__subtitle">
+                        {trans.subtitle}
+                      </p>
+                    )}
+                    {trans.age && (
+                      <div className="lp-transformation-card__meta">
+                        Age {trans.age} · {trans.profession}
+                      </div>
+                    )}
                   </div>
 
-                  <div className="lp-weight-badge">
-                    <span className="lp-weight-badge__before">
-                      Before: {trans.beforeKg} Kg
-                    </span>
-                    <div className="lp-weight-badge__divider" />
-                    <span className="lp-weight-badge__after">
-                      After: {trans.afterKg} Kg
-                    </span>
-                  </div>
+                  {/* Weight Badge */}
+                  {trans.beforeKg && trans.afterKg ? (
+                    <div className="lp-weight-badge">
+                      <span className="lp-weight-badge__before">
+                        Before: {trans.beforeKg} Kg
+                      </span>
+                      <div className="lp-weight-badge__divider" />
+                      <span className="lp-weight-badge__after">
+                        After: {trans.afterKg} Kg
+                      </span>
+                    </div>
+                  ) : (
+                    <div className="lp-weight-badge">
+                      <span className="lp-weight-badge__after">
+                        🔥 Lost 20 Kg in 8 months
+                      </span>
+                    </div>
+                  )}
 
+                  {/* ── PHOTO — REAL IMAGE ── */}
                   <div className="lp-transformation-card__photo">
-                    [ Before / After Photo ]
+                    <img
+                      src={trans.image}
+                      alt={`${trans.name} transformation`}
+                      onError={(e) => {
+                        e.target.style.display = 'none';
+                        e.target.nextSibling.style.display = 'flex';
+                      }}
+                    />
+                    <div className="lp-transformation-card__photo-fallback">
+                      Before / After Photo Coming Soon
+                    </div>
                   </div>
 
+                  {/* Details */}
                   <div className="lp-transformation-card__details">
                     <div>
                       <div className="lp-transformation-card__label lp-transformation-card__label--dark">
@@ -281,24 +516,26 @@ const MothersProgram = () => {
                       </p>
                     </div>
                   </div>
+
                 </div>
               ))}
             </div>
+
             <div className="lp-cta-center">
-              <a href={siteConfig.whatsapp} className="lp-cta-wide">
+              <a href="#" onClick={openModal} className="lp-cta-wide">
                 APPLY FOR COACHING
               </a>
             </div>
           </div>
         </section>
-
+        
         {/* ── SECTION 8 — MEET COACH ── */}
         <section className="lp-section lp-bg-white">
           <div className="lp-section__inner">
             <div className="lp-coach-grid">
               <div className="lp-coach-image">
                 <img
-                  src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=1000&auto=format&fit=crop"
+                  src="https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776880707/SaveClip.App_619330430_18549305215034362_425692742014550702_n_ecjhs5.jpg"
                   alt="Coach Abhi"
                 />
               </div>
@@ -315,7 +552,7 @@ const MothersProgram = () => {
                     </div>
                   ))}
                 </div>
-                <a href={siteConfig.whatsapp} className="lp-cta-btn"
+                <a href="#" onClick={openModal} className="lp-cta-btn"
                   style={{ maxWidth: '280px' }}>
                   BOOK CALL
                 </a>
@@ -347,7 +584,7 @@ const MothersProgram = () => {
             <p className="lp-final-cta__subtitle">{d.finalCta.subheadline}</p>
             <p className="lp-final-cta__price">{d.finalCta.price}</p>
             <div className="lp-final-cta__actions">
-              <a href={siteConfig.whatsapp} className="lp-final-cta__btn">
+              <a href="#" onClick={openModal} className="lp-final-cta__btn">
                 {d.finalCta.cta}
               </a>
               <p className="lp-final-cta__guarantee">
@@ -376,6 +613,12 @@ const MothersProgram = () => {
         </footer>
 
       </main>
+
+      <BookingModal
+        isOpen={isModalOpen}
+        onClose={closeModal}
+        calendlyLink={siteConfig.calendlyLink}
+      />
 
       <FloatingWhatsApp />
     </div>
