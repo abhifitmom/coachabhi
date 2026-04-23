@@ -1,22 +1,39 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { specialisations } from '../data/siteData';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import '../styles/Specialisations.css';
 
 const Specialisations = () => {
+  const [showAll, setShowAll] = useState(false);
+  const [headerRef, headerVisible] = useScrollAnimation();
+  const [gridRef, gridVisible] = useScrollAnimation({ threshold: 0.1 });
+
+  // Mobile pe 4, desktop pe 8 default dikhao
+  const getDefaultCount = () => {
+    if (typeof window !== 'undefined' && window.innerWidth < 640) {
+      return 4;
+    }
+    return 8;
+  };
+
+  const visibleItems = showAll
+    ? specialisations
+    : specialisations.slice(0, getDefaultCount());
+
   return (
     <section className="specialisations-section" id="specialisations">
       <div className="container">
-        <div className="text-center section-header">
+        <div ref={headerRef} className={`text-center section-header anim-fade-up ${headerVisible ? 'anim-visible' : ''}`}>
           <span className="section-eyebrow">Specialised Care</span>
-          <h2 className="section-title">Specialised Coaching for 8+ Areas</h2>
+          <h2 className="section-title">Specialised Coaching for 15+ Areas</h2>
           <p className="body-md" style={{ color: 'var(--color-ink-secondary)', marginTop: '1rem' }}>
             Every program is personalised to your body, your history, and your goals.
           </p>
         </div>
 
-        <div className="specialisations-grid">
-          {specialisations.map((spec, i) => (
-            <div key={i} className="spec-card" style={{
+        <div ref={gridRef} className="specialisations-grid">
+          {visibleItems.map((spec, i) => (
+            <div key={i} className={`spec-card anim-fade-up anim-delay-${Math.min(i + 1, 6)} ${gridVisible ? 'anim-visible' : ''}`} style={{
               backgroundColor: 'white',
               borderRadius: 'var(--border-radius-xl)',
               border: '1px solid var(--color-border)',
@@ -41,9 +58,16 @@ const Specialisations = () => {
           ))}
         </div>
 
-        <div className="text-center" style={{ marginTop: '4rem' }}>
-          <button className="btn btn-secondary">
-            See all 15+ conditions <span style={{ marginLeft: '0.5rem' }}>↓</span>
+        {/* Toggle Button */}
+        <div className="spec-toggle">
+          <button
+            className="spec-toggle__btn"
+            onClick={() => setShowAll(!showAll)}
+          >
+            {showAll
+              ? 'Show Less ↑'
+              : `See All ${specialisations.length} Specialisations ↓`
+            }
           </button>
         </div>
       </div>

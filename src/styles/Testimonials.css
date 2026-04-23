@@ -39,7 +39,8 @@
 .testi-section {
   padding: 4rem 0;
   background: var(--color-surface-warm);
-  overflow: hidden;
+  overflow-x: hidden;   /* hidden — x overflow rokna */
+  overflow-y: visible;
 }
 
 @media (min-width: 1024px) {
@@ -106,15 +107,15 @@
   position: relative;
   display: flex;
   align-items: center;
-  gap: 0.75rem;
-  padding: 0 1.25rem;  /* padding on mobile */
+  gap: 0;                /* mobile pe gap 0 */
+  padding: 0;            /* mobile pe padding 0 */
+  overflow: hidden;
 }
 
-/* Desktop — more padding for arrows */
 @media (min-width: 1024px) {
   .testi-carousel-wrap {
-    padding: 0 2.5rem;
     gap: 1rem;
+    padding: 0 1rem;
   }
 }
 
@@ -163,9 +164,7 @@
   scrollbar-width: none;
   -ms-overflow-style: none;
   flex: 1;
-  padding-bottom: 0.5rem;
-  /* Add this — important for exact 3 cards */
-  scroll-padding-left: 0;
+  padding: 0.5rem 1.25rem 1rem;  /* horizontal padding track mein */
 }
 
 .testi-track::-webkit-scrollbar {
@@ -180,17 +179,17 @@
   overflow: hidden;
   border: 2px solid var(--color-border);
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  width: calc(100vw - 3rem);  /* mobile — full width minus section padding */
+}
 
-  /* Mobile — 1 card at a time, full width */
-  width: calc(100vw - 4rem);
-
-  /* Tablet — 2 cards */
-  @media (min-width: 640px) {
-    width: calc(50% - 0.5rem);
+@media (min-width: 640px) {
+  .testi-card {
+    width: 340px;
   }
+}
 
-  /* Desktop — exactly 3 cards, no cutting */
-  @media (min-width: 1024px) {
+@media (min-width: 1024px) {
+  .testi-card {
     width: calc((100%) / 3 - 0.75rem);
   }
 }
@@ -312,6 +311,7 @@
 /* Video Section — Same structure as Image Carousel */
 .testi-videos-wrap {
   margin-top: 3rem;
+  width: 100%;
   padding: 0 1.25rem;
 }
 
@@ -338,12 +338,10 @@
   overflow: hidden;
   border: 2px solid var(--color-brand);
   background: #1A1A1A;
-  aspect-ratio: 9 / 16;  /* vertical video */
+  aspect-ratio: 9 / 16;
   box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-  /* Mobile — 1 card */
-  width: calc(100vw - 4rem);
+  transition: transform 0.2s ease;
+  width: 100%;        /* mobile — poora container width le lo */
 }
 
 @media (min-width: 640px) {
@@ -356,11 +354,6 @@
   .testi-card--video-player {
     width: calc((100%) / 3 - 0.75rem);
   }
-}
-
-.testi-card--video-player:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 12px 48px rgba(255, 104, 53, 0.25);
 }
 
 .testi-card--video-player video {

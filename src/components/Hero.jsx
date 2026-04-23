@@ -1,15 +1,22 @@
 import React from 'react';
 import { MessageCircle, ArrowRight, Phone } from 'lucide-react';
 import { heroData, siteConfig } from '../data/siteData';
+import useScrollAnimation from '../hooks/useScrollAnimation';
+import StatNumber from './StatNumber';
 import '../styles/Hero.css';
 
-const Hero = () => {
+const Hero = ({ onEnrol }) => {
+  const [heroRef, heroVisible] = useScrollAnimation({ threshold: 0.1 });
+
   return (
     <section className="hero">
       <div className="container">
         <div className="hero__grid">
           {/* Left Column */}
-          <div className="hero-content">
+          <div 
+            ref={heroRef}
+            className={`hero-content anim-fade-up ${heroVisible ? 'anim-visible' : ''}`}
+          >
             <span className="section-eyebrow" style={{ marginBottom: '1rem', display: 'block' }}>
               {heroData.eyebrow}
             </span>
@@ -31,15 +38,15 @@ const Hero = () => {
             </div>
 
             <div className="hero__cta-group">
-              <a href={siteConfig.enrollLink} className="btn btn-primary">
+              <button onClick={onEnrol} className="btn btn-primary">
                 {heroData.ctaPrimary} <ArrowRight size={18} />
-              </a>
+              </button>
               <a href={siteConfig.whatsapp} className="btn btn-secondary">
                 <MessageCircle size={18} /> {heroData.ctaSecondary}
               </a>
             </div>
-
-            <a href="#" style={{
+{/* 
+            <a href={siteConfig.programs} style={{
               display: 'inline-flex',
               alignItems: 'center',
               gap: '0.5rem',
@@ -52,10 +59,10 @@ const Hero = () => {
               borderRadius: '999px'
             }}>
               {heroData.announcement}
-            </a>
+            </a> */}
 
             {/* Callback Form */}
-            <div className="hero__callback-form" style={{ marginTop: '2.5rem' }}>
+            {/* <div className="hero__callback-form" style={{ marginTop: '2.5rem' }}>
               <input type="text" placeholder="Your name" className="form-input" />
               <input type="text" placeholder="Phone number" className="form-input" />
               <button className="btn" style={{ 
@@ -65,14 +72,32 @@ const Hero = () => {
               }}>
                 <Phone size={18} /> Get a Callback
               </button>
-            </div>
+            </div> */}
 
-            {/* Stats Row */}
+            {/* Stats row — exact same as original */}
             <div className="hero__stats">
               {heroData.stats.map((stat, i) => (
-                <div key={i}>
-                  <div className="number-display" style={{ fontSize: '1.5rem', color: 'var(--color-ink)' }}>{stat.value}</div>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--color-ink-muted)', textTransform: 'uppercase', letterSpacing: '0.05em' }}>{stat.label}</div>
+                <div key={i} style={{
+                  display: 'flex',
+                  flexDirection: 'column',   /* ← number upar, label neeche */
+                  gap: '0.25rem',
+                }}>
+                  <StatNumber
+                    value={stat.value}
+                    className="number-display"
+                    duration={2000}
+                  />
+                  {stat.label && (
+                    <span style={{
+                      fontSize: '0.75rem',
+                      fontWeight: '500',
+                      color: 'var(--color-ink-muted)',
+                      display: 'block',       /* ← block element */
+                      letterSpacing: '0.05em',
+                    }}>
+                      {stat.label}
+                    </span>
+                  )}
                 </div>
               ))}
             </div>

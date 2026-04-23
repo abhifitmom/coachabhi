@@ -1,83 +1,107 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Check, MessageCircle, ArrowRight } from 'lucide-react';
 import { programs, siteConfig } from '../data/siteData';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import '../styles/Programs.css';
 
-const Programs = () => {
-  const flagship = programs.find(p => p.id === 1);
-  const secondary = programs.find(p => p.id === 2);
+const Programs = ({ onEnrol }) => {
+  const [selected, setSelected] = useState(2); // default 3 months selected
+  const [headerRef, headerVisible] = useScrollAnimation();
+  const [gridRef, gridVisible] = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section className="programs-section bg-warm" id="programs">
+    <section className="programs-section" id="programs">
       <div className="container">
-        <div className="text-center section-header">
-          <span className="section-eyebrow">Our Flagship Program</span>
-          <h2 className="section-title">90-Day Mommy Transformation</h2>
+
+        {/* Header */}
+        <div 
+          ref={headerRef} 
+          className={`text-center section-header anim-fade-up ${headerVisible ? 'anim-visible' : ''}`}
+        >
+          <span className="section-eyebrow">Our Programs</span>
+          <h2 className="section-title">Choose Your Transformation</h2>
+          <p className="programs-subtitle">
+            Pick the duration that works for you — every plan includes personal coaching with Abhi directly.
+          </p>
         </div>
 
-        {/* Flagship Program Card */}
-        <div className="program-card" style={{
-          backgroundColor: 'var(--color-surface-dark)',
-          color: 'var(--color-on-dark)',
-          position: 'relative',
-          overflow: 'hidden'
-        }}>
-          <div style={{ display: 'flex', gap: '0.75rem', marginBottom: '2rem' }}>
-            <span style={{ backgroundColor: 'var(--color-brand)', padding: '4px 12px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: '700', textTransform: 'uppercase' }}>{flagship.tag}</span>
-            <span style={{ backgroundColor: 'rgba(255,255,255,0.1)', padding: '4px 12px', borderRadius: '4px', fontSize: '0.7rem', fontWeight: '700', textTransform: 'uppercase' }}>{flagship.badge}</span>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginBottom: '1rem' }}>
-            <span className="program-card__price" style={{ fontWeight: '700', fontFamily: 'var(--font-mono)' }}>{flagship.price}</span>
-            <span style={{ fontSize: '0.9rem', color: 'var(--color-on-dark-secondary)' }}>for {flagship.duration} · {flagship.perDay} · {flagship.emi}</span>
-          </div>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '3rem' }}>
-            <div className="pulse-dot" style={{ backgroundColor: 'var(--color-brand)' }}></div>
-            <span style={{ fontSize: '0.85rem', color: 'var(--color-on-dark-secondary)' }}>New batch starting — limited spots</span>
-          </div>
-
-          <div className="program-card__features" style={{ marginBottom: '3rem' }}>
-            {flagship.features.map((feature, i) => (
-              <div key={i} style={{ display: 'flex', gap: '1rem', alignItems: 'flex-start' }}>
-                <div style={{ color: 'var(--color-brand)', flexShrink: 0, marginTop: '2px' }}>
-                  <Check size={20} />
+        {/* 4 Duration Cards */}
+        <div ref={gridRef} className="programs-grid">
+          {programs.map((program, i) => (
+            <div
+              key={program.id}
+              className={`program-duration-card anim-fade-up anim-delay-${i + 1} ${gridVisible ? 'anim-visible' : ''} ${program.popular ? 'program-duration-card--popular' : ''} ${selected === program.id ? 'program-duration-card--selected' : ''}`}
+              onClick={() => setSelected(program.id)}
+            >
+              {/* Popular Badge */}
+              {program.popular && (
+                <div className="program-duration-card__popular-badge">
+                  Most Popular
                 </div>
-                <div style={{ color: 'var(--color-on-dark-secondary)', fontSize: '1rem' }}>{feature}</div>
-              </div>
-            ))}
-          </div>
+              )}
 
-          <div className="program-card__cta-group">
-            <a href={siteConfig.enrollLink} className="btn btn-primary" style={{ paddingLeft: '3rem', paddingRight: '3rem' }}>
-              Enrol Now <ArrowRight size={18} />
-            </a>
-            <a href={siteConfig.whatsapp} className="btn" style={{ 
-              backgroundColor: 'transparent', 
-              color: 'white', 
-              border: '1px solid rgba(255,255,255,0.2)' 
-            }}>
-              <MessageCircle size={18} /> Have questions? Chat with Abhi
-            </a>
-          </div>
+              {/* Tag */}
+              <div className="program-duration-card__tag">
+                {program.tag}
+              </div>
+
+              {/* Duration */}
+              <div className="program-duration-card__duration">
+                {program.duration}
+              </div>
+
+              {/* Price */}
+              <div className="program-duration-card__price">
+                {program.price}
+              </div>
+              <div className="program-duration-card__perday">
+                {program.perDay}
+                {program.emi && ' · EMI available'}
+              </div>
+
+              {/* Divider */}
+              <div className="program-duration-card__divider" />
+
+              {/* Features */}
+              <ul className="program-duration-card__features">
+                {program.features.map((feature, i) => (
+                  <li key={i} className="program-duration-card__feature">
+                    <Check
+                      size={15}
+                      className="program-duration-card__check"
+                    />
+                    <span>{feature}</span>
+                  </li>
+                ))}
+              </ul>
+
+              {/* CTA */}
+              <button
+                onClick={() => onEnrol(program.id)}
+                className={`program-duration-card__cta ${program.popular ? 'program-duration-card__cta--popular' : ''}`}
+              >
+                Enrol Now <ArrowRight size={16} />
+              </button>
+            </div>
+          ))}
         </div>
 
-        {/* Secondary Program Card */}
-        <div className="program-secondary" style={{
-          backgroundColor: 'white',
-          borderRadius: 'var(--border-radius-xl)',
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'center',
-          textAlign: 'center',
-          border: '1px solid var(--color-border)'
-        }}>
-          <h3 style={{ fontSize: '1.5rem', marginBottom: '1rem' }}>{secondary.name}</h3>
-          <p style={{ maxWidth: '600px', color: 'var(--color-ink-secondary)', marginBottom: '1.5rem' }}>{secondary.description}</p>
-          <a href={siteConfig.whatsapp} className="btn" style={{ backgroundColor: 'var(--color-surface-dark)', color: 'white' }}>
-            <MessageCircle size={18} /> Chat With Abhi
+        {/* Bottom Chat CTA */}
+        <div className="programs-chat-cta">
+          <p className="programs-chat-cta__text">
+            Not sure which plan is right for you?
+          </p>
+          <a
+            href={siteConfig.whatsapp}
+            className="programs-chat-cta__btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <MessageCircle size={18} />
+            Chat with Abhi — Get a Recommendation
           </a>
         </div>
+
       </div>
     </section>
   );

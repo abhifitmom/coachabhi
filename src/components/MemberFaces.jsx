@@ -1,10 +1,16 @@
 import React from 'react';
 import { memberFaces } from '../data/siteData';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import '../styles/MemberFaces.css';
 
 const MemberFaces = () => {
+  const [ref, visible] = useScrollAnimation();
+
   return (
-    <div className="member-faces-section">
+    <div 
+      ref={ref}
+      className={`member-faces-section anim-fade-in ${visible ? 'anim-visible' : ''}`}
+    >
       <div className="container section-header">
         <span className="section-eyebrow text-center" style={{ display: 'block' }}>Real Moms. Real Results.</span>
       </div>

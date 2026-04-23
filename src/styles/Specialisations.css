@@ -31,3 +31,32 @@
     grid-template-columns: repeat(4, 1fr);
   }
 }
+
+/* Toggle Button */
+.spec-toggle {
+  display: flex;
+  justify-content: center;
+  margin-top: 2.5rem;
+}
+
+.spec-toggle__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 2rem;
+  border-radius: 999px;
+  border: 2px solid var(--color-border-strong);
+  background: white;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-ink-secondary);
+  cursor: pointer;
+  font-family: var(--font-body);
+  transition: all 0.2s ease;
+}
+
+.spec-toggle__btn:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+  background: var(--color-brand-muted);
+}

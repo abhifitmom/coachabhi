@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import '../styles/Testimonials.css';
 
 /* ── Data — hardcoded here, not in siteData.js ── */
@@ -46,6 +47,8 @@ const testimonialVideos = [
 
 /* ── Main Component ── */
 const Testimonials = () => {
+  const [headerRef, headerVisible] = useScrollAnimation();
+  const [carouselRef, carouselVisible] = useScrollAnimation();
   const [activeIndex, setActiveIndex] = useState(0);
   const trackRef = useRef(null);
 
@@ -102,7 +105,7 @@ const Testimonials = () => {
       <div className="container">
 
         {/* ── Header ── */}
-        <div className="testi-header">
+        <div ref={headerRef} className={`testi-header anim-fade-up ${headerVisible ? 'anim-visible' : ''}`}>
           <span className="section-eyebrow">Real Stories</span>
           <h2 className="section-title">Stories That Inspire</h2>
           <p className="testi-header__sub">
@@ -111,7 +114,7 @@ const Testimonials = () => {
         </div>
 
         {/* ── Carousel Wrapper ── */}
-        <div className="testi-carousel-wrap">
+        <div ref={carouselRef} className={`testi-carousel-wrap anim-fade-in ${carouselVisible ? 'anim-visible' : ''}`}>
 
           {/* Left Arrow — desktop only */}
           <button

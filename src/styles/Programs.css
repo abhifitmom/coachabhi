@@ -1,54 +1,280 @@
-/* ============ PROGRAMS CSS ============ */
+/* ============================================================
+   PROGRAMS SECTION
+   ============================================================ */
 
 .programs-section {
-  padding: 3rem 1.25rem;
-}
-
-.programs-section .section-title {
-  font-size: clamp(1.75rem, 6vw, 2.5rem);
-  text-align: center;
-}
-
-.program-card {
-  padding: 1.5rem;
-  border-radius: 1.25rem;
-}
-
-.program-card__price {
-  font-size: 2rem;
-}
-
-.program-card__features {
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: 0.75rem;
-}
-
-.program-card__cta-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.program-card__cta-group a,
-.program-card__cta-group button {
-  width: 100%;
-  justify-content: center;
-}
-
-.program-secondary {
-  padding: 1.25rem;
-  margin-top: 1.5rem;
-}
-
-@media (min-width: 640px) {
-  .program-card__features {
-    grid-template-columns: 1fr 1fr;
-  }
-  .program-card { padding: 2rem; }
+  padding: 4rem 1.25rem;
+  background: var(--color-surface-warm);
 }
 
 @media (min-width: 1024px) {
-  .program-card { padding: 3rem; }
-  .program-card__cta-group { flex-direction: row; }
+  .programs-section {
+    padding: 6rem 2.5rem;
+  }
+}
+
+.programs-subtitle {
+  font-size: 1rem;
+  color: var(--color-ink-secondary);
+  max-width: 520px;
+  margin: 0.75rem auto 0;
+  line-height: 1.6;
+}
+
+/* ── 4 Cards Grid ── */
+.programs-grid {
+  display: grid;
+  grid-template-columns: 1fr;        /* mobile — 1 card */
+  gap: 1.25rem;
+  margin-top: 3rem;
+}
+
+@media (min-width: 640px) {
+  .programs-grid {
+    grid-template-columns: 1fr 1fr;  /* tablet — 2 cards */
+    gap: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .programs-grid {
+    grid-template-columns: repeat(4, 1fr); /* desktop — 4 cards */
+    gap: 1.25rem;
+    align-items: start;
+  }
+}
+
+/* ── Individual Card ── */
+.program-duration-card {
+  position: relative;
+  background: white;
+  border: 2px solid var(--color-border);
+  border-radius: 1.25rem;
+  padding: 1.75rem 1.5rem;
+  cursor: pointer;
+  transition: border-color 0.2s ease,
+              box-shadow 0.2s ease,
+              transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.program-duration-card:hover {
+  border-color: var(--color-brand);
+  box-shadow: 0 8px 28px rgba(255, 104, 53, 0.12);
+  transform: translateY(-3px);
+}
+
+/* Selected state */
+.program-duration-card--selected {
+  border-color: var(--color-brand);
+  box-shadow: 0 8px 28px rgba(255, 104, 53, 0.15);
+}
+
+/* Popular card — dark background */
+.program-duration-card--popular {
+  background: var(--color-surface-dark);
+  border-color: var(--color-brand);
+  transform: translateY(-6px); /* slightly elevated */
+  box-shadow: 0 16px 40px rgba(255, 104, 53, 0.2);
+}
+
+.program-duration-card--popular:hover {
+  transform: translateY(-9px);
+}
+
+@media (min-width: 1024px) {
+  .program-duration-card--popular {
+    padding: 2rem 1.5rem; /* slightly bigger on desktop */
+  }
+}
+
+/* Popular badge */
+.program-duration-card__popular-badge {
+  position: absolute;
+  top: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: var(--color-brand);
+  color: white;
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  padding: 4px 14px;
+  border-radius: 999px;
+  white-space: nowrap;
+}
+
+/* Tag */
+.program-duration-card__tag {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--color-brand);
+  margin-bottom: 0.25rem;
+}
+
+.program-duration-card--popular .program-duration-card__tag {
+  color: var(--color-brand-light);
+}
+
+/* Duration */
+.program-duration-card__duration {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--color-ink);
+  line-height: 1.1;
+}
+
+.program-duration-card--popular .program-duration-card__duration {
+  color: white;
+}
+
+/* Price */
+.program-duration-card__price {
+  font-family: var(--font-mono);
+  font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+  font-weight: 700;
+  color: var(--color-brand);
+  margin-top: 0.25rem;
+}
+
+/* Per day */
+.program-duration-card__perday {
+  font-size: 0.78rem;
+  color: var(--color-ink-muted);
+  margin-bottom: 0.25rem;
+}
+
+.program-duration-card--popular .program-duration-card__perday {
+  color: var(--color-on-dark-muted);
+}
+
+/* Divider */
+.program-duration-card__divider {
+  height: 1px;
+  background: var(--color-border);
+  margin: 0.875rem 0;
+}
+
+.program-duration-card--popular .program-duration-card__divider {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+/* Features list */
+.program-duration-card__features {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.625rem;
+  flex: 1;
+}
+
+.program-duration-card__feature {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.625rem;
+  font-size: 0.85rem;
+  color: var(--color-ink-secondary);
+  line-height: 1.45;
+}
+
+.program-duration-card--popular .program-duration-card__feature {
+  color: var(--color-on-dark-secondary);
+}
+
+.program-duration-card__check {
+  color: var(--color-brand);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* CTA Button */
+.program-duration-card__cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  padding: 0.875rem 1rem;
+  border-radius: 0.75rem;
+  border: 2px solid var(--color-border-strong);
+  background: transparent;
+  color: var(--color-ink);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-decoration: none;
+  margin-top: 1.25rem;
+  transition: all 0.2s ease;
+}
+
+.program-duration-card__cta:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+  background: var(--color-brand-muted);
+}
+
+/* Popular card CTA — filled orange */
+.program-duration-card__cta--popular {
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  color: white;
+}
+
+.program-duration-card__cta--popular:hover {
+  background: var(--color-brand-dark);
+  border-color: var(--color-brand-dark);
+  color: white;
+}
+
+/* ── Bottom Chat CTA ── */
+.programs-chat-cta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 3rem;
+  padding-top: 2.5rem;
+  border-top: 1px solid var(--color-border);
+  text-align: center;
+}
+
+@media (min-width: 640px) {
+  .programs-chat-cta {
+    flex-direction: row;
+    justify-content: center;
+    text-align: left;
+  }
+}
+
+.programs-chat-cta__text {
+  font-size: 0.9375rem;
+  color: var(--color-ink-secondary);
+  margin: 0;
+}
+
+.programs-chat-cta__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  border-radius: 999px;
+  background: var(--color-surface-dark);
+  color: white;
+  font-size: 0.875rem;
+  font-weight: 700;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.2s ease, transform 0.1s ease;
+}
+
+.programs-chat-cta__btn:hover {
+  background: #333333;
+  transform: translateY(-1px);
 }

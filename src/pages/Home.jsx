@@ -12,22 +12,31 @@ import Community from '../components/Community';
 import FinalCTA from '../components/FinalCTA';
 import Footer from '../components/Footer';
 import FloatingWhatsApp from '../components/FloatingWhatsApp';
+import EnrolModal from '../components/EnrolModal';
 
 const Home = () => {
   const [showAnnouncement, setShowAnnouncement] = useState(true);
+  const [isEnrolOpen, setIsEnrolOpen] = useState(false);
+  const [defaultProgram, setDefaultProgram] = useState(2);
+
   const announcementHeight = showAnnouncement ? 40 : 0;
+
+  const openEnrol = (programId = 2) => {
+    setDefaultProgram(programId);
+    setIsEnrolOpen(true);
+  };
 
   return (
     <div className="home-page">
       <AnnouncementBar 
         isVisible={showAnnouncement} 
         onDismiss={() => setShowAnnouncement(false)} 
-      />
+        />
       <Navbar announcementHeight={announcementHeight} />
       <main style={{ marginTop: `${announcementHeight + 68}px` }}>
-        <Hero />
+        <Hero onEnrol={() => openEnrol(2)} />
         <MemberFaces />
-        <Programs />
+        <Programs onEnrol={openEnrol} />
         <Specialisations />
         <Testimonials />
         <HowItWorks />
@@ -37,6 +46,12 @@ const Home = () => {
       </main>
       <Footer />
       <FloatingWhatsApp />
+
+      <EnrolModal
+        isOpen={isEnrolOpen}
+        onClose={() => setIsEnrolOpen(false)}
+        defaultProgramId={defaultProgram}
+      />
     </div>
   );
 };

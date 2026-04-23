@@ -1,90 +1,128 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Phone, MessageCircle, ArrowRight, ShieldCheck } from 'lucide-react';
 import { ctaData, siteConfig } from '../data/siteData';
+import useScrollAnimation from '../hooks/useScrollAnimation';
+import useFormSubmit from '../hooks/useFormSubmit';
 import '../styles/FinalCTA.css';
 
 const FinalCTA = () => {
+  const [ref, visible] = useScrollAnimation({ threshold: 0.2 });
+  const [name, setName] = useState('');
+  const [phone, setPhone] = useState('');
+  const { submitForm, isSubmitting, isSuccess } = useFormSubmit();
+
+  const handleCallback = async (e) => {
+    e.preventDefault();
+    if (!name.trim() || !phone.trim()) return;
+
+    await submitForm('callback', {
+      name: name.trim(),
+      phone: phone.trim(),
+      source: 'Main Website - Callback Form'
+    });
+
+    setName('');
+    setPhone('');
+  };
+
   return (
-    <section className="final-cta-section" id="contact">
+    <section className="fcta-section" id="contact">
       <div className="container">
-        <div className="final-cta-card bg-dark">
-          <h2 className="section-title" style={{ color: 'white', marginBottom: '1.5rem' }}>{ctaData.headline}</h2>
-          <p className="body-md" style={{ color: 'var(--color-on-dark-secondary)', marginBottom: '2.5rem', maxWidth: '600px', marginInline: 'auto' }}>
-            {ctaData.desc}
-          </p>
+        <div ref={ref} className={`fcta-card anim-scale ${visible ? 'anim-visible' : ''}`}>
 
-          <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center', gap: '0.5rem', marginBottom: '3rem' }}>
-            <span className="price" style={{ fontWeight: '700', fontFamily: 'var(--font-mono)' }}>{ctaData.price}</span>
-            <span style={{ fontSize: '1rem', color: 'var(--color-on-dark-secondary)' }}>{ctaData.duration}</span>
+          {/* Headline */}
+          <h2 className="fcta-title">{ctaData.headline}</h2>
+          <p className="fcta-desc">{ctaData.desc}</p>
+
+          {/* Price */}
+          <div className="fcta-price-row">
+            <span className="fcta-price">{ctaData.price}</span>
+            <span className="fcta-duration">{ctaData.duration}</span>
           </div>
 
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem', alignItems: 'center' }}>
-            <a href={siteConfig.enrollLink} className="btn btn-primary">
-              {ctaData.ctaPrimary} <ArrowRight size={20} />
-            </a>
+          {/* Primary CTA */}
+          <a href={siteConfig.enrollLink} className="fcta-enrol-btn">
+            {ctaData.ctaPrimary}
+            <ArrowRight size={18} />
+          </a>
 
-            <div style={{ 
-              display: 'flex', 
-              alignItems: 'center', 
-              gap: '0.5rem', 
-              fontSize: '0.85rem', 
-              color: 'var(--color-on-dark-muted)' 
-            }}>
-              <ShieldCheck size={16} color="var(--color-brand)" /> {ctaData.securityNote}
-            </div>
-
-            <div style={{
-              width: '100%',
-              maxWidth: '400px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1rem',
-              margin: '1.5rem 0'
-            }}>
-              <div style={{ height: '1px', flex: 1, backgroundColor: 'rgba(255,255,255,0.1)' }}></div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--color-on-dark-muted)', textTransform: 'uppercase' }}>or get a free callback</div>
-              <div style={{ height: '1px', flex: 1, backgroundColor: 'rgba(255,255,255,0.1)' }}></div>
-            </div>
-
-            {/* Quick Callback Form */}
-            <div className="final-cta-form" style={{ width: '100%', maxWidth: '600px' }}>
-              <input type="text" placeholder="Your name" className="form-input" style={{ backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.2)', color: 'white' }} />
-              <input type="text" placeholder="Phone number" className="form-input" style={{ backgroundColor: 'transparent', border: '1px solid rgba(255,255,255,0.2)', color: 'white' }} />
-              <button className="btn" style={{ backgroundColor: 'rgba(255,255,255,0.1)', color: 'white' }}>
-                <Phone size={18} /> Callback
-              </button>
-            </div>
-
-            <div style={{
-              width: '100%',
-              maxWidth: '400px',
-              display: 'flex',
-              alignItems: 'center',
-              gap: '1rem',
-              margin: '1.5rem 0'
-            }}>
-              <div style={{ height: '1px', flex: 1, backgroundColor: 'rgba(255,255,255,0.1)' }}></div>
-              <div style={{ fontSize: '0.85rem', color: 'var(--color-on-dark-muted)', textTransform: 'uppercase' }}>or</div>
-              <div style={{ height: '1px', flex: 1, backgroundColor: 'rgba(255,255,255,0.1)' }}></div>
-            </div>
-
-            <a href={siteConfig.whatsapp} className="btn final-cta-whatsapp" style={{ 
-              maxWidth: '400px', 
-              backgroundColor: 'transparent', 
-              border: '1px solid rgba(255,255,255,0.2)',
-              color: 'white'
-            }}>
-              <MessageCircle size={18} /> {ctaData.whatsappCta}
-            </a>
-
-            <div style={{ 
-              fontSize: '0.85rem', 
-              color: 'var(--color-on-dark-secondary)',
-              marginTop: '2rem'
-            }}>
-              {ctaData.batchNote}
-            </div>
+          {/* Security Note */}
+          <div className="fcta-security">
+            <ShieldCheck size={15} color="var(--color-brand)" />
+            <span>{ctaData.securityNote}</span>
           </div>
+
+          {/* Divider */}
+          <div className="fcta-divider">
+            <div className="fcta-divider__line" />
+            <span className="fcta-divider__text">or get a free callback</span>
+            <div className="fcta-divider__line" />
+          </div>
+
+          {/* Callback Form */}
+          <form className="fcta-form" onSubmit={handleCallback}>
+            <input
+              type="text"
+              placeholder="Your name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+              className="fcta-input"
+              required
+            />
+            <input
+              type="tel"
+              placeholder="Phone number"
+              value={phone}
+              onChange={(e) => setPhone(e.target.value)}
+              className="fcta-input"
+              maxLength={10}
+              required
+            />
+            <button
+              type="submit"
+              className="fcta-callback-btn"
+              disabled={isSubmitting}
+            >
+              {isSubmitting
+                ? 'Sending...'
+                : <><Phone size={16} /> Callback</>
+              }
+            </button>
+          </form>
+
+          {isSuccess && (
+            <p style={{
+              color: '#22C55E',
+              fontSize: '0.85rem',
+              textAlign: 'center',
+              marginTop: '0.5rem',
+              fontWeight: '600'
+            }}>
+              ✅ Request received! Abhi will call you shortly.
+            </p>
+          )}
+
+          {/* OR Divider */}
+          <div className="fcta-divider">
+            <div className="fcta-divider__line" />
+            <span className="fcta-divider__text">or</span>
+            <div className="fcta-divider__line" />
+          </div>
+
+          {/* WhatsApp */}
+          <a
+            href={siteConfig.whatsapp}
+            className="fcta-whatsapp-btn"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            <MessageCircle size={18} />
+            {ctaData.whatsappCta}
+          </a>
+
+          {/* Batch Note */}
+          <p className="fcta-batch-note">{ctaData.batchNote}</p>
+
         </div>
       </div>
     </section>

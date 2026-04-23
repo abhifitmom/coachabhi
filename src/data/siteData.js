@@ -7,10 +7,90 @@ export const siteConfig = {
   phone: "+91 98334 22053",
   location: "Mumbai, Maharashtra",
   enrollLink: "#contact",
-  announcementBar: "New 90-Day Batch Starting Soon — Limited Spots Available · Book Now →",
+  announcementBar: "New 90-Day Batch Starting Soon — Limited Spots Available ·",
   copyright: "© 2026 Abhi Strength Coach. All rights reserved.",
   calendlyLink: "https://calendly.com/abhishekmunian",
 };
+export const programs = [
+  {
+    id: 1,
+    duration: "1 Month",
+    months: 1,
+    tag: "Starter",
+    price: "₹6,000",
+    perDay: "~₹200/day",
+    emi: false,
+    popular: false,
+    features: [
+      "Initial health & body assessment",
+      "Personalised workout plan",
+      "Basic nutrition guidance",
+      "WhatsApp support all 7 days",
+      "Weekly 1-on-1 video check-in",
+      "Access to Women's Strength Community",
+    ],
+  },
+  {
+    id: 2,
+    duration: "3 Months",
+    months: 3,
+    tag: "Most Popular",
+    price: "₹15,000",
+    perDay: "~₹167/day",
+    emi: true,
+    popular: true,
+    features: [
+      "Complete DR healing & core restoration",
+      "Personalised workout program for moms",
+      "Weekly 1-on-1 video check-ins",
+      "Mommy pooch & belly fat reduction",
+      "Nutrition guidance (Indian diet friendly)",
+      "WhatsApp support all 7 days",
+      "Pre & post pregnancy body coaching",
+      "Access to Women's Strength Community",
+    ],
+  },
+  {
+    id: 3,
+    duration: "6 Months",
+    months: 6,
+    tag: "Best Value",
+    price: "₹25,000",
+    perDay: "~₹139/day",
+    emi: true,
+    popular: false,
+    features: [
+      "Everything in 3-month program",
+      "Advanced strength & conditioning",
+      "Full body recomposition protocol",
+      "Monthly blood report review",
+      "Detailed progress tracking",
+      "WhatsApp support all 7 days",
+      "Bi-weekly 1-on-1 video check-ins",
+      "Priority access to new programs",
+    ],
+  },
+  {
+    id: 4,
+    duration: "12 Months",
+    months: 12,
+    tag: "Complete Transform",
+    price: "₹45,000",
+    perDay: "~₹125/day",
+    emi: true,
+    popular: false,
+    features: [
+      "Everything in 6-month program",
+      "Full year body transformation",
+      "Quarterly health assessments",
+      "Customised diet plan every month",
+      "Unlimited WhatsApp support",
+      "Weekly 1-on-1 video check-ins",
+      "Lifestyle & habit coaching",
+      "Lifetime access to community",
+    ],
+  },
+];
 
 export const navLinks = [
   { label: "Programs", href: "#programs" },
@@ -47,35 +127,6 @@ export const memberFaces = [
   { name: "Shalini", detail: "PCOS · Lost 12kg" },
 ];
 
-export const programs = [
-  {
-    id: 1,
-    tag: "Most Popular",
-    name: "90-Day Mommy Transformation",
-    badge: "Flagship Program",
-    price: "₹15,000",
-    duration: "3 months",
-    perDay: "~₹167/day",
-    emi: "EMI available",
-    features: [
-      "Complete DR healing & core restoration",
-      "Personalised workout program for moms",
-      "Weekly 1-on-1 video check-ins",
-      "Mommy pooch & belly fat reduction",
-      "Nutrition guidance (Indian diet friendly)",
-      "WhatsApp support all 7 days",
-      "Pre & post pregnancy body coaching",
-      "Access to Women's Strength Community",
-    ],
-  },
-  {
-    id: 2,
-    name: "1-on-1 Personal Training",
-    description: "Dedicated online personal trainer exclusively for women. Custom strength workouts, real-time video form corrections, progressive programming. Limited slots.",
-    isSecondary: true,
-  },
-];
-
 export const specialisations = [
   { icon: "💧", title: "Diastasis Recti (DR) Healing", desc: "Science-backed core restoration to heal the gap safely." },
   { icon: "❤️", title: "Mommy Pooch Reduction", desc: "Flatten the lower belly without crunches that make it worse." },
@@ -85,6 +136,15 @@ export const specialisations = [
   { icon: "🌸", title: "Pre-Pregnancy Fitness", desc: "Build strength before pregnancy for easier delivery & recovery." },
   { icon: "🍽️", title: "Indian Nutrition Guidance", desc: "Practical protein-rich meals built around Indian foods." },
   { icon: "💪", title: "Confidence & Body Image", desc: "Rebuilding your relationship with your body — from inside out." },
+
+  // NEW — extra items jo expand pe dikhenge
+  { icon: "🦵", title: "Varicose Veins", desc: "Exercise + nutrition to improve circulation and manage symptoms." },
+  { icon: "🦴", title: "Musculoskeletal Conditions", desc: "Injury recovery, joint health & pain management." },
+  { icon: "🫃", title: "Gut Health & Digestive Issues", desc: "Bloating, IBS, acid reflux — addressed through food." },
+  { icon: "⚖️", title: "Hormonal Imbalances", desc: "Beyond PCOS — broader hormonal health for men & women." },
+  { icon: "⚡", title: "Autoimmune Conditions", desc: "Anti-inflammatory nutrition & immune support." },
+  { icon: "❤️", title: "Geriatric / Senior Fitness (55+)", desc: "Strength, balance, bone density & independence." },
+  { icon: "🧠", title: "Stress, Sleep & Mental Wellness", desc: "Nutrition and lifestyle changes for better mental health." },
 ];
 
 export const testimonials = [

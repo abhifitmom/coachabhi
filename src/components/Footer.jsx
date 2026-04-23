@@ -1,11 +1,14 @@
 import React from 'react';
 import { Instagram, Mail, Phone, MapPin } from 'lucide-react';
 import { footerData } from '../data/siteData';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import '../styles/Footer.css';
 
 const Footer = () => {
+  const [ref, visible] = useScrollAnimation({ threshold: 0.1 });
+
   return (
-    <footer className="footer bg-dark">
+    <footer ref={ref} className={`footer bg-dark anim-fade-up ${visible ? 'anim-visible' : ''}`}>
       <div className="container">
         <div className="footer__grid">
           {/* Brand Info */}

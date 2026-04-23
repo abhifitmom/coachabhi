@@ -7,6 +7,7 @@ import { landingPageData, siteConfig } from '../data/siteData';
 import { Link } from 'react-router-dom';
 import FloatingWhatsApp from '../components/FloatingWhatsApp';
 import AnnouncementBar from '../components/AnnouncementBar';
+import useFormSubmit from '../hooks/useFormSubmit';
 import '../styles/LandingPage.css';
 import '../styles/BookingModal.css';
 
@@ -40,7 +41,7 @@ const BookingModal = ({ isOpen, onClose, calendlyLink }) => {
     mobile: ''
   });
   const [errors, setErrors] = useState({});
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  const { submitForm, isSubmitting } = useFormSubmit();
 
   // Close on escape key
   React.useEffect(() => {
@@ -86,21 +87,25 @@ const BookingModal = ({ isOpen, onClose, calendlyLink }) => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const newErrors = validate();
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-    setIsSubmitting(true);
-    // Small delay for UX then redirect
-    setTimeout(() => {
-      window.open(calendlyLink, '_blank');
-      onClose();
-      setIsSubmitting(false);
-      setFormData({ name: '', email: '', mobile: '' });
-    }, 800);
+
+    await submitForm('mothers', {
+      name: formData.name,
+      phone: formData.mobile,
+      email: formData.email,
+      source: 'Mothers Program Page - Booking Form'
+    });
+
+    // Redirect to Calendly
+    window.open(calendlyLink, '_blank');
+    onClose();
+    setFormData({ name: '', email: '', mobile: '' });
   };
 
   return (
@@ -210,7 +215,7 @@ const BookingModal = ({ isOpen, onClose, calendlyLink }) => {
             {isSubmitting ? (
               <>
                 <span className="booking-modal__spinner" />
-                Taking you to schedule...
+                Saving...
               </>
             ) : (
               'Proceed to Book Call →'
