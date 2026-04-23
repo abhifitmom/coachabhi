@@ -1,7 +1,31 @@
 import React, { useState } from 'react';
+import {
+  Droplets, Heart, Dumbbell, Baby,
+  Scale, Flower2, UtensilsCrossed, SmilePlus,
+  Vegan, Bone, Flame, Activity,
+  Zap, HeartHandshake, Brain
+} from 'lucide-react';
 import { specialisations } from '../data/siteData';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import '../styles/Specialisations.css';
+
+const specIcons = [
+  <Droplets size={22} />,           // Diastasis Recti
+  <Heart size={22} />,              // Mommy Pooch
+  <Dumbbell size={22} />,           // Strength Training
+  <Baby size={22} />,               // Post-Pregnancy
+  <Scale size={22} />,              // Fat Loss
+  <Flower2 size={22} />,            // Pre-Pregnancy
+  <UtensilsCrossed size={22} />,    // Indian Nutrition
+  <SmilePlus size={22} />,          // Confidence
+  <Vegan size={22} />,              // Varicose Veins
+  <Bone size={22} />,               // Musculoskeletal
+  <Flame size={22} />,              // Gut Health
+  <Activity size={22} />,           // Hormonal
+  <Zap size={22} />,                // Autoimmune
+  <HeartHandshake size={22} />,     // Geriatric
+  <Brain size={22} />,              // Stress & Sleep
+];
 
 const Specialisations = () => {
   const [showAll, setShowAll] = useState(false);
@@ -33,27 +57,12 @@ const Specialisations = () => {
 
         <div ref={gridRef} className="specialisations-grid">
           {visibleItems.map((spec, i) => (
-            <div key={i} className={`spec-card anim-fade-up anim-delay-${Math.min(i + 1, 6)} ${gridVisible ? 'anim-visible' : ''}`} style={{
-              backgroundColor: 'white',
-              borderRadius: 'var(--border-radius-xl)',
-              border: '1px solid var(--color-border)',
-              transition: 'var(--transition)'
-            }}>
-              <div style={{
-                fontSize: '2rem',
-                marginBottom: '1.5rem',
-                backgroundColor: 'var(--color-surface-warm)',
-                width: '60px',
-                height: '60px',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                borderRadius: '1rem'
-              }}>
-                {spec.icon}
+            <div key={i} className={`spec-card anim-fade-up anim-delay-${Math.min(i + 1, 6)} ${gridVisible ? 'anim-visible' : ''}`}>
+              <div className="spec-card__icon">
+                {specIcons[i]}
               </div>
-              <h3 style={{ fontSize: '1.25rem', marginBottom: '0.75rem', lineHeight: '1.3' }}>{spec.title}</h3>
-              <p style={{ fontSize: '0.95rem', color: 'var(--color-ink-secondary)', lineHeight: '1.5' }}>{spec.desc}</p>
+              <h3 className="spec-card__title">{spec.title}</h3>
+              <p className="spec-card__desc">{spec.desc}</p>
             </div>
           ))}
         </div>

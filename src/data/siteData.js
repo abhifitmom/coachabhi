@@ -9,7 +9,6 @@ export const siteConfig = {
   enrollLink: "#contact",
   announcementBar: "New 90-Day Batch Starting Soon — Limited Spots Available ·",
   copyright: "© 2026 Abhi Strength Coach. All rights reserved.",
-  calendlyLink: "https://calendly.com/abhishekmunian",
 };
 export const programs = [
   {
@@ -246,14 +245,24 @@ export const footerData = {
     { label: "1-on-1 Training", href: "#programs" },
     { label: "Mothers Program", href: "/mothers-program" },
   ],
-  company: [
+  navigate: [
     { label: "About Abhi", href: "#about" },
     { label: "Results", href: "#results" },
-    { label: "Privacy Policy", href: "#" },
-    { label: "Terms of Service", href: "#" },
-    { label: "Refund Policy", href: "#" },
+    { label: "Community", href: "#community" },
+    { label: "Specialisations", href: "#specialisations" },
   ],
-  social: { instagram: "https://instagram.com/abhishekmunian" },
+  company: [
+    // Privacy, Terms, Refund — commented out for now
+    // { label: "Privacy Policy", href: "/privacy" },
+    // { label: "Terms of Service", href: "/terms" },
+    // { label: "Refund Policy", href: "/refund" },
+  ],
+  social: {
+    instagram: "https://instagram.com/abhishekmunian",
+    youtube: "https://youtube.com/@abhishekmunian",
+    whatsapp: "https://wa.me/919833422053",
+    email: "mailto:abhishek.munian@gmail.com",
+  },
   copyright: "© 2026 Abhi Strength Coach. All rights reserved.",
 };
 

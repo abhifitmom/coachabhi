@@ -514,10 +514,24 @@
   transform: translateY(-2px);
 }
 
-.lp-feature-card__icon {
-  font-size: 2.25rem;
-  margin-bottom: 1.25rem;
-  display: block;
+.lp-feature-card__icon-wrap {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: var(--color-brand-muted);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-brand);
+  margin: 0 auto 1.25rem;
+  flex-shrink: 0;
+  transition: background 0.2s ease, transform 0.2s ease, color 0.2s ease;
+}
+
+.lp-feature-card:hover .lp-feature-card__icon-wrap {
+  background: var(--color-brand);
+  color: white;
+  transform: scale(1.08);
 }
 
 .lp-feature-card__title {
@@ -1017,3 +1031,152 @@
 .lp-footer__link:hover {
   color: rgba(255, 255, 255, 0.6);
 }
+
+/* ============================================================
+   LANDING PAGE — SCROLL ANIMATIONS
+   ============================================================ */
+
+/* Fade Up */
+.lp-anim-fade-up {
+  opacity: 0;
+  transform: translateY(36px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.lp-anim-fade-up.lp-anim-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Fade In */
+.lp-anim-fade-in {
+  opacity: 0;
+  transition: opacity 0.7s ease;
+}
+
+.lp-anim-fade-in.lp-anim-visible {
+  opacity: 1;
+}
+
+/* Scale Up */
+.lp-anim-scale {
+  opacity: 0;
+  transform: scale(0.93);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.lp-anim-scale.lp-anim-visible {
+  opacity: 1;
+  transform: scale(1);
+}
+
+/* Fade Left */
+.lp-anim-fade-left {
+  opacity: 0;
+  transform: translateX(-40px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.lp-anim-fade-left.lp-anim-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Fade Right */
+.lp-anim-fade-right {
+  opacity: 0;
+  transform: translateX(40px);
+  transition: opacity 0.65s ease, transform 0.65s ease;
+}
+
+.lp-anim-fade-right.lp-anim-visible {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Stagger Delays */
+.lp-anim-delay-1 { transition-delay: 0.1s; }
+.lp-anim-delay-2 { transition-delay: 0.2s; }
+.lp-anim-delay-3 { transition-delay: 0.3s; }
+.lp-anim-delay-4 { transition-delay: 0.4s; }
+.lp-anim-delay-5 { transition-delay: 0.5s; }
+.lp-anim-delay-6 { transition-delay: 0.6s; }
+
+/* ── PULSE BUTTON ANIMATION ── */
+/* Attention-grabbing pulse for main CTA buttons */
+.lp-pulse-btn {
+  position: relative;
+  animation: lp-pulse-glow 2.5s ease-in-out infinite;
+}
+
+@keyframes lp-pulse-glow {
+  0%   { box-shadow: 0 0 0 0 rgba(255, 104, 53, 0.5); }
+  50%  { box-shadow: 0 0 0 12px rgba(255, 104, 53, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(255, 104, 53, 0); }
+}
+
+/* Bounce arrow animation for scroll hint */
+.lp-bounce {
+  animation: lp-bounce-down 1.8s ease-in-out infinite;
+  display: inline-block;
+}
+
+@keyframes lp-bounce-down {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(6px); }
+}
+
+/* Shimmer effect on primary CTA */
+.lp-cta-btn::after,
+.lp-cta-wide::after,
+.lp-final-cta__btn::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  animation: lp-shimmer 3s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.lp-cta-btn,
+.lp-cta-wide,
+.lp-final-cta__btn {
+  position: relative;
+  overflow: hidden;
+}
+
+@keyframes lp-shimmer {
+  0%   { left: -100%; }
+  50%  { left: 150%; }
+  100% { left: 150%; }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .lp-anim-fade-up,
+  .lp-anim-fade-in,
+  .lp-anim-fade-left,
+  .lp-anim-fade-right,
+  .lp-anim-scale {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  .lp-pulse-btn {
+    animation: none;
+  }
+  .lp-cta-btn::after,
+  .lp-cta-wide::after,
+  .lp-final-cta__btn::after {
+    animation: none;
+  }
+}
+

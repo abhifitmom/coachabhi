@@ -1,7 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
-  Check, MessageCircle, ChevronDown,
-  Phone, ClipboardList, Target, CheckCircle2
+  Check,
+  MessageCircle,
+  ChevronDown,
+  Phone,
+  ClipboardList,
+  Target,
+  CheckCircle2,
+  ArrowRight,
+  ShieldCheck,
+  Play,
+  UserCheck,
+  Zap,
+  HeartHandshake,
+  BarChart3,
+  CheckCircle,
+  Home as HomeIcon,
+  UtensilsCrossed
 } from 'lucide-react';
 import { landingPageData, siteConfig } from '../data/siteData';
 import { Link } from 'react-router-dom';
@@ -10,6 +25,41 @@ import AnnouncementBar from '../components/AnnouncementBar';
 import useFormSubmit from '../hooks/useFormSubmit';
 import '../styles/LandingPage.css';
 import '../styles/BookingModal.css';
+
+// ── Scroll Animation Hook (inline — no external file needed) ──
+const useAnim = (options = {}) => {
+  const ref = useRef(null);
+  const [visible, setVisible] = useState(false);
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          observer.unobserve(entry.target);
+        }
+      },
+      { threshold: options.threshold || 0.12, rootMargin: '0px 0px -40px 0px' }
+    );
+    if (ref.current) observer.observe(ref.current);
+    return () => observer.disconnect();
+  }, []);
+  return [ref, visible];
+};
+
+const whyIcons = [
+  <UserCheck size={22} />,      // 1:1 Personal Coaching
+  <Zap size={22} />,            // Live Video Training
+  <UtensilsCrossed size={22} />, // Personalised Diet
+  <HomeIcon size={22} />,       // Home Workout
+  <CheckCircle size={22} />,    // Accountability
+  <BarChart3 size={22} />,      // Progress Tracking
+];
+
+const pillarIcons = [
+  <UserCheck size={32} />,    // Personal Coaching
+  <Zap size={32} />,          // Busy Mom System
+  <HeartHandshake size={32} />, // Full Accountability
+];
 
 /* ── FAQ Item Component ── */
 const FAQItem = ({ question, answer }) => {
@@ -44,7 +94,7 @@ const BookingModal = ({ isOpen, onClose, calendlyLink }) => {
   const { submitForm, isSubmitting } = useFormSubmit();
 
   // Close on escape key
-  React.useEffect(() => {
+  useEffect(() => {
     const handleEsc = (e) => {
       if (e.key === 'Escape') onClose();
     };
@@ -237,6 +287,18 @@ const MothersProgram = () => {
   const [showAnnouncement, setShowAnnouncement] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
+  const [heroRef, heroVisible]           = useAnim({ threshold: 0.1 });
+  const [videoRef, videoVisible]         = useAnim({ threshold: 0.1 });
+  const [problemRef, problemVisible]     = useAnim({ threshold: 0.1 });
+  const [hookRef, hookVisible]           = useAnim({ threshold: 0.15 });
+  const [pillarsRef, pillarsVisible]     = useAnim({ threshold: 0.1 });
+  const [whyRef, whyVisible]             = useAnim({ threshold: 0.1 });
+  const [stepsRef, stepsVisible]         = useAnim({ threshold: 0.1 });
+  const [transRef, transVisible]         = useAnim({ threshold: 0.1 });
+  const [coachRef, coachVisible]         = useAnim({ threshold: 0.1 });
+  const [faqRef, faqVisible]             = useAnim({ threshold: 0.1 });
+  const [ctaRef, ctaVisible]             = useAnim({ threshold: 0.15 });
+
   const openModal = (e) => {
     e.preventDefault();
     setIsModalOpen(true);
@@ -267,7 +329,7 @@ const MothersProgram = () => {
           <Link to="/" className="lp-navbar__logo">
             {siteConfig.brand}
           </Link>
-          <a href="#" onClick={openModal} className="lp-navbar__cta">
+          <a href="#" onClick={openModal} className="lp-navbar__cta lp-pulse-btn">
             Book Free Call
           </a>
         </div>
@@ -277,11 +339,21 @@ const MothersProgram = () => {
 
         {/* ── SECTION 2 — HERO ── */}
         <section className="lp-hero">
-          <h1 className="lp-hero__headline">{d.hero.headline}</h1>
-          <p className="lp-hero__subheadline">{d.hero.subheadline}</p>
+          <h1 
+            ref={heroRef}
+            className={`lp-hero__headline lp-anim-fade-up ${heroVisible ? 'lp-anim-visible' : ''}`}
+          >
+            {d.hero.headline}
+          </h1>
+          <p className={`lp-hero__subheadline lp-anim-fade-up lp-anim-delay-2 ${heroVisible ? 'lp-anim-visible' : ''}`}>
+            {d.hero.subheadline}
+          </p>
 
           {/* Video Placeholder */}
-          <div className="lp-video-wrapper">
+          <div 
+            ref={videoRef}
+            className={`lp-video-wrapper lp-anim-scale ${videoVisible ? 'lp-anim-visible' : ''}`}
+          >
             <div className="lp-video-placeholder">
               <div className="lp-video-play-btn">▶</div>
               <p>Watch How The Program Works</p>
@@ -289,7 +361,10 @@ const MothersProgram = () => {
           </div>
 
           {/* Problem Awareness */}
-          <div className="lp-problem-block">
+          <div 
+            ref={problemRef}
+            className={`lp-problem-block lp-anim-fade-up ${problemVisible ? 'lp-anim-visible' : ''}`}
+          >
             <p>
               Most mothers think they need:<br />
               <span className="lp-problem-block__myths">
@@ -321,8 +396,8 @@ const MothersProgram = () => {
           </div>
 
           {/* CTA */}
-          <div className="lp-hero__cta-wrap">
-            <a href="#" onClick={openModal} className="lp-cta-btn">
+          <div className={`lp-hero__cta-wrap lp-anim-fade-up lp-anim-delay-3 ${heroVisible ? 'lp-anim-visible' : ''}`}>
+            <a href="#" onClick={openModal} className="lp-cta-btn lp-pulse-btn">
               {d.hero.cta}
             </a>
             <p className="lp-cta-subtext">{d.hero.ctaSubtext}</p>
@@ -332,7 +407,7 @@ const MothersProgram = () => {
           <div className="lp-trust-badges">
             {d.hero.trustBadges.map((badge, i) => (
               <div key={i} className="lp-trust-badge">
-                <Check size={13} color="var(--color-brand)" strokeWidth={3} />
+                <CheckCircle2 size={15} color="var(--color-brand)" />
                 {badge}
               </div>
             ))}
@@ -340,7 +415,10 @@ const MothersProgram = () => {
         </section>
 
         {/* ── SECTION 3 — HOOK ── */}
-        <section className="lp-section lp-bg-white">
+        <section 
+          ref={hookRef}
+          className={`lp-section lp-bg-white lp-anim-fade-up ${hookVisible ? 'lp-anim-visible' : ''}`}
+        >
           <div className="lp-section__inner lp-text-center">
             <h2 className="lp-section-title" style={{ marginBottom: '1rem' }}>
               {d.hook.headline}
@@ -348,7 +426,7 @@ const MothersProgram = () => {
             <p className="lp-section-subtitle" style={{ marginBottom: '2rem' }}>
               {d.hook.subheadline}
             </p>
-            <a href="#how" className="lp-cta-wide">
+            <a href="#how" className="lp-cta-wide lp-pulse-btn">
               {d.hook.cta} ↓
             </a>
           </div>
@@ -357,11 +435,26 @@ const MothersProgram = () => {
         {/* ── SECTION 4 — THREE PILLARS ── */}
         <section className="lp-section lp-bg-warm" id="how">
           <div className="lp-section__inner">
-            <div className="lp-pillars-grid">
+            <div ref={pillarsRef} className="lp-pillars-grid">
               {d.pillars.map((pillar, i) => (
-                <div key={i} className="lp-pillar-card">
+                <div 
+                  key={i} 
+                  className={`lp-pillar-card lp-anim-fade-up lp-anim-delay-${i + 1} ${pillarsVisible ? 'lp-anim-visible' : ''}`}
+                >
                   <div className="lp-pillar-card__image">
-                    {i === 0 ? '🧘‍♀️' : i === 1 ? '⚡' : '🤝'}
+                    <div style={{
+                      width: '72px',
+                      height: '72px',
+                      borderRadius: '50%',
+                      background: 'white',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      color: 'var(--color-brand)',
+                      boxShadow: '0 4px 16px rgba(255,104,53,0.2)'
+                    }}>
+                      {pillarIcons[i]}
+                    </div>
                   </div>
                   <div className="lp-pillar-card__body">
                     <h3 className="lp-pillar-card__title">{pillar.title}</h3>
@@ -381,7 +474,7 @@ const MothersProgram = () => {
               ))}
             </div>
             <div className="lp-cta-center">
-              <a href="#" onClick={openModal} className="lp-cta-wide">
+              <a href="#" onClick={openModal} className="lp-cta-wide lp-pulse-btn">
                 START YOUR TRANSFORMATION
               </a>
             </div>
@@ -395,17 +488,22 @@ const MothersProgram = () => {
               <h2 className="lp-section-title">{d.whyChoose.headline}</h2>
               <p className="lp-section-subtitle">{d.whyChoose.subheadline}</p>
             </div>
-            <div className="lp-features-grid">
+            <div ref={whyRef} className="lp-features-grid">
               {d.whyChoose.features.map((feature, i) => (
-                <div key={i} className="lp-feature-card">
-                  <span className="lp-feature-card__icon">{feature.icon}</span>
+                <div 
+                  key={i} 
+                  className={`lp-feature-card lp-anim-scale lp-anim-delay-${i + 1} ${whyVisible ? 'lp-anim-visible' : ''}`}
+                >
+                  <div className="lp-feature-card__icon-wrap">
+                    {whyIcons[i]}
+                  </div>
                   <h3 className="lp-feature-card__title">{feature.title}</h3>
                   <p className="lp-feature-card__desc">{feature.desc}</p>
                 </div>
               ))}
             </div>
             <div className="lp-cta-center">
-              <a href="#" onClick={openModal} className="lp-cta-wide">
+              <a href="#" onClick={openModal} className="lp-cta-wide lp-pulse-btn">
                 BOOK CONSULTATION
               </a>
             </div>
@@ -419,9 +517,12 @@ const MothersProgram = () => {
               <h2 className="lp-section-title">{d.howItWorks.headline}</h2>
               <p className="lp-section-subtitle">{d.howItWorks.subheadline}</p>
             </div>
-            <div className="lp-steps-grid">
+            <div ref={stepsRef} className="lp-steps-grid">
               {d.howItWorks.steps.map((step, i) => (
-                <div key={i} className="lp-step">
+                <div 
+                  key={i} 
+                  className={`lp-step lp-anim-fade-up lp-anim-delay-${i + 1} ${stepsVisible ? 'lp-anim-visible' : ''}`}
+                >
                   <div className="lp-step__icon">
                     {i === 0
                       ? <Phone size={24} />
@@ -436,7 +537,7 @@ const MothersProgram = () => {
               ))}
             </div>
             <div className="lp-cta-center">
-              <a href="#" onClick={openModal} className="lp-cta-wide">
+              <a href="#" onClick={openModal} className="lp-cta-wide lp-pulse-btn">
                 APPLY NOW
               </a>
             </div>
@@ -449,9 +550,12 @@ const MothersProgram = () => {
             <div className="lp-section-header">
               <h2 className="lp-section-title">Client Transformations</h2>
             </div>
-            <div className="lp-transformations-grid">
+            <div ref={transRef} className="lp-transformations-grid">
               {d.transformations.map((trans, i) => (
-                <div key={i} className="lp-transformation-card">
+                <div 
+                  key={i} 
+                  className={`lp-transformation-card lp-anim-fade-up lp-anim-delay-${i + 1} ${transVisible ? 'lp-anim-visible' : ''}`}
+                >
 
                   {/* Header */}
                   <div className="lp-transformation-card__header">
@@ -529,7 +633,7 @@ const MothersProgram = () => {
             </div>
 
             <div className="lp-cta-center">
-              <a href="#" onClick={openModal} className="lp-cta-wide">
+              <a href="#" onClick={openModal} className="lp-cta-wide lp-pulse-btn">
                 APPLY FOR COACHING
               </a>
             </div>
@@ -539,14 +643,14 @@ const MothersProgram = () => {
         {/* ── SECTION 8 — MEET COACH ── */}
         <section className="lp-section lp-bg-white">
           <div className="lp-section__inner">
-            <div className="lp-coach-grid">
-              <div className="lp-coach-image">
+            <div ref={coachRef} className="lp-coach-grid">
+              <div className={`lp-coach-image lp-anim-fade-left ${coachVisible ? 'lp-anim-visible' : ''}`}>
                 <img
                   src="https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776880707/SaveClip.App_619330430_18549305215034362_425692742014550702_n_ecjhs5.jpg"
                   alt="Coach Abhi"
                 />
               </div>
-              <div>
+              <div className={`lp-anim-fade-right ${coachVisible ? 'lp-anim-visible' : ''}`}>
                 <h2 className="lp-coach-content__title">Meet Your Coach</h2>
                 <p className="lp-coach-content__bio">{d.coach.bio1}</p>
                 <p className="lp-coach-content__bio">{d.coach.bio2}</p>
@@ -559,7 +663,7 @@ const MothersProgram = () => {
                     </div>
                   ))}
                 </div>
-                <a href="#" onClick={openModal} className="lp-cta-btn"
+                <a href="#" onClick={openModal} className="lp-cta-btn lp-pulse-btn"
                   style={{ maxWidth: '280px' }}>
                   BOOK CALL
                 </a>
@@ -569,7 +673,10 @@ const MothersProgram = () => {
         </section>
 
         {/* ── SECTION 9 — FAQ ── */}
-        <section className="lp-section lp-bg-sunken">
+        <section 
+          ref={faqRef}
+          className={`lp-section lp-bg-sunken lp-anim-fade-up ${faqVisible ? 'lp-anim-visible' : ''}`}
+        >
           <div className="lp-section__inner--narrow">
             <div className="lp-section-header">
               <h2 className="lp-section-title">
@@ -585,13 +692,16 @@ const MothersProgram = () => {
         </section>
 
         {/* ── SECTION 10 — FINAL CTA ── */}
-        <section className="lp-final-cta">
+        <section 
+          ref={ctaRef}
+          className={`lp-final-cta lp-anim-scale ${ctaVisible ? 'lp-anim-visible' : ''}`}
+        >
           <div className="lp-final-cta__inner">
             <h2 className="lp-final-cta__title">{d.finalCta.headline}</h2>
             <p className="lp-final-cta__subtitle">{d.finalCta.subheadline}</p>
             <p className="lp-final-cta__price">{d.finalCta.price}</p>
             <div className="lp-final-cta__actions">
-              <a href="#" onClick={openModal} className="lp-final-cta__btn">
+              <a href="#" onClick={openModal} className="lp-final-cta__btn lp-pulse-btn">
                 {d.finalCta.cta}
               </a>
               <p className="lp-final-cta__guarantee">
@@ -624,7 +734,7 @@ const MothersProgram = () => {
       <BookingModal
         isOpen={isModalOpen}
         onClose={closeModal}
-        calendlyLink={siteConfig.calendlyLink}
+        calendlyLink={import.meta.env.VITE_CALENDLY_URL}
       />
 
       <FloatingWhatsApp />

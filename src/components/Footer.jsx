@@ -1,6 +1,7 @@
 import React from 'react';
-import { Instagram, Mail, Phone, MapPin } from 'lucide-react';
+import { Instagram, Youtube, Mail, Phone, MapPin, MessageCircle } from 'lucide-react';
 import { footerData } from '../data/siteData';
+import { Link } from 'react-router-dom';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import '../styles/Footer.css';
 
@@ -8,83 +9,122 @@ const Footer = () => {
   const [ref, visible] = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <footer ref={ref} className={`footer bg-dark anim-fade-up ${visible ? 'anim-visible' : ''}`}>
-      <div className="container">
+    <footer
+      ref={ref}
+      className={`footer anim-fade-up ${visible ? 'anim-visible' : ''}`}
+    >
+      <div className="footer__container">
+
+        {/* ── TOP GRID ── */}
         <div className="footer__grid">
-          {/* Brand Info */}
-          <div className="footer__brand-col" style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
-            <div style={{ fontSize: '2rem', fontWeight: '800', fontFamily: 'var(--font-display)' }}>{footerData.brand}</div>
-            <p className="footer__brand-desc" style={{ color: 'var(--color-on-dark-secondary)', fontSize: '0.95rem', lineHeight: '1.6' }}>{footerData.desc}</p>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: '1rem', marginTop: '1rem' }}>
-              <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.9rem', color: 'var(--color-on-dark-muted)' }}>
-                <Phone size={18} color="var(--color-brand)" /> {footerData.contact.phone}
-              </div>
-              <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.9rem', color: 'var(--color-on-dark-muted)' }}>
-                <Mail size={18} color="var(--color-brand)" /> {footerData.contact.email}
-              </div>
-              <div style={{ display: 'flex', gap: '0.75rem', fontSize: '0.9rem', color: 'var(--color-on-dark-muted)' }}>
-                <MapPin size={18} color="var(--color-brand)" /> {footerData.contact.location}
-              </div>
-            </div>
-            <div className="footer__social" style={{ display: 'flex', gap: '1rem' }}>
-              <a href={footerData.social.instagram} style={{
-                width: '40px',
-                height: '40px',
-                borderRadius: '50%',
-                backgroundColor: 'rgba(255,255,255,0.05)',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                color: 'white',
-                transition: 'var(--transition)'
-              }} className="social-link">
-                <Instagram size={20} />
+
+          {/* Brand Column */}
+          <div className="footer__brand-col">
+            <div className="footer__logo">{footerData.brand}</div>
+            <p className="footer__desc">{footerData.desc}</p>
+
+            {/* Contact Info */}
+            <div className="footer__contact">
+              <a href={`tel:${footerData.contact.phone.replace(/\s/g, '')}`} className="footer__contact-item">
+                <Phone size={16} />
+                <span>{footerData.contact.phone}</span>
               </a>
+              <a href={`mailto:${footerData.contact.email}`} className="footer__contact-item">
+                <Mail size={16} />
+                <span>{footerData.contact.email}</span>
+              </a>
+              <div className="footer__contact-item">
+                <MapPin size={16} />
+                <span>{footerData.contact.location}</span>
+              </div>
             </div>
           </div>
 
-          {/* Programs */}
+          {/* Programs Column */}
           <div className="footer__column">
-            <h4 style={{ color: 'white', fontWeight: '600' }}>Programs</h4>
-            <ul>
+            <h4 className="footer__col-title">Programs</h4>
+            <ul className="footer__links">
               {footerData.programs.map((link, i) => (
-                <li key={i}><a href={link.href} style={{ color: 'var(--color-on-dark-secondary)', fontSize: '0.9rem' }}>{link.label}</a></li>
+                <li key={i}>
+                  {link.href.startsWith('/') ? (
+                    <Link to={link.href} className="footer__link">
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a href={link.href} className="footer__link">
+                      {link.label}
+                    </a>
+                  )}
+                </li>
               ))}
             </ul>
           </div>
 
-          {/* Focus Areas */}
-          {/* <div className="footer__column">
-            <h4 style={{ color: 'white', fontWeight: '600' }}>Focus Areas</h4>
-            <ul>
-              {footerData.specialisations.map((link, i) => (
-                <li key={i}><a href={link.href} style={{ color: 'var(--color-on-dark-secondary)', fontSize: '0.9rem' }}>{link.label}</a></li>
-              ))}
-            </ul>
-          </div> */}
-
-          {/* Company */}
+          {/* Navigate Column */}
           <div className="footer__column">
-            <h4 style={{ color: 'white', fontWeight: '600' }}>Company</h4>
-            <ul>
-              {footerData.company.map((link, i) => (
-                <li key={i}><a href={link.href} style={{ color: 'var(--color-on-dark-secondary)', fontSize: '0.9rem' }}>{link.label}</a></li>
+            <h4 className="footer__col-title">Navigate</h4>
+            <ul className="footer__links">
+              {footerData.navigate.map((link, i) => (
+                <li key={i}>
+                  <a href={link.href} className="footer__link">
+                    {link.label}
+                  </a>
+                </li>
               ))}
             </ul>
           </div>
+
         </div>
 
-        {/* Bottom Bar */}
-        <div className="footer__bottom" style={{
-          borderTop: '1px solid rgba(255,255,255,0.1)'
-        }}>
-          <div style={{ color: 'var(--color-on-dark-muted)', fontSize: '0.85rem' }}>{footerData.copyright}</div>
-          <div style={{ display: 'flex', gap: '1.5rem' }}>
-            {['Privacy', 'Terms', 'Refunds'].map((text, i) => (
-              <a key={i} href="#" style={{ color: 'var(--color-on-dark-muted)', fontSize: '0.85rem' }}>{text}</a>
-            ))}
+        {/* ── DIVIDER ── */}
+        <div className="footer__divider" />
+
+        {/* ── BOTTOM ROW ── */}
+        <div className="footer__bottom">
+
+          {/* Copyright */}
+          <p className="footer__copy">{footerData.copyright}</p>
+
+          {/* Social Icons */}
+          <div className="footer__social">
+            <a
+              href={footerData.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer__social-btn"
+              aria-label="Instagram"
+            >
+              <Instagram size={18} />
+            </a>
+            <a
+              href={footerData.social.youtube}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer__social-btn"
+              aria-label="YouTube"
+            >
+              <Youtube size={18} />
+            </a>
+            <a
+              href={footerData.social.whatsapp}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="footer__social-btn footer__social-btn--whatsapp"
+              aria-label="WhatsApp"
+            >
+              <MessageCircle size={18} />
+            </a>
+            <a
+              href={footerData.social.email}
+              className="footer__social-btn"
+              aria-label="Email"
+            >
+              <Mail size={18} />
+            </a>
           </div>
+
         </div>
+
       </div>
     </footer>
   );
