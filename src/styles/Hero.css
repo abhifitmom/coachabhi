@@ -2,17 +2,30 @@
 
 .hero {
   padding: 2rem 1.25rem 3rem;
-  min-height: auto;
+  overflow: visible;
+  height: auto;
 }
 
 .hero__grid {
   display: grid;
   grid-template-columns: 1fr;
   gap: 2rem;
+  overflow: visible;
 }
 
 .hero__image {
   display: none;
+  overflow: hidden;
+  max-height: none;
+  height: auto;
+}
+
+.hero__image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  display: block;
+  overflow: hidden;
 }
 
 .hero__headline {
@@ -70,9 +83,9 @@
   .hero__grid {
     grid-template-columns: 1.15fr 0.85fr;
     gap: 5rem;
-    min-height: 85dvh;
     align-items: center;
     display: grid;
+    overflow: visible;
   }
   .hero__image { display: block; }
   .hero__cta-group { flex-direction: row; }
