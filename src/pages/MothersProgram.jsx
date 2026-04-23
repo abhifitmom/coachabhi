@@ -7,6 +7,8 @@ import { landingPageData, siteConfig } from '../data/siteData';
 import { Link } from 'react-router-dom';
 import FloatingWhatsApp from '../components/FloatingWhatsApp';
 import AnnouncementBar from '../components/AnnouncementBar';
+import '../styles/LandingPage.css';
+import '../styles/BookingModal.css';
 
 /* ── FAQ Item Component ── */
 const FAQItem = ({ question, answer }) => {

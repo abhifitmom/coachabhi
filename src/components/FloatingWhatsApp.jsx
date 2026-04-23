@@ -1,5 +1,6 @@
 import React from 'react';
 import { siteConfig } from '../data/siteData';
+import '../styles/FloatingWhatsApp.css';
 
 const FloatingWhatsApp = () => {
   return (

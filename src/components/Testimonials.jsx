@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import '../styles/Testimonials.css';
 
 /* ── Data — hardcoded here, not in siteData.js ── */
 const testimonialImages = [

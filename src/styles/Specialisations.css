@@ -1,0 +1,33 @@
+/* ============ SPECIALISATIONS CSS ============ */
+
+.specialisations-section {
+  padding: 3rem 1.25rem;
+}
+
+.specialisations-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.875rem;
+}
+
+.spec-card {
+  padding: 1.125rem;
+}
+
+@media (min-width: 640px) {
+  .specialisations-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .specialisations-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media (min-width: 1280px) {
+  .specialisations-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

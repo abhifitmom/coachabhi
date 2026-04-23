@@ -1,6 +1,7 @@
 import React from 'react';
 import { X } from 'lucide-react';
 import { siteConfig } from '../data/siteData';
+import '../styles/AnnouncementBar.css';
 
 const AnnouncementBar = ({ isVisible, onDismiss }) => {
   if (!isVisible) return null;

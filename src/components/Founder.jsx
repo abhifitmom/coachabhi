@@ -1,5 +1,6 @@
 import React from 'react';
 import { founderData } from '../data/siteData';
+import '../styles/Founder.css';
 
 const Founder = () => {
   return (

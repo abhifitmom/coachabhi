@@ -1,0 +1,64 @@
+/* ============ FINAL CTA CSS ============ */
+
+.final-cta-section {
+  padding: 2rem 1rem;
+}
+
+.final-cta-card {
+  padding: 2rem 1.25rem;
+  border-radius: 1.5rem;
+}
+
+.final-cta-card h2 {
+  font-size: clamp(1.5rem, 5vw, 2rem);
+  text-align: center;
+}
+
+.final-cta-card .price {
+  font-size: 2rem;
+}
+
+.final-cta-card .btn-primary {
+  width: 100%;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.final-cta-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.final-cta-form input {
+  width: 100%;
+}
+
+.final-cta-form button {
+  width: 100%;
+  justify-content: center;
+}
+
+.final-cta-whatsapp {
+  width: 100%;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .final-cta-card {
+    padding: 3rem;
+    border-radius: 2rem;
+  }
+  .final-cta-form {
+    flex-direction: row;
+  }
+  .final-cta-form input {
+    flex: 1;
+  }
+}
+
+@media (min-width: 1024px) {
+  .final-cta-section {
+    padding: 3rem 1.5rem;
+  }
+}

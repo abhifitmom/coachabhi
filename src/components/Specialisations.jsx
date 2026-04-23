@@ -1,5 +1,6 @@
 import React from 'react';
 import { specialisations } from '../data/siteData';
+import '../styles/Specialisations.css';
 
 const Specialisations = () => {
   return (

@@ -1,5 +1,6 @@
 import React from 'react';
 import { memberFaces } from '../data/siteData';
+import '../styles/MemberFaces.css';
 
 const MemberFaces = () => {
   return (

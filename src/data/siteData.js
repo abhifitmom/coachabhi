@@ -2,12 +2,14 @@ export const siteConfig = {
   brand: "ABHI",
   tagline: "Strength Coach for Women",
   instagram: "https://instagram.com/abhishekmunian",
-  whatsapp: "https://wa.me/91XXXXXXXXXX",
-  calendlyLink: "https://calendly.com/abhishekmunian", // replace with real link
-  email: "abhi@example.com",
-  phone: "+91 XXXXXXXXXX",
+  whatsapp: "https://wa.me/919833422053",
+  email: "abhishek.munian@gmail.com",
+  phone: "+91 98334 22053",
+  location: "Mumbai, Maharashtra",
   enrollLink: "#contact",
-  announcementBar: "New 90-Day Batch Starting Soon — Limited Spots Available ·",
+  announcementBar: "New 90-Day Batch Starting Soon — Limited Spots Available · Book Now →",
+  copyright: "© 2026 Abhi Strength Coach. All rights reserved.",
+  calendlyLink: "https://calendly.com/abhishekmunian",
 };
 
 export const navLinks = [
@@ -18,7 +20,7 @@ export const navLinks = [
 ];
 
 export const heroData = {
-  eyebrow: "Since 2020 — 200+ Moms Transformed",
+  eyebrow: "Since 2016 — 1000+ Clients Transformed",
   headline: "Get Strong.",
   headlineItalic: "Feel Like You Again.",
   subheadline: "Specialised strength coaching for mothers — heal Diastasis Recti, flatten your mommy pooch, and regain your pre-pregnancy shape & confidence. All in 90 days.",
@@ -27,8 +29,8 @@ export const heroData = {
   badge: "New batch starting soon — Limited spots",
   announcement: "New: Online 1-on-1 Coaching Now Available →",
   stats: [
-    { value: "200+", label: "Moms Transformed" },
-    { value: "Since 2020", label: "Coaching" },
+    { value: "1000+", label: "Clients Transformed" },
+    { value: "Since 2016", label: "Coaching" },
     { value: "4.9★", label: "Google Rating" },
     { value: "90 Days", label: "Guaranteed Results" },
   ],
@@ -137,14 +139,14 @@ export const founderData = {
   eyebrow: "Our Story",
   headline: "Built From a Passion to Help Mothers Reclaim Their Strength",
   story1: "Abhi started coaching women after seeing countless mothers struggle post-pregnancy — not knowing what was safe, what would work, and feeling completely lost in their own bodies.",
-  story2: "Specialising in Diastasis Recti healing and postpartum strength, Abhi has helped 200+ mothers rebuild their core, flatten their belly, and feel stronger than before pregnancy.",
+  story2: "Specialising in Diastasis Recti healing and postpartum strength, Abhi has helped 1000+ mothers rebuild their core, flatten their belly, and feel stronger than before pregnancy.",
   quote: "\"Strength is not about how you look. It's about how you feel in your own skin. Every mother deserves to feel powerful again.\"",
   quoteAuthor: "Abhi, Founder",
   stats: [
-    { value: "Since 2020", label: "Coaching" },
-    { value: "200+", label: "Moms Transformed" },
+    { value: "Since 2016", label: "Coaching" },
+    { value: "1000+", label: "Clients Transformed" },
     { value: "8+", label: "Specialisations" },
-    { value: "Worldwide", label: "India & Abroad" },
+    { value: "Mumbai", label: "Maharashtra" },
   ],
 };
 
@@ -162,7 +164,7 @@ export const communityData = {
 
 export const ctaData = {
   headline: "Start Your 90-Day Transformation",
-  desc: "Join 200+ mothers who reclaimed their strength. 90-day personalised coaching program.",
+  desc: "Join 1000+ mothers who reclaimed their strength. 90-day personalised coaching program.",
   price: "₹15,000",
   duration: "for 3 months",
   ctaPrimary: "Enrol Now — Pay Securely",
@@ -173,29 +175,20 @@ export const ctaData = {
 
 export const footerData = {
   brand: "ABHI",
-  desc: "Strength coaching exclusively for women. Specialising in DR healing, mommy pooch reduction & postpartum strength since 2020.",
+  desc: "Strength coaching exclusively for women. Specialising in DR healing, mommy pooch reduction & postpartum strength since 2016.",
   contact: {
-    phone: "+91 XXXXXXXXXX",
-    email: "abhi@example.com",
-    location: "Online · India & Worldwide",
+    phone: "+91 98334 22053",
+    email: "abhishek.munian@gmail.com",
+    location: "Mumbai, Maharashtra",
   },
   programs: [
     { label: "90-Day Transformation", href: "#programs" },
     { label: "1-on-1 Training", href: "#programs" },
-    { label: "DR Healing Program", href: "#programs" },
-    { label: "Women's Strength Circle", href: "#community" },
-  ],
-  specialisations: [
-    { label: "Diastasis Recti", href: "#specialisations" },
-    { label: "Mommy Pooch", href: "#specialisations" },
-    { label: "Post-Pregnancy", href: "#specialisations" },
-    { label: "Strength Training", href: "#specialisations" },
-    { label: "Fat Loss", href: "#specialisations" },
+    { label: "Mothers Program", href: "/mothers-program" },
   ],
   company: [
     { label: "About Abhi", href: "#about" },
     { label: "Results", href: "#results" },
-    { label: "Community", href: "#community" },
     { label: "Privacy Policy", href: "#" },
     { label: "Terms of Service", href: "#" },
     { label: "Refund Policy", href: "#" },
@@ -220,7 +213,7 @@ export const landingPageData = {
     },
     cta: "BOOK FREE STRATEGY CALL",
     ctaSubtext: "Reduce confusion, uncertainty, doubts",
-    trustBadges: ["200+ Moms Transformed", "4.9★ Rated", "DR Specialist"],
+    trustBadges: ["1000+ Clients Transformed", "4.9★ Rated", "DR Specialist"],
   },
   hook: {
     headline: "Tired Of Starting Workouts But Never Staying Consistent?",
@@ -305,7 +298,7 @@ export const landingPageData = {
   ],
   coach: {
     name: "Abhi",
-    bio1: "Hey, I'm Abhi — a certified personal trainer and strength coach specialising exclusively in women's postpartum fitness. Over the years, I've helped 200+ mothers transform their bodies while still enjoying their lives.",
+    bio1: "Hey, I'm Abhi — a certified personal trainer and strength coach specialising exclusively in women's postpartum fitness. Over the years, I've helped 1000+ mothers transform their bodies while still enjoying their lives.",
     bio2: "My coaching is different because I don't believe in extreme dieting, gym dependency, or short-term fixes.",
     bio3: "I focus on sustainable fat loss methods that fit into your daily routine even if you're busy with kids, family, or work. I combine science-backed training, nutrition, and lifestyle habits so you don't just lose weight, but keep it off permanently.",
     certifications: [
@@ -327,7 +320,7 @@ export const landingPageData = {
   ],
   finalCta: {
     headline: "Ready To Transform Your Body In 90 Days?",
-    subheadline: "Join 200+ mothers who chose results over excuses. Limited spots available.",
+    subheadline: "Join 1000+ clients who chose results over excuses. Limited spots available.",
     // price: "Investment: ₹15,000 for 3 months · EMI Available",
     cta: "BOOK YOUR FREE STRATEGY CALL NOW →",
     guarantee: "🔒 7-Day Money Back Guarantee — No questions asked",

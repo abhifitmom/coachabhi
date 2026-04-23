@@ -1,6 +1,7 @@
 import React from 'react';
 import { MessageCircle, ArrowRight, Phone } from 'lucide-react';
 import { heroData, siteConfig } from '../data/siteData';
+import '../styles/Hero.css';
 
 const Hero = () => {
   return (

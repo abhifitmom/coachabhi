@@ -1,6 +1,7 @@
 import React from 'react';
 import { Phone, MessageCircle, ArrowRight, ShieldCheck } from 'lucide-react';
 import { ctaData, siteConfig } from '../data/siteData';
+import '../styles/FinalCTA.css';
 
 const FinalCTA = () => {
   return (

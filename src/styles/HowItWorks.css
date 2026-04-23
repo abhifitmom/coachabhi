@@ -1,0 +1,37 @@
+/* ============ HOW IT WORKS CSS ============ */
+
+.how-it-works-section {
+  padding: 3rem 1.25rem;
+}
+
+.how-it-works-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.step-card {
+  text-align: center;
+}
+
+.step-card__icon {
+  margin: 0 auto 1rem;
+}
+
+@media (min-width: 640px) {
+  .how-it-works-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .step-card { text-align: left; }
+  .step-card__icon { margin: 0 0 1rem; }
+}
+
+@media (min-width: 1024px) {
+  .how-it-works-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+  }
+  .how-it-works-section {
+    padding: 6rem 2.5rem;
+  }
+}

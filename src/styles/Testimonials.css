@@ -1,0 +1,371 @@
+/* ============ TESTIMONIALS CSS ============ */
+
+.testimonials-section {
+  padding: 3rem 1.25rem;
+}
+
+.testimonials-section .section-header {
+  margin-bottom: 2rem;
+}
+
+.testimonials-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+.testimonial-card {
+  padding: 1.25rem;
+}
+
+@media (min-width: 640px) {
+  .testimonials-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 1.25rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .testimonials-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .testimonials-section {
+    padding: 5rem 2.5rem;
+  }
+}
+
+/* ── CAROUSEL STYLES ── */
+
+.testi-section {
+  padding: 4rem 0;
+  background: var(--color-surface-warm);
+  overflow: hidden;
+}
+
+@media (min-width: 1024px) {
+  .testi-section {
+    padding: 6rem 0;
+  }
+}
+
+/* ── Header ── */
+.testi-header {
+  text-align: center;
+  margin-bottom: 2.5rem;
+  padding: 0 1.25rem;
+}
+
+.testi-header__sub {
+  font-size: 0.9375rem;
+  color: var(--color-ink-secondary);
+  max-width: 480px;
+  margin: 0.75rem auto 0;
+  line-height: 1.6;
+}
+
+/* ── Tab Switcher ── */
+.testi-tabs {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  margin-bottom: 2.5rem;
+  padding: 0 1.25rem;
+}
+
+.testi-tab {
+  padding: 0.625rem 1.5rem;
+  border-radius: 999px;
+  border: 2px solid var(--color-border-strong);
+  background: white;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-ink-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  font-family: var(--font-body);
+}
+
+.testi-tab:hover {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+}
+
+.testi-tab--active {
+  background: var(--color-brand);
+  border-color: var(--color-brand);
+  color: white;
+}
+
+.testi-tab--active:hover {
+  color: white;
+  background: var(--color-brand-dark);
+}
+
+/* ── Carousel Wrapper ── */
+.testi-carousel-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0 1.25rem;  /* padding on mobile */
+}
+
+/* Desktop — more padding for arrows */
+@media (min-width: 1024px) {
+  .testi-carousel-wrap {
+    padding: 0 2.5rem;
+    gap: 1rem;
+  }
+}
+
+/* ── Arrow Buttons — hidden mobile, show desktop ── */
+.testi-arrow {
+  display: none;
+  flex-shrink: 0;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  border: 2px solid var(--color-border-strong);
+  background: white;
+  color: var(--color-ink);
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.08);
+}
+
+@media (min-width: 1024px) {
+  .testi-arrow {
+    display: flex;  /* only show on desktop */
+  }
+}
+
+.testi-arrow:hover:not(:disabled) {
+  border-color: var(--color-brand);
+  color: var(--color-brand);
+  box-shadow: 0 4px 16px rgba(255,104,53,0.15);
+}
+
+.testi-arrow--disabled {
+  opacity: 0.3;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* ── Track ── */
+.testi-track {
+  display: flex;
+  gap: 1rem;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  flex: 1;
+  padding-bottom: 0.5rem;
+  /* Add this — important for exact 3 cards */
+  scroll-padding-left: 0;
+}
+
+.testi-track::-webkit-scrollbar {
+  display: none;                /* Chrome/Safari */
+}
+
+/* ── Cards ── */
+.testi-card {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  border-radius: 1rem;
+  overflow: hidden;
+  border: 2px solid var(--color-border);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+
+  /* Mobile — 1 card at a time, full width */
+  width: calc(100vw - 4rem);
+
+  /* Tablet — 2 cards */
+  @media (min-width: 640px) {
+    width: calc(50% - 0.5rem);
+  }
+
+  /* Desktop — exactly 3 cards, no cutting */
+  @media (min-width: 1024px) {
+    width: calc((100%) / 3 - 0.75rem);
+  }
+}
+
+.testi-card:hover {
+  border-color: var(--color-brand);
+  box-shadow: 0 8px 24px rgba(255,104,53,0.12);
+}
+
+/* Image card */
+.testi-card--image {
+  background: #f5f5f5;
+  aspect-ratio: 3 / 4;
+}
+
+.testi-card--image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top center;
+  display: block;
+  transition: transform 0.3s ease;
+  pointer-events: none;
+}
+
+.testi-card--image:hover img {
+  transform: scale(1.03);
+}
+
+/* Video card */
+.testi-card--video {
+  background: #1A1A1A;
+  aspect-ratio: 3 / 4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.testi-card__video-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  padding: 2rem;
+  text-align: center;
+}
+
+.testi-card__play-btn {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--color-brand);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 0 0 12px rgba(255,104,53,0.2);
+  transition: transform 0.2s ease;
+}
+
+.testi-card--video:hover .testi-card__play-btn {
+  transform: scale(1.1);
+}
+
+.testi-card__video-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: white;
+  margin: 0;
+}
+
+.testi-card__video-coming {
+  font-size: 0.8rem;
+  color: rgba(255,255,255,0.5);
+  margin: 0;
+}
+
+/* Dots wrapper — simple circles */
+.testi-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1.5rem;
+}
+
+.testi-dot {
+  width: 8px !important;
+  height: 8px !important;
+  min-width: 8px !important;
+  min-height: 8px !important;
+  max-width: 8px !important;
+  max-height: 8px !important;
+  border-radius: 50% !important;
+  border: none;
+  background: #CCCCCC;
+  cursor: pointer;
+  padding: 0;
+  display: block;
+  transition: background 0.2s ease;
+}
+
+.testi-dot--active {
+  background: #FF6835 !important;
+  width: 8px !important;
+  height: 8px !important;
+  border-radius: 50% !important;
+}
+
+/* ── Counter ── */
+.testi-counter {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--color-ink-muted);
+  font-family: var(--font-mono);
+  margin-top: 0.875rem;
+}
+
+/* Video Section — Same structure as Image Carousel */
+.testi-videos-wrap {
+  margin-top: 3rem;
+  padding: 0 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .testi-videos-wrap {
+    padding: 0 2.5rem;
+  }
+}
+
+.testi-videos-heading {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3vw, 1.75rem);
+  font-weight: 700;
+  color: var(--color-ink);
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Video card — vertical 9/16 layout */
+.testi-card--video-player {
+  scroll-snap-align: start;
+  flex-shrink: 0;
+  border-radius: 1.25rem;
+  overflow: hidden;
+  border: 2px solid var(--color-brand);
+  background: #1A1A1A;
+  aspect-ratio: 9 / 16;  /* vertical video */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+  /* Mobile — 1 card */
+  width: calc(100vw - 4rem);
+}
+
+@media (min-width: 640px) {
+  .testi-card--video-player {
+    width: calc(50% - 0.5rem);
+  }
+}
+
+@media (min-width: 1024px) {
+  .testi-card--video-player {
+    width: calc((100%) / 3 - 0.75rem);
+  }
+}
+
+.testi-card--video-player:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 12px 48px rgba(255, 104, 53, 0.25);
+}
+
+.testi-card--video-player video {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}

@@ -1,6 +1,7 @@
 import React from 'react';
 import { Users, BookOpen, Calendar, Heart } from 'lucide-react';
 import { communityData } from '../data/siteData';
+import '../styles/Community.css';
 
 const Community = () => {
   const icons = [<Calendar size={24} />, <BookOpen size={24} />, <Users size={24} />, <Heart size={24} />];

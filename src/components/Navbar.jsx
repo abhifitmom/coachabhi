@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, ArrowUpRight } from 'lucide-react';
 import { siteConfig, navLinks } from '../data/siteData';
 import { Link } from 'react-router-dom';
+import '../styles/Navbar.css';
 
 const Navbar = ({ announcementHeight = 40 }) => {
   const [isScrolled, setIsScrolled] = useState(false);

@@ -1,0 +1,46 @@
+/* ============ COMMUNITY CSS ============ */
+
+.community-section {
+  padding: 3rem 1.25rem;
+}
+
+.community-section .section-header {
+  margin-bottom: 2rem;
+}
+
+.community-section .section-title {
+  font-size: clamp(1.75rem, 6vw, 2.5rem);
+}
+
+.community-section .section-desc {
+  font-size: 0.9375rem;
+}
+
+.community-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.875rem;
+  margin-top: 2rem;
+}
+
+.community-card {
+  padding: 1.25rem;
+  text-align: left;
+}
+
+@media (min-width: 640px) {
+  .community-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (min-width: 1024px) {
+  .community-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+  }
+  .community-section {
+    padding: 5rem 2.5rem;
+  }
+  .community-card { text-align: center; }
+}

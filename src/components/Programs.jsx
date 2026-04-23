@@ -1,6 +1,7 @@
 import React from 'react';
 import { Check, MessageCircle, ArrowRight } from 'lucide-react';
 import { programs, siteConfig } from '../data/siteData';
+import '../styles/Programs.css';
 
 const Programs = () => {
   const flagship = programs.find(p => p.id === 1);

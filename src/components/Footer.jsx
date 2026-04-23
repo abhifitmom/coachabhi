@@ -1,6 +1,7 @@
 import React from 'react';
 import { Instagram, Mail, Phone, MapPin } from 'lucide-react';
 import { footerData } from '../data/siteData';
+import '../styles/Footer.css';
 
 const Footer = () => {
   return (
@@ -50,14 +51,14 @@ const Footer = () => {
           </div>
 
           {/* Focus Areas */}
-          <div className="footer__column">
+          {/* <div className="footer__column">
             <h4 style={{ color: 'white', fontWeight: '600' }}>Focus Areas</h4>
             <ul>
               {footerData.specialisations.map((link, i) => (
                 <li key={i}><a href={link.href} style={{ color: 'var(--color-on-dark-secondary)', fontSize: '0.9rem' }}>{link.label}</a></li>
               ))}
             </ul>
-          </div>
+          </div> */}
 
           {/* Company */}
           <div className="footer__column">

@@ -1,6 +1,7 @@
 import React from 'react';
 import { PhoneCall, UserCheck, ClipboardList, Video } from 'lucide-react';
 import { howItWorks } from '../data/siteData';
+import '../styles/HowItWorks.css';
 
 const HowItWorks = () => {
   const icons = [<PhoneCall size={32} />, <UserCheck size={32} />, <ClipboardList size={32} />, <Video size={32} />];

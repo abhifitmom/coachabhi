@@ -1,0 +1,40 @@
+/* ============ FOUNDER CSS ============ */
+
+.founder-section {
+  padding: 3rem 1.25rem;
+}
+
+.founder-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 2rem;
+}
+
+.founder-image-wrapper {
+  aspect-ratio: 4/5;
+  max-width: 100%;
+  border-radius: 1rem;
+}
+
+.founder-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.25rem;
+}
+
+.founder-quote {
+  padding: 1.25rem;
+}
+
+@media (min-width: 1024px) {
+  .founder-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 4rem;
+    padding: 9rem 2.5rem;
+  }
+  .founder-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 3rem;
+  }
+}
