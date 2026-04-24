@@ -124,12 +124,40 @@
 
 .lp-hero__headline {
   font-family: var(--font-display);
-  font-size: clamp(1.75rem, 5vw, 3.2rem);
+  font-size: clamp(1.75rem, 3.8vw, 3rem);
   font-weight: 800;
-  max-width: 750px;
+  max-width: 780px;
   margin: 0 auto 1.25rem;
-  line-height: 1.15;
+  line-height: 1.2;
   color: var(--color-ink);
+  text-align: center;
+}
+
+/* Orange highlight — solid */
+.lp-highlight {
+  color: var(--color-brand);
+  position: relative;
+  display: inline;
+}
+
+/* Underline decoration */
+.lp-highlight::after {
+  content: '';
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--color-brand);
+  border-radius: 2px;
+  opacity: 0.4;
+}
+
+/* Italic highlight — for "Confident, Strong Mother" */
+.lp-highlight-italic {
+  color: var(--color-brand);
+  font-style: italic;
+  display: inline;
 }
 
 .lp-hero__subheadline {
@@ -1179,4 +1207,3 @@
     animation: none;
   }
 }
-

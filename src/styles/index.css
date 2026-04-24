@@ -49,8 +49,9 @@
 
 html {
   scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  overflow-y: scroll;    /* ← sirf html pe scroll */
 }
 
 body {
@@ -58,11 +59,15 @@ body {
   color: var(--color-ink);
   background: var(--color-surface-warm);
   line-height: 1.6;
-  overflow-x: hidden;
+  overflow: hidden;      /* ← body pe hidden — no inner scroll */
+  min-height: 100%;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  /* GPU acceleration */
-  -webkit-overflow-scrolling: touch;
+}
+
+#root {
+  overflow: hidden;
+  min-height: 100vh;
 }
 
 h1, h2, h3, h4, .display-font {
@@ -244,15 +249,10 @@ ul {
 /* --- MOBILE RESPONSIVENESS FIXES --- */
 
 /* FIX 14 — GLOBAL MOBILE UTILITIES */
-html, body {
-  overflow-x: hidden;
-  width: 100%;
-}
-
-section {
+/* section {
   width: 100%;
   overflow-x: hidden;
-}
+} */
 
 button, a.btn, .btn-primary, .btn-secondary {
   min-height: 44px;

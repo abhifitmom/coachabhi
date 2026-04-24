@@ -21,7 +21,6 @@ import {
 import { landingPageData, siteConfig } from '../data/siteData';
 import { Link } from 'react-router-dom';
 import FloatingWhatsApp from '../components/FloatingWhatsApp';
-import AnnouncementBar from '../components/AnnouncementBar';
 import useFormSubmit from '../hooks/useFormSubmit';
 import '../styles/LandingPage.css';
 import '../styles/BookingModal.css';
@@ -284,20 +283,19 @@ const BookingModal = ({ isOpen, onClose, calendlyLink }) => {
 
 /* ── Main Page ── */
 const MothersProgram = () => {
-  const [showAnnouncement, setShowAnnouncement] = useState(true);
   const [isModalOpen, setIsModalOpen] = useState(false);
 
-  const [heroRef, heroVisible]           = useAnim({ threshold: 0.1 });
-  const [videoRef, videoVisible]         = useAnim({ threshold: 0.1 });
-  const [problemRef, problemVisible]     = useAnim({ threshold: 0.1 });
-  const [hookRef, hookVisible]           = useAnim({ threshold: 0.15 });
-  const [pillarsRef, pillarsVisible]     = useAnim({ threshold: 0.1 });
-  const [whyRef, whyVisible]             = useAnim({ threshold: 0.1 });
-  const [stepsRef, stepsVisible]         = useAnim({ threshold: 0.1 });
-  const [transRef, transVisible]         = useAnim({ threshold: 0.1 });
-  const [coachRef, coachVisible]         = useAnim({ threshold: 0.1 });
-  const [faqRef, faqVisible]             = useAnim({ threshold: 0.1 });
-  const [ctaRef, ctaVisible]             = useAnim({ threshold: 0.15 });
+  const [heroRef, heroVisible] = useAnim({ threshold: 0.1 });
+  const [videoRef, videoVisible] = useAnim({ threshold: 0.1 });
+  const [problemRef, problemVisible] = useAnim({ threshold: 0.1 });
+  const [hookRef, hookVisible] = useAnim({ threshold: 0.15 });
+  const [pillarsRef, pillarsVisible] = useAnim({ threshold: 0.1 });
+  const [whyRef, whyVisible] = useAnim({ threshold: 0.1 });
+  const [stepsRef, stepsVisible] = useAnim({ threshold: 0.1 });
+  const [transRef, transVisible] = useAnim({ threshold: 0.1 });
+  const [coachRef, coachVisible] = useAnim({ threshold: 0.1 });
+  const [faqRef, faqVisible] = useAnim({ threshold: 0.1 });
+  const [ctaRef, ctaVisible] = useAnim({ threshold: 0.15 });
 
   const openModal = (e) => {
     e.preventDefault();
@@ -308,22 +306,15 @@ const MothersProgram = () => {
     setIsModalOpen(false);
   };
 
-  const announcementHeight = showAnnouncement ? 40 : 0;
   const d = landingPageData;
 
   return (
     <div className="landing-page">
 
-      {/* Announcement Bar */}
-      <AnnouncementBar
-        isVisible={showAnnouncement}
-        onDismiss={() => setShowAnnouncement(false)}
-      />
-
       {/* ── MINI NAVBAR ── */}
       <nav
         className="lp-navbar"
-        style={{ top: `${announcementHeight}px` }}
+        style={{ top: '0px' }}
       >
         <div className="lp-navbar__inner">
           <Link to="/" className="lp-navbar__logo">
@@ -335,22 +326,25 @@ const MothersProgram = () => {
         </div>
       </nav>
 
-      <main style={{ marginTop: `${announcementHeight + 1}px` }}>
+      <main style={{ marginTop: '0px' }}>
 
         {/* ── SECTION 2 — HERO ── */}
         <section className="lp-hero">
-          <h1 
+          <h1
             ref={heroRef}
             className={`lp-hero__headline lp-anim-fade-up ${heroVisible ? 'lp-anim-visible' : ''}`}
           >
-            {d.hero.headline}
+            Lose <span className="lp-highlight">8–12 Kg</span> In{' '}
+            <span className="lp-highlight">90 Days</span> And Become A{' '}
+            <span className="lp-highlight-italic">Confident, Strong Mother</span>{' '}
+            Using My 1:1 Coaching System
           </h1>
           <p className={`lp-hero__subheadline lp-anim-fade-up lp-anim-delay-2 ${heroVisible ? 'lp-anim-visible' : ''}`}>
             {d.hero.subheadline}
           </p>
 
           {/* Video Placeholder */}
-          <div 
+          <div
             ref={videoRef}
             className={`lp-video-wrapper lp-anim-scale ${videoVisible ? 'lp-anim-visible' : ''}`}
           >
@@ -361,7 +355,7 @@ const MothersProgram = () => {
           </div>
 
           {/* Problem Awareness */}
-          <div 
+          <div
             ref={problemRef}
             className={`lp-problem-block lp-anim-fade-up ${problemVisible ? 'lp-anim-visible' : ''}`}
           >
@@ -415,7 +409,7 @@ const MothersProgram = () => {
         </section>
 
         {/* ── SECTION 3 — HOOK ── */}
-        <section 
+        <section
           ref={hookRef}
           className={`lp-section lp-bg-white lp-anim-fade-up ${hookVisible ? 'lp-anim-visible' : ''}`}
         >
@@ -437,8 +431,8 @@ const MothersProgram = () => {
           <div className="lp-section__inner">
             <div ref={pillarsRef} className="lp-pillars-grid">
               {d.pillars.map((pillar, i) => (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   className={`lp-pillar-card lp-anim-fade-up lp-anim-delay-${i + 1} ${pillarsVisible ? 'lp-anim-visible' : ''}`}
                 >
                   <div className="lp-pillar-card__image">
@@ -490,8 +484,8 @@ const MothersProgram = () => {
             </div>
             <div ref={whyRef} className="lp-features-grid">
               {d.whyChoose.features.map((feature, i) => (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   className={`lp-feature-card lp-anim-scale lp-anim-delay-${i + 1} ${whyVisible ? 'lp-anim-visible' : ''}`}
                 >
                   <div className="lp-feature-card__icon-wrap">
@@ -519,8 +513,8 @@ const MothersProgram = () => {
             </div>
             <div ref={stepsRef} className="lp-steps-grid">
               {d.howItWorks.steps.map((step, i) => (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   className={`lp-step lp-anim-fade-up lp-anim-delay-${i + 1} ${stepsVisible ? 'lp-anim-visible' : ''}`}
                 >
                   <div className="lp-step__icon">
@@ -552,8 +546,8 @@ const MothersProgram = () => {
             </div>
             <div ref={transRef} className="lp-transformations-grid">
               {d.transformations.map((trans, i) => (
-                <div 
-                  key={i} 
+                <div
+                  key={i}
                   className={`lp-transformation-card lp-anim-fade-up lp-anim-delay-${i + 1} ${transVisible ? 'lp-anim-visible' : ''}`}
                 >
 
@@ -639,7 +633,7 @@ const MothersProgram = () => {
             </div>
           </div>
         </section>
-        
+
         {/* ── SECTION 8 — MEET COACH ── */}
         <section className="lp-section lp-bg-white">
           <div className="lp-section__inner">
@@ -673,7 +667,7 @@ const MothersProgram = () => {
         </section>
 
         {/* ── SECTION 9 — FAQ ── */}
-        <section 
+        <section
           ref={faqRef}
           className={`lp-section lp-bg-sunken lp-anim-fade-up ${faqVisible ? 'lp-anim-visible' : ''}`}
         >
@@ -692,7 +686,7 @@ const MothersProgram = () => {
         </section>
 
         {/* ── SECTION 10 — FINAL CTA ── */}
-        <section 
+        <section
           ref={ctaRef}
           className={`lp-final-cta lp-anim-scale ${ctaVisible ? 'lp-anim-visible' : ''}`}
         >

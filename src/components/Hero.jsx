@@ -9,7 +9,7 @@ const Hero = ({ onEnrol }) => {
   const [heroRef, heroVisible] = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <section className="hero">
+    <section className="hero" style={{ height: 'auto' }}>
       <div className="container">
         <div className="hero__grid">
           {/* Left Column */}
@@ -45,34 +45,6 @@ const Hero = ({ onEnrol }) => {
                 <MessageCircle size={18} /> {heroData.ctaSecondary}
               </a>
             </div>
-{/* 
-            <a href={siteConfig.programs} style={{
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: '0.5rem',
-              marginTop: '1.5rem',
-              fontSize: '0.9rem',
-              fontWeight: '600',
-              color: 'var(--color-brand)',
-              padding: '0.5rem 1rem',
-              backgroundColor: 'var(--color-brand-muted)',
-              borderRadius: '999px'
-            }}>
-              {heroData.announcement}
-            </a> */}
-
-            {/* Callback Form */}
-            {/* <div className="hero__callback-form" style={{ marginTop: '2.5rem' }}>
-              <input type="text" placeholder="Your name" className="form-input" />
-              <input type="text" placeholder="Phone number" className="form-input" />
-              <button className="btn" style={{ 
-                backgroundColor: 'var(--color-surface-sunken)', 
-                color: 'var(--color-ink)',
-                fontWeight: '600'
-              }}>
-                <Phone size={18} /> Get a Callback
-              </button>
-            </div> */}
 
             {/* Stats row — exact same as original */}
             <div className="hero__stats">
