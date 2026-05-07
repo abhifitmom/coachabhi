@@ -99,16 +99,16 @@ export const navLinks = [
 ];
 
 export const heroData = {
-  eyebrow: "Since 2016 — 1000+ Clients Transformed",
+  eyebrow: "Since 2016 — 6000+ PostPartum Mothers Transformed",
   headline: "Get Strong.",
   headlineItalic: "Feel Like You Again.",
   subheadline: "Specialised strength coaching for mothers — heal Diastasis Recti, flatten your mommy pooch, and regain your pre-pregnancy shape & confidence. All in 90 days.",
   ctaPrimary: "Start Your Transformation",
   ctaSecondary: "Talk to Abhi on WhatsApp",
-  badge: "New batch starting soon — Limited spots",
+  badge: "Book your personal training slot now",
   announcement: "New: Online 1-on-1 Coaching Now Available →",
   stats: [
-    { value: "1000+", label: "Clients Transformed" },
+    { value: "6000+", label: "Clients Transformed" },
     { value: "Since 2016", label: "Coaching" },
     { value: "4.9★", label: "Google Rating" },
     { value: "90 Days", label: "Guaranteed Results" },
@@ -198,12 +198,12 @@ export const founderData = {
   eyebrow: "Our Story",
   headline: "Built From a Passion to Help Mothers Reclaim Their Strength",
   story1: "Abhi started coaching women after seeing countless mothers struggle post-pregnancy — not knowing what was safe, what would work, and feeling completely lost in their own bodies.",
-  story2: "Specialising in Diastasis Recti healing and postpartum strength, Abhi has helped 1000+ mothers rebuild their core, flatten their belly, and feel stronger than before pregnancy.",
+  story2: "Specialising in Diastasis Recti healing and postpartum strength, Abhi has helped 6000+ mothers rebuild their core, flatten their belly, and feel stronger than before pregnancy.",
   quote: "\"Strength is not about how you look. It's about how you feel in your own skin. Every mother deserves to feel powerful again.\"",
   quoteAuthor: "Abhi, Founder",
   stats: [
     { value: "Since 2016", label: "Coaching" },
-    { value: "1000+", label: "Clients Transformed" },
+    { value: "6000+", label: "Clients Transformed" },
     { value: "8+", label: "Specialisations" },
     { value: "Mumbai", label: "Maharashtra" },
   ],
@@ -223,7 +223,7 @@ export const communityData = {
 
 export const ctaData = {
   headline: "Start Your 90-Day Transformation",
-  desc: "Join 1000+ mothers who reclaimed their strength. 90-day personalised coaching program.",
+  desc: "Join 6000+ mothers who reclaimed their strength. 90-day personalised coaching program.",
   price: "₹15,000",
   duration: "for 3 months",
   ctaPrimary: "Enrol Now — Pay Securely",
@@ -282,7 +282,7 @@ export const landingPageData = {
     },
     cta: "BOOK FREE STRATEGY CALL",
     ctaSubtext: "Reduce confusion, uncertainty, doubts",
-    trustBadges: ["1000+ Clients Transformed", "4.9★ Rated", "DR Specialist"],
+    trustBadges: ["6000+ Clients Transformed", "4.9★ Rated", "DR Specialist"],
   },
   hook: {
     headline: "Tired Of Starting Workouts But Never Staying Consistent?",
@@ -367,7 +367,7 @@ export const landingPageData = {
   ],
   coach: {
     name: "Abhi",
-    bio1: "Hey, I'm Abhi — a certified personal trainer and strength coach specialising exclusively in women's postpartum fitness. Over the years, I've helped 1000+ mothers transform their bodies while still enjoying their lives.",
+    bio1: "Hey, I'm Abhi — a certified personal trainer and strength coach specialising exclusively in women's postpartum fitness. Over the years, I've helped 6000+ mothers transform their bodies while still enjoying their lives.",
     bio2: "My coaching is different because I don't believe in extreme dieting, gym dependency, or short-term fixes.",
     bio3: "I focus on sustainable fat loss methods that fit into your daily routine even if you're busy with kids, family, or work. I combine science-backed training, nutrition, and lifestyle habits so you don't just lose weight, but keep it off permanently.",
     certifications: [
@@ -389,7 +389,7 @@ export const landingPageData = {
   ],
   finalCta: {
     headline: "Ready To Transform Your Body In 90 Days?",
-    subheadline: "Join 1000+ clients who chose results over excuses. Limited spots available.",
+    subheadline: "Join 6000+ clients who chose results over excuses. Limited spots available.",
     // price: "Investment: ₹15,000 for 3 months · EMI Available",
     cta: "BOOK YOUR FREE STRATEGY CALL NOW →",
     guarantee: "🔒 7-Day Money Back Guarantee — No questions asked",

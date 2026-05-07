@@ -47,7 +47,7 @@ const Navbar = ({ announcementHeight = 40 }) => {
           {/* Desktop Right Actions */}
           <div className="navbar__actions">
             <Link to="/mothers-program" className="navbar__pill-btn">
-              Mothers Program <ArrowUpRight size={14} />
+              FITMOM Program <ArrowUpRight size={14} />
             </Link>
             <a href={siteConfig.enrollLink} className="navbar__enrol-btn">
               Enrol Now
