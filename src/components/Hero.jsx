@@ -1,119 +1,183 @@
-import React from 'react';
-import { MessageCircle, ArrowRight, Phone } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { ArrowRight, MessageCircle, Play, Pause, Volume2, VolumeX } from 'lucide-react';
 import { heroData, siteConfig } from '../data/siteData';
-import useScrollAnimation from '../hooks/useScrollAnimation';
 import StatNumber from './StatNumber';
+import useScrollAnimation from '../hooks/useScrollAnimation';
 import '../styles/Hero.css';
 
 const Hero = ({ onEnrol }) => {
-  const [heroRef, heroVisible] = useScrollAnimation({ threshold: 0.1 });
+  const [ref, visible] = useScrollAnimation({ threshold: 0.1 });
+  const videoRef = useRef(null);
+  const [isPlaying, setIsPlaying] = useState(true);
+  const [isMuted, setIsMuted] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [isLoaded, setIsLoaded] = useState(false);
+
+  // Autoplay on mount
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = true;
+    video.play().catch(() => setIsPlaying(false));
+  }, []);
+
+  // Progress update
+  const handleTimeUpdate = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    const pct = (video.currentTime / video.duration) * 100;
+    setProgress(isNaN(pct) ? 0 : pct);
+  };
+
+  const togglePlay = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    if (video.paused) {
+      video.play();
+      setIsPlaying(true);
+    } else {
+      video.pause();
+      setIsPlaying(false);
+    }
+  };
+
+  const toggleMute = () => {
+    const video = videoRef.current;
+    if (!video) return;
+    video.muted = !video.muted;
+    setIsMuted(video.muted);
+  };
+
+  const handleSeek = (e) => {
+    const video = videoRef.current;
+    if (!video) return;
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const pct = x / rect.width;
+    video.currentTime = pct * video.duration;
+    setProgress(pct * 100);
+  };
 
   return (
-    <section className="hero" style={{ height: 'auto' }}>
-      <div className="container">
-        <div className="hero__grid">
-          {/* Left Column */}
-          <div 
-            ref={heroRef}
-            className={`hero-content anim-fade-up ${heroVisible ? 'anim-visible' : ''}`}
-          >
-            <span className="section-eyebrow" style={{ marginBottom: '1rem', display: 'block' }}>
-              {heroData.eyebrow}
-            </span>
-            
-            <h1 className="hero__headline">
-              {heroData.headline} <br />
-              <em style={{ fontStyle: 'italic', color: 'var(--color-brand)', fontWeight: '400' }}>{heroData.headlineItalic}</em>
-            </h1>
+    <section className="hero-section" id="home">
+      <div className="hero__container">
+        {/* LEFT CONTENT */}
+        <div
+          ref={ref}
+          className={`hero__content anim-fade-up ${visible ? 'anim-visible' : ''}`}
+        >
+          <p className="hero__eyebrow">{heroData.eyebrow}</p>
+          <h1 className="hero__headline">
+            Get Strong.<br />
+            <span className="hero__headline--italic">Feel Like You Again.</span>
+          </h1>
 
-            <p className="hero__subheadline" style={{ maxWidth: '540px' }}>
-              {heroData.subheadline}
-            </p>
-
-            <div style={{ display: 'flex', alignItems: 'center', gap: '1rem', marginBottom: '2.5rem' }}>
-               <div className="pulse-dot"></div>
-               <span style={{ fontSize: '0.9rem', fontWeight: '500', color: 'var(--color-ink-secondary)' }}>
-                 {heroData.badge}
-               </span>
-            </div>
-
-            <div className="hero__cta-group">
-              <button onClick={onEnrol} className="btn btn-primary">
-                {heroData.ctaPrimary} <ArrowRight size={18} />
-              </button>
-              <a href={siteConfig.whatsapp} className="btn btn-secondary">
-                <MessageCircle size={18} /> {heroData.ctaSecondary}
-              </a>
-            </div>
-
-            {/* Stats row — exact same as original */}
-            <div className="hero__stats">
-              {heroData.stats.map((stat, i) => (
-                <div key={i} style={{
-                  display: 'flex',
-                  flexDirection: 'column',   /* ← number upar, label neeche */
-                  gap: '0.25rem',
-                }}>
-                  <StatNumber
-                    value={stat.value}
-                    className="number-display"
-                    duration={2000}
+          {/* VIDEO — mobile only — shows after headline */}
+          <div className="hero__video-mobile">
+            <div className="hero__video-wrapper">
+              <video
+                ref={videoRef}
+                src={heroData.video}
+                loop
+                playsInline
+                preload="metadata"
+                onTimeUpdate={handleTimeUpdate}
+                onLoadedData={() => setIsLoaded(true)}
+                className="hero__video"
+              />
+              {/* Controls */}
+              <div className="hero__video-controls">
+                <button className="hero__video-btn" onClick={togglePlay} aria-label="Play/Pause">
+                  {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+                </button>
+                {/* Progress bar */}
+                <div
+                  className="hero__video-progress"
+                  onClick={handleSeek}
+                  role="slider"
+                  aria-label="Video progress"
+                >
+                  <div
+                    className="hero__video-progress-fill"
+                    style={{ width: `${progress}%` }}
                   />
-                  {stat.label && (
-                    <span style={{
-                      fontSize: '0.75rem',
-                      fontWeight: '500',
-                      color: 'var(--color-ink-muted)',
-                      display: 'block',       /* ← block element */
-                      letterSpacing: '0.05em',
-                    }}>
-                      {stat.label}
-                    </span>
-                  )}
                 </div>
-              ))}
+                <button className="hero__video-btn" onClick={toggleMute} aria-label="Mute/Unmute">
+                  {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+                </button>
+              </div>
             </div>
           </div>
 
-          {/* Right Column (Image Placeholder) */}
-          <div className="hero__image">
-             <div style={{
-               position: 'relative',
-               aspectRatio: '4/5',
-               backgroundColor: 'var(--color-brand-muted)',
-               borderRadius: 'var(--border-radius-2xl)',
-               overflow: 'hidden',
-               display: 'flex',
-               alignItems: 'center',
-               justifyContent: 'center'
-             }}>
-               <img
-                 src="https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776880637/SaveClip.App_614869571_18547982899034362_984992251545371894_n_tumqbq.jpg"
-                 alt="Abhi — Strength Coach for Women"
-                 style={{
-                   width: '100%',
-                   height: '100%',
-                   objectFit: 'cover',
-                   objectPosition: 'top center',
-                   display: 'block',
-                   borderRadius: '1.5rem',
-                 }}
-               />
-               <div style={{
-                 position: 'absolute',
-                 bottom: '2rem',
-                 left: '2rem',
-                 right: '2rem',
-                 padding: '1.5rem',
-                 backgroundColor: 'rgba(255,255,255,0.9)',
-                 backdropFilter: 'blur(8px)',
-                 borderRadius: '1.5rem',
-                 textAlign: 'center'
-               }}>
-                  <div className="display-font" style={{ fontSize: '1.25rem' }}>Result Driven Coaching</div>
-                  <div style={{ fontSize: '0.85rem', color: 'var(--color-ink-secondary)' }}>Transform in 90 Days</div>
-               </div>
-             </div>
+          <p className="hero__subheadline">{heroData.subheadline}</p>
+
+          <div className="hero__badge">
+            <span className="pulse-dot"></span>
+            <span>{heroData.badge}</span>
+          </div>
+
+          <div className="hero__cta-group">
+            <button onClick={onEnrol} className="btn btn-primary">
+              {heroData.ctaPrimary} <ArrowRight size={18} />
+            </button>
+            <a
+              href={siteConfig.whatsapp}
+              className="btn btn-secondary"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <MessageCircle size={18} /> {heroData.ctaSecondary}
+            </a>
+          </div>
+
+          {/* Stats */}
+          <div className="hero__stats">
+            {heroData.stats.map((stat, i) => (
+              <div key={i} className="hero__stat">
+                <StatNumber
+                  value={stat.value}
+                  className="number-display"
+                  duration={2000}
+                />
+                <span className="hero__stat-label">{stat.label}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* RIGHT — VIDEO desktop only */}
+        <div className="hero__video-desktop">
+          <div className="hero__video-wrapper">
+            <video
+              ref={videoRef}
+              src={heroData.video}
+              loop
+              playsInline
+              preload="metadata"
+              onTimeUpdate={handleTimeUpdate}
+              onLoadedData={() => setIsLoaded(true)}
+              className="hero__video"
+            />
+            {/* Controls overlay */}
+            <div className="hero__video-controls">
+              <button className="hero__video-btn" onClick={togglePlay} aria-label="Play/Pause">
+                {isPlaying ? <Pause size={16} /> : <Play size={16} />}
+              </button>
+              <div
+                className="hero__video-progress"
+                onClick={handleSeek}
+                role="slider"
+                aria-label="Video progress"
+              >
+                <div
+                  className="hero__video-progress-fill"
+                  style={{ width: `${progress}%` }}
+                />
+              </div>
+              <button className="hero__video-btn" onClick={toggleMute} aria-label="Mute/Unmute">
+                {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
+              </button>
+            </div>
           </div>
         </div>
       </div>

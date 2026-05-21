@@ -100,13 +100,14 @@ export const navLinks = [
 
 export const heroData = {
   eyebrow: "Since 2016 — 6000+ PostPartum Mothers Transformed",
-  headline: "Get Strong.",
+  headline: "Get Strong.\nFeel Like You Again.",
   headlineItalic: "Feel Like You Again.",
   subheadline: "Specialised strength coaching for mothers — heal Diastasis Recti, flatten your mommy pooch, and regain your pre-pregnancy shape & confidence. All in 90 days.",
   ctaPrimary: "Start Your Transformation",
   ctaSecondary: "Talk to Abhi on WhatsApp",
   badge: "Book your personal training slot now",
   announcement: "New: Online 1-on-1 Coaching Now Available →",
+  video: "https://res.cloudinary.com/db9wu2abk/video/upload/q_auto/f_auto/v1779365980/vidssave.com_Fitness_coaching_in_Mumbai___Protoletics_720P_yrbsiq.mp4",
   stats: [
     { value: "6000+", label: "Clients Transformed" },
     { value: "Since 2016", label: "Coaching" },
@@ -114,6 +115,20 @@ export const heroData = {
     { value: "90 Days", label: "Guaranteed Results" },
   ],
 };
+
+export const certificationsData = [
+  { id: 1, image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1779365874/Screenshot_20260521_165914_Instagram.jpg_oauguu.jpg", alt: "Certification 1" },
+  { id: 2, image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1779365874/Screenshot_20260521_165906_Instagram.jpg_uyfpmm.jpg", alt: "Certification 2" },
+  { id: 3, image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1779365883/Screenshot_20260521_165919_Instagram.jpg_gj20h5.jpg", alt: "Certification 3" },
+  { id: 4, image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1779365884/Screenshot_20260521_165804_Instagram.jpg_w3xwwf.jpg", alt: "Certification 4" },
+  { id: 5, image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1779365886/Screenshot_20260521_165910_Instagram.jpg_fl851d.jpg", alt: "Certification 5" },
+  { id: 6, image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1779365889/Screenshot_20260521_165859_Instagram.jpg_jztpdf.jpg", alt: "Certification 6" },
+  { id: 7, image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1779365889/Screenshot_20260521_165853_Instagram.jpg_ayilga.jpg", alt: "Certification 7" },
+  { id: 8, image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1779365893/Screenshot_20260521_165919_Instagram.jpg_1_ektxi8.jpg", alt: "Certification 8" },
+  { id: 9, image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1779365895/Screenshot_20260521_165833_Instagram.jpg_p2ybfv.jpg", alt: "Certification 9" },
+  { id: 10, image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1779365896/Screenshot_20260521_165750_Instagram.jpg_fpls7p.jpg", alt: "Certification 10" },
+  { id: 11, image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1779365898/Screenshot_20260521_165747_Instagram.jpg_pn7cbb.jpg", alt: "Certification 11" },
+];
 
 export const memberFaces = [
   { name: "Vinutha", detail: "Post Partum · Fat Loss" },
