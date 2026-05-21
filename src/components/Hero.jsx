@@ -8,6 +8,7 @@ import '../styles/Hero.css';
 const Hero = ({ onEnrol }) => {
   const [ref, visible] = useScrollAnimation({ threshold: 0.1 });
   const videoRef = useRef(null);
+  const mobileVideoRef = useRef(null);
   const [isPlaying, setIsPlaying] = useState(true);
   const [isMuted, setIsMuted] = useState(true);
   const [progress, setProgress] = useState(0);
@@ -15,22 +16,25 @@ const Hero = ({ onEnrol }) => {
 
   // Autoplay on mount
   useEffect(() => {
-    const video = videoRef.current;
-    if (!video) return;
-    video.muted = true;
-    video.play().catch(() => setIsPlaying(false));
+    [videoRef, mobileVideoRef].forEach(vRef => {
+      const video = vRef.current;
+      if (!video) return;
+      video.muted = true;
+      video.setAttribute('playsinline', '');    // ← iOS ke liye
+      video.play().catch(() => setIsPlaying(false));
+    });
   }, []);
 
   // Progress update
-  const handleTimeUpdate = () => {
-    const video = videoRef.current;
+  const handleTimeUpdate = (e) => {
+    const video = e.currentTarget;
     if (!video) return;
     const pct = (video.currentTime / video.duration) * 100;
     setProgress(isNaN(pct) ? 0 : pct);
   };
 
-  const togglePlay = () => {
-    const video = videoRef.current;
+  const togglePlay = (isMobile = false) => {
+    const video = isMobile ? mobileVideoRef.current : videoRef.current;
     if (!video) return;
     if (video.paused) {
       video.play();
@@ -41,15 +45,15 @@ const Hero = ({ onEnrol }) => {
     }
   };
 
-  const toggleMute = () => {
-    const video = videoRef.current;
+  const toggleMute = (isMobile = false) => {
+    const video = isMobile ? mobileVideoRef.current : videoRef.current;
     if (!video) return;
     video.muted = !video.muted;
     setIsMuted(video.muted);
   };
 
-  const handleSeek = (e) => {
-    const video = videoRef.current;
+  const handleSeek = (e, isMobile = false) => {
+    const video = isMobile ? mobileVideoRef.current : videoRef.current;
     if (!video) return;
     const rect = e.currentTarget.getBoundingClientRect();
     const x = e.clientX - rect.left;
@@ -76,9 +80,11 @@ const Hero = ({ onEnrol }) => {
           <div className="hero__video-mobile">
             <div className="hero__video-wrapper">
               <video
-                ref={videoRef}
+                ref={mobileVideoRef}
                 src={heroData.video}
+                autoPlay
                 loop
+                muted
                 playsInline
                 preload="metadata"
                 onTimeUpdate={handleTimeUpdate}
@@ -87,13 +93,13 @@ const Hero = ({ onEnrol }) => {
               />
               {/* Controls */}
               <div className="hero__video-controls">
-                <button className="hero__video-btn" onClick={togglePlay} aria-label="Play/Pause">
+                <button className="hero__video-btn" onClick={() => togglePlay(true)} aria-label="Play/Pause">
                   {isPlaying ? <Pause size={16} /> : <Play size={16} />}
                 </button>
                 {/* Progress bar */}
                 <div
                   className="hero__video-progress"
-                  onClick={handleSeek}
+                  onClick={(e) => handleSeek(e, true)}
                   role="slider"
                   aria-label="Video progress"
                 >
@@ -102,7 +108,7 @@ const Hero = ({ onEnrol }) => {
                     style={{ width: `${progress}%` }}
                   />
                 </div>
-                <button className="hero__video-btn" onClick={toggleMute} aria-label="Mute/Unmute">
+                <button className="hero__video-btn" onClick={() => toggleMute(true)} aria-label="Mute/Unmute">
                   {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
                 </button>
               </div>
@@ -151,7 +157,9 @@ const Hero = ({ onEnrol }) => {
             <video
               ref={videoRef}
               src={heroData.video}
+              autoPlay
               loop
+              muted
               playsInline
               preload="metadata"
               onTimeUpdate={handleTimeUpdate}
@@ -160,12 +168,12 @@ const Hero = ({ onEnrol }) => {
             />
             {/* Controls overlay */}
             <div className="hero__video-controls">
-              <button className="hero__video-btn" onClick={togglePlay} aria-label="Play/Pause">
+              <button className="hero__video-btn" onClick={() => togglePlay(false)} aria-label="Play/Pause">
                 {isPlaying ? <Pause size={16} /> : <Play size={16} />}
               </button>
               <div
                 className="hero__video-progress"
-                onClick={handleSeek}
+                onClick={(e) => handleSeek(e, false)}
                 role="slider"
                 aria-label="Video progress"
               >
@@ -174,7 +182,7 @@ const Hero = ({ onEnrol }) => {
                   style={{ width: `${progress}%` }}
                 />
               </div>
-              <button className="hero__video-btn" onClick={toggleMute} aria-label="Mute/Unmute">
+              <button className="hero__video-btn" onClick={() => toggleMute(false)} aria-label="Mute/Unmute">
                 {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
               </button>
             </div>
