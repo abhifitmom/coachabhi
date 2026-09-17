@@ -37,9 +37,15 @@ const Navbar = ({ announcementHeight = 40 }) => {
           <ul className="navbar__links">
             {navLinks.map((link) => (
               <li key={link.label}>
-                <a href={link.href} className="navbar__link">
-                  {link.label}
-                </a>
+                {link.href.startsWith('/') && !link.href.startsWith('/#') ? (
+                  <Link to={link.href} className="navbar__link">
+                    {link.label}
+                  </Link>
+                ) : (
+                  <a href={link.href} className="navbar__link">
+                    {link.label}
+                  </a>
+                )}
               </li>
             ))}
           </ul>
@@ -90,13 +96,23 @@ const Navbar = ({ announcementHeight = 40 }) => {
         <ul className="mobile-menu__links">
           {navLinks.map((link) => (
             <li key={link.label}>
-              <a
-                href={link.href}
-                className="mobile-menu__link"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                {link.label}
-              </a>
+              {link.href.startsWith('/') && !link.href.startsWith('/#') ? (
+                <Link
+                  to={link.href}
+                  className="mobile-menu__link"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  href={link.href}
+                  className="mobile-menu__link"
+                  onClick={() => setIsMenuOpen(false)}
+                >
+                  {link.label}
+                </a>
+              )}
             </li>
           ))}
         </ul>

@@ -17,8 +17,6 @@ export const programs = [
     months: 1,
     tag: "Starter",
     price: "₹6,000",
-    perDay: "~₹200/day",
-    emi: false,
     popular: false,
     features: [
       "Initial health & body assessment",
@@ -35,8 +33,6 @@ export const programs = [
     months: 3,
     tag: "Most Popular",
     price: "₹15,000",
-    perDay: "~₹167/day",
-    emi: true,
     popular: true,
     features: [
       "Complete DR healing & core restoration",
@@ -55,8 +51,6 @@ export const programs = [
     months: 6,
     tag: "Best Value",
     price: "₹25,000",
-    perDay: "~₹139/day",
-    emi: true,
     popular: false,
     features: [
       "Everything in 3-month program",
@@ -75,8 +69,6 @@ export const programs = [
     months: 12,
     tag: "Complete Transform",
     price: "₹45,000",
-    perDay: "~₹125/day",
-    emi: true,
     popular: false,
     features: [
       "Everything in 6-month program",
@@ -91,8 +83,126 @@ export const programs = [
   },
 ];
 
+export const pricingData = {
+  onlineCoaching: {
+    title: "Online Coaching",
+    subtitle: "Personalised program — train from home",
+    plans: [
+      {
+        id: 1,
+        duration: "1 Month",
+        price: "₹6,500",
+        popular: false,
+        features: [
+          "Health & body assessment",
+          "Personalised workout plan",
+          "Basic nutrition guidance",
+          "WhatsApp support 7 days",
+        ]
+      },
+      {
+        id: 2,
+        duration: "3 Months",
+        price: "₹15,000",
+        popular: true,
+        features: [
+          "DR healing & core restoration",
+          "Custom workout program",
+          "Weekly 1-on-1 video check-ins",
+          "Indian diet nutrition plan",
+          "Mommy pooch reduction",
+          "WhatsApp support 7 days",
+        ]
+      },
+      {
+        id: 3,
+        duration: "6 Months",
+        price: "₹30,000",
+        popular: false,
+        features: [
+          "Everything in 3-month plan",
+          "Advanced strength training",
+          "Full body recomposition",
+          "Monthly progress review",
+          "Bi-weekly video check-ins",
+          "WhatsApp support 7 days",
+        ]
+      },
+      {
+        id: 4,
+        duration: "12 Months",
+        price: "₹54,000",
+        popular: false,
+        features: [
+          "Everything in 6-month plan",
+          "Full year transformation",
+          "Monthly custom diet plan",
+          "Weekly video check-ins",
+          "Lifestyle & habit coaching",
+          "Lifetime community access",
+        ]
+      },
+    ]
+  },
+  onlineTraining: {
+    title: "Online 1-on-1 Training",
+    subtitle: "Live sessions directly with Abhi",
+    plans: [
+      {
+        id: 1,
+        duration: "1 Month",
+        sessions: "12 Sessions",
+        price: "₹24,000",
+        popular: false,
+        features: [
+          "12 live 1-on-1 sessions",
+          "Custom workout plan",
+          "Form correction & feedback",
+          "WhatsApp support",
+        ]
+      },
+      {
+        id: 2,
+        duration: "2 Months",
+        sessions: "24 Sessions",
+        price: "₹44,000",
+        popular: true,
+        features: [
+          "24 live 1-on-1 sessions",
+          "Progressive training plan",
+          "Nutrition guidance",
+          "Weekly progress tracking",
+          "WhatsApp support 7 days",
+        ]
+      },
+      {
+        id: 3,
+        duration: "3 Months",
+        sessions: "36 Sessions",
+        price: "₹66,000",
+        popular: false,
+        features: [
+          "36 live 1-on-1 sessions",
+          "Complete transformation plan",
+          "Custom diet + workout",
+          "Monthly assessments",
+          "Priority WhatsApp support",
+        ]
+      },
+    ]
+  },
+  trial: {
+    title: "Not Sure Yet?",
+    subtitle: "Book a trial session with Abhi — experience the coaching before committing.",
+    price: "₹750",
+    cta: "Book Trial Session",
+    note: "One-time session · No commitment · Full refund if not satisfied"
+  }
+};
+
 export const navLinks = [
   { label: "Programs", href: "#programs" },
+  { label: "Pricing", href: "/pricing" },
   { label: "Results", href: "#results" },
   { label: "About", href: "#about" },
   { label: "Community", href: "#community" },
@@ -265,6 +375,7 @@ export const footerData = {
     { label: "Results", href: "#results" },
     { label: "Community", href: "#community" },
     { label: "Specialisations", href: "#specialisations" },
+    { label: "Pricing", href: "/pricing" },
   ],
   company: [
     // Privacy, Terms, Refund — commented out for now

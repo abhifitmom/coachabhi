@@ -66,9 +66,15 @@ const Footer = () => {
             <ul className="footer__links">
               {footerData.navigate.map((link, i) => (
                 <li key={i}>
-                  <a href={link.href} className="footer__link">
-                    {link.label}
-                  </a>
+                  {link.href.startsWith('/') && !link.href.startsWith('/#') ? (
+                    <Link to={link.href} className="footer__link">
+                      {link.label}
+                    </Link>
+                  ) : (
+                    <a href={link.href} className="footer__link">
+                      {link.label}
+                    </a>
+                  )}
                 </li>
               ))}
             </ul>
