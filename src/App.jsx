@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import Home from './pages/Home';
 import MothersProgram from './pages/MothersProgram';
 import Pricing from './pages/Pricing';
+import FitmomProgram from './pages/FitmomProgram';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -26,6 +27,7 @@ function App() {
         <Route path="/" element={<Home />} />
         <Route path="/mothers-program" element={<MothersProgram />} />
         <Route path="/pricing" element={<Pricing />} />
+        <Route path="/fitmom-program" element={<FitmomProgram />} />
       </Routes>
     </BrowserRouter>
   );

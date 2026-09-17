@@ -205,7 +205,7 @@ export const navLinks = [
   { label: "Pricing", href: "/pricing" },
   { label: "Results", href: "#results" },
   { label: "About", href: "#about" },
-  { label: "Community", href: "#community" },
+  { label: "FITMOM Program", href: "/fitmom-program" },
 ];
 
 export const heroData = {
@@ -373,7 +373,7 @@ export const footerData = {
   navigate: [
     { label: "About Abhi", href: "#about" },
     { label: "Results", href: "#results" },
-    { label: "Community", href: "#community" },
+    { label: "FITMOM Program", href: "/fitmom-program" },
     { label: "Specialisations", href: "#specialisations" },
     { label: "Pricing", href: "/pricing" },
   ],
