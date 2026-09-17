@@ -196,7 +196,7 @@ export const pricingData = {
     subtitle: "Book a trial session with Abhi — experience the coaching before committing.",
     price: "₹750",
     cta: "Book Trial Session",
-    note: "One-time session · No commitment · Full refund if not satisfied"
+    note: "One-time session · No commitment"
   }
 };
 
