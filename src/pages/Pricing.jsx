@@ -28,14 +28,12 @@ const PricingCard = ({ plan, type }) => (
       ))}
     </ul>
 
-    <a
-      href={`${siteConfig.whatsapp}?text=Hi Abhi! I'm interested in the ${type} - ${plan.duration} plan (${plan.price}). Can you share more details?`}
-      target="_blank"
-      rel="noopener noreferrer"
+    <Link
+      to={`/enroll?program=${plan.id === 2 ? '3-months' : plan.id === 1 ? '1-month' : plan.id === 3 ? '6-months' : plan.id === 4 ? '12-months' : '3-months'}`}
       className={`pricing-card__btn ${plan.popular ? 'pricing-card__btn--popular' : ''}`}
     >
       Enrol Now
-    </a>
+    </Link>
   </div>
 );
 

@@ -202,9 +202,9 @@ export const pricingData = {
 
 export const navLinks = [
   { label: "Programs", href: "#programs" },
+  { label: "Group Classes", href: "/group-classes" },
   { label: "Pricing", href: "/pricing" },
   { label: "Results", href: "#results" },
-  { label: "About", href: "#about" },
   { label: "FITMOM Program", href: "/fitmom-program" },
 ];
 
@@ -357,6 +357,40 @@ export const ctaData = {
   batchNote: "New batch starting soon — spots filling fast",
 };
 
+export const groupClassesData = {
+  hero: {
+    eyebrow: "Limited Spots · Only 10 Women Per Batch",
+    headline: "Online Group Classes\nFor Postpartum Women",
+    subheadline: "Heal your body, lose weight, and rebuild strength — with a community of women just like you. Personal attention in a small group setting.",
+    price: "₹5,000",
+    duration: "per month",
+    includes: "Workout + Diet Plan Included",
+  },
+  slots: [
+    { id: 1, time: "7:00 AM – 8:00 AM", label: "Morning", tag: "Most Popular", desc: "Best for moms who want to train before the day gets busy.", days: "Mon – Sat" },
+    { id: 2, time: "8:30 AM – 9:30 AM", label: "Late Morning", tag: null, desc: "After school drop-off — perfect for stay-at-home moms.", days: "Mon – Sat" },
+    { id: 3, time: "4:30 PM – 5:30 PM", label: "Evening", tag: null, desc: "Post-nap time slot — great for moms with young toddlers.", days: "Mon – Sat" },
+    { id: 4, time: "6:00 PM – 7:00 PM", label: "Late Evening", tag: "Fast Filling", desc: "For working moms who are free after office hours.", days: "Mon – Sat" },
+  ],
+  includes: [
+    { title: "Live Group Sessions", desc: "Daily online sessions with Abhi — not recorded, real-time coaching." },
+    { title: "Custom Diet Plan", desc: "Indian diet friendly nutrition plan updated every month." },
+    { title: "WhatsApp Group", desc: "Private community group — motivation, recipes, and daily check-ins." },
+    { title: "Weekly Progress Check", desc: "Track your weight, measurements and strength every week." },
+    { title: "Postpartum Focused", desc: "Every exercise is safe and designed for postpartum bodies." },
+    { title: "Max 10 Women", desc: "Small batch ensures Abhi gives personal attention to everyone." },
+  ],
+  howItWorks: [
+    { step: "01", title: "Choose Your Slot", desc: "Pick a time that fits your schedule and fill in your details." },
+    { step: "02", title: "Pay & Confirm", desc: "Pay ₹5,000 via UPI or bank transfer. Share screenshot on WhatsApp." },
+    { step: "03", title: "Get Onboarded", desc: "Receive your diet plan, WhatsApp group link, and session link." },
+    { step: "04", title: "Start Training", desc: "Show up daily, train with your batch, and transform in 30 days." },
+  ],
+  form: {
+    whatsapp: "https://wa.me/919833422053",
+  }
+};
+
 export const footerData = {
   brand: "ABHI",
   desc: "Strength coaching exclusively for women. Specialising in DR healing, mommy pooch reduction & postpartum strength since 2016.",
@@ -375,6 +409,7 @@ export const footerData = {
     { label: "Results", href: "#results" },
     { label: "FITMOM Program", href: "/fitmom-program" },
     { label: "Specialisations", href: "#specialisations" },
+    { label: "Group Classes", href: "/group-classes" },
     { label: "Pricing", href: "/pricing" },
   ],
   company: [
@@ -519,7 +554,23 @@ export const landingPageData = {
     // price: "Investment: ₹15,000 for 3 months · EMI Available",
     cta: "BOOK YOUR FREE STRATEGY CALL NOW →",
     guarantee: "🔒 7-Day Money Back Guarantee — No questions asked",
-    whatsappCta: "Or message Abhi directly on WhatsApp →",
     urgency: "New batch starting soon — Only 5 spots remaining",
   },
 };
+
+export const paymentConfig = {
+  upiId: "abhishekmunian-1@oksbi",
+  payeeName: "Abhishek Munian",
+  phone: "919833422053",
+  displayPhone: "+91 98334 22053",
+  bankDetails: {
+    accountName: "Abhishek Munian",
+    accountNumber: "021290700001487",
+    ifsc: "YESB0000212",
+    bankName: "Yes Bank",
+    branch: "Thakur Village, Kandivali East, Mumbai",
+    address: "Yes Bank Ltd. Ground floor, Ganapati Towers, Thakur Village, Kandivali East",
+  },
+  qrCodeUrl: "https://api.qrserver.com/v1/create-qr-code/?size=300x300&data=upi://pay?pa=abhishekmunian-1@oksbi%26pn=Abhishek%20Munian%26cu=INR",
+};
+

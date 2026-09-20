@@ -4,6 +4,10 @@ import Home from './pages/Home';
 import MothersProgram from './pages/MothersProgram';
 import Pricing from './pages/Pricing';
 import FitmomProgram from './pages/FitmomProgram';
+import GroupClasses from './pages/GroupClasses';
+import Enroll from './pages/Enroll';
+import Payment from './pages/Payment';
+import Success from './pages/Success';
 
 // Scroll to top on route change
 const ScrollToTop = () => {
@@ -28,6 +32,10 @@ function App() {
         <Route path="/mothers-program" element={<MothersProgram />} />
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/fitmom-program" element={<FitmomProgram />} />
+        <Route path="/group-classes" element={<GroupClasses />} />
+        <Route path="/enroll" element={<Enroll />} />
+        <Route path="/payment" element={<Payment />} />
+        <Route path="/success" element={<Success />} />
       </Routes>
     </BrowserRouter>
   );
