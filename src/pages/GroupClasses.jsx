@@ -7,8 +7,7 @@ import '../styles/GroupClasses.css';
 const GroupClasses = () => {
   const navigate = useNavigate();
   const d = groupClassesData;
-  const [selectedSlot, setSelectedSlot] = useState(null);
-  const [form, setForm] = useState({ name: '', phone: '', email: '', city: '' });
+  const [form, setForm] = useState({ name: '', phone: '', email: '', city: '', slot: '' });
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -23,7 +22,6 @@ const GroupClasses = () => {
     if (!form.phone.trim()) errs.phone = 'Phone is required';
     else if (!/^[6-9]\d{9}$/.test(form.phone)) errs.phone = 'Enter valid 10-digit number';
     if (!form.email.trim()) errs.email = 'Email is required';
-    if (!selectedSlot) errs.slot = 'Please select a time slot';
     return errs;
   };
 
@@ -34,7 +32,6 @@ const GroupClasses = () => {
       setErrors(errs);
       return;
     }
-    const slot = d.slots.find(s => s.id === selectedSlot);
     const payload = {
       name: form.name.trim(),
       phone: form.phone.trim(),
@@ -42,9 +39,9 @@ const GroupClasses = () => {
       city: form.city.trim() || 'N/A',
       programName: 'Online Group Classes (Monthly)',
       programId: 'group-classes',
-      amount: 5000,
-      price: '₹5,000',
-      batch: slot ? `${slot.time} (${slot.label})` : 'Morning Batch',
+      amount: 4999,
+      price: '₹4,999',
+      batch: form.slot || 'Group Class Batch',
       createdAt: new Date().toISOString(),
     };
 
@@ -76,32 +73,68 @@ const GroupClasses = () => {
         </h1>
         <p className="gc-hero__sub">{d.hero.subheadline}</p>
         <div className="gc-hero__price">
-          <span className="gc-hero__amount">{d.hero.price}</span>
+          <div className="pricing-card__price-wrap" style={{ alignItems: 'center' }}>
+            {d.hero.originalPrice && (
+              <span className="pricing-card__original" style={{ fontSize: '1.1rem' }}>{d.hero.originalPrice}</span>
+            )}
+            <span className="gc-hero__amount">{d.hero.price}</span>
+          </div>
           <span className="gc-hero__duration">{d.hero.duration}</span>
         </div>
         <div className="gc-hero__includes">
           <Check size={15} color="#FF6835" />
           {d.hero.includes}
         </div>
+        <div className="gc-trainer">
+          <div className="gc-trainer__img-wrap">
+            <img
+              src="https://res.cloudinary.com/db9wu2abk/image/upload/v1790528607/ChatGPT_Image_Sep_27_2026_10_33_12_PM_qqb7g2.png"
+              alt="Sneha — Your Trainer"
+              className="gc-trainer__img"
+              loading="lazy"
+            />
+          </div>
+          <div className="gc-trainer__info">
+            <span className="gc-trainer__name">Sneha</span>
+            <span className="gc-trainer__role">Your Trainer</span>
+          </div>
+        </div>
       </div>
+
+      {/* Plans Section */}
+      {d.plans && d.plans.length > 0 && (
+        <div className="gc-section">
+          <div className="gc-section__header">
+            <span className="section-eyebrow">Pricing Plans</span>
+            <h2 className="gc-section__title">Choose Your Batch Plan</h2>
+          </div>
+          <div className="gc-plans">
+            {d.plans.map((plan) => (
+              <div key={plan.id} className={`gc-plan-card ${plan.popular ? 'gc-plan-card--popular' : ''}`}>
+                {plan.popular && <span className="gc-plan-card__badge">Most Popular</span>}
+                <div className="gc-plan-card__duration">{plan.duration}</div>
+                {plan.sessions && <div className="gc-plan-card__sessions">{plan.sessions}</div>}
+                <div className="pricing-card__price-wrap">
+                  {plan.originalPrice && <span className="pricing-card__original">{plan.originalPrice}</span>}
+                  <div className="pricing-card__price">{plan.price}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       {/* Time Slots */}
       <div className="gc-section">
         <div className="gc-section__header">
-          <span className="section-eyebrow">Pick Your Time</span>
-          <h2 className="gc-section__title">Choose a Batch Slot</h2>
+          <span className="section-eyebrow">Batch Timings</span>
+          <h2 className="gc-section__title">Available Time Slots</h2>
           <p className="gc-section__sub">All slots run Monday to Saturday. Sunday is rest day.</p>
         </div>
         <div className="gc-slots">
           {d.slots.map((slot) => (
-            <div
-              key={slot.id}
-              className={`gc-slot ${selectedSlot === slot.id ? 'gc-slot--selected' : ''}`}
-              onClick={() => setSelectedSlot(slot.id)}
-            >
-              {slot.tag && (
-                <span className="gc-slot__tag">{slot.tag}</span>
-              )}
+            <div key={slot.id} className="gc-slot">
+              {slot.tag && <span className="gc-slot__tag">{slot.tag}</span>}
               <div className="gc-slot__time">{slot.time}</div>
               <div className="gc-slot__label">{slot.label}</div>
               <p className="gc-slot__desc">{slot.desc}</p>
@@ -112,7 +145,6 @@ const GroupClasses = () => {
             </div>
           ))}
         </div>
-        {errors.slot && <p className="gc-error">{errors.slot}</p>}
       </div>
 
       {/* What's Included */}
@@ -128,8 +160,12 @@ const GroupClasses = () => {
                 <Check size={18} />
               </div>
               <div>
-                <h3 className="gc-include-card__title">{item.title}</h3>
-                <p className="gc-include-card__desc">{item.desc}</p>
+                <h3 className="gc-include-card__title">
+                  {typeof item === 'string' ? item : item.title}
+                </h3>
+                {typeof item === 'object' && item.desc && (
+                  <p className="gc-include-card__desc">{item.desc}</p>
+                )}
               </div>
             </div>
           ))}
@@ -162,7 +198,8 @@ const GroupClasses = () => {
               Fill in your details. You'll be redirected to WhatsApp to complete payment and get confirmed.
             </p>
             <div className="gc-form-price">
-              ₹5,000 <span>/ month</span>
+              <span className="pricing-card__original" style={{ fontSize: '1rem', marginRight: '0.5rem', color: 'rgba(255,255,255,0.5)' }}>₹6,999</span>
+              ₹4,999 <span>/ month</span>
             </div>
           </div>
 
@@ -221,24 +258,23 @@ const GroupClasses = () => {
             </div>
 
             <div className="gc-form__field">
-              <label className="gc-form__label">Preferred Slot *</label>
+              <label className="gc-form__label">Preferred Slot (Optional)</label>
               <div className="gc-form__slots">
                 {d.slots.map((slot) => (
                   <button
                     key={slot.id}
                     type="button"
-                    className={`gc-form__slot-btn ${selectedSlot === slot.id ? 'gc-form__slot-btn--active' : ''}`}
-                    onClick={() => setSelectedSlot(slot.id)}
+                    className={`gc-form__slot-btn ${form.slot === slot.time ? 'gc-form__slot-btn--active' : ''}`}
+                    onClick={() => setForm(prev => ({ ...prev, slot: slot.time }))}
                   >
                     {slot.time}
                   </button>
                 ))}
               </div>
-              {errors.slot && <span className="gc-error">{errors.slot}</span>}
             </div>
 
             <button type="submit" className="gc-form__submit">
-              Proceed to Payment (₹5,000)
+              Proceed to Payment (₹4,999)
               <ArrowRight size={18} />
             </button>
 

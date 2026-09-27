@@ -5,6 +5,7 @@ import MothersProgram from './pages/MothersProgram';
 import Pricing from './pages/Pricing';
 import FitmomProgram from './pages/FitmomProgram';
 import GroupClasses from './pages/GroupClasses';
+import Team from './pages/Team';
 import Enroll from './pages/Enroll';
 import Payment from './pages/Payment';
 import Success from './pages/Success';
@@ -33,6 +34,7 @@ function App() {
         <Route path="/pricing" element={<Pricing />} />
         <Route path="/fitmom-program" element={<FitmomProgram />} />
         <Route path="/group-classes" element={<GroupClasses />} />
+        <Route path="/team" element={<Team />} />
         <Route path="/enroll" element={<Enroll />} />
         <Route path="/payment" element={<Payment />} />
         <Route path="/success" element={<Success />} />

@@ -16,7 +16,8 @@ export const programs = [
     duration: "1 Month",
     months: 1,
     tag: "Starter",
-    price: "₹6,000",
+    price: "₹7,500",
+    originalPrice: "₹9,999",
     popular: false,
     features: [
       "Initial health & body assessment",
@@ -32,7 +33,8 @@ export const programs = [
     duration: "3 Months",
     months: 3,
     tag: "Most Popular",
-    price: "₹15,000",
+    price: "₹16,500",
+    originalPrice: "₹22,499",
     popular: true,
     features: [
       "Complete DR healing & core restoration",
@@ -50,7 +52,8 @@ export const programs = [
     duration: "6 Months",
     months: 6,
     tag: "Best Value",
-    price: "₹25,000",
+    price: "₹27,000",
+    originalPrice: "₹35,999",
     popular: false,
     features: [
       "Everything in 3-month program",
@@ -69,6 +72,7 @@ export const programs = [
     months: 12,
     tag: "Complete Transform",
     price: "₹45,000",
+    originalPrice: "₹59,999",
     popular: false,
     features: [
       "Everything in 6-month program",
@@ -91,7 +95,8 @@ export const pricingData = {
       {
         id: 1,
         duration: "1 Month",
-        price: "₹6,500",
+        price: "₹7,500",
+        originalPrice: "₹9,999",
         popular: false,
         features: [
           "Health & body assessment",
@@ -103,7 +108,8 @@ export const pricingData = {
       {
         id: 2,
         duration: "3 Months",
-        price: "₹15,000",
+        price: "₹16,500",
+        originalPrice: "₹22,499",
         popular: true,
         features: [
           "DR healing & core restoration",
@@ -117,7 +123,8 @@ export const pricingData = {
       {
         id: 3,
         duration: "6 Months",
-        price: "₹30,000",
+        price: "₹27,000",
+        originalPrice: "₹35,999",
         popular: false,
         features: [
           "Everything in 3-month plan",
@@ -131,7 +138,8 @@ export const pricingData = {
       {
         id: 4,
         duration: "12 Months",
-        price: "₹54,000",
+        price: "₹45,000",
+        originalPrice: "₹59,999",
         popular: false,
         features: [
           "Everything in 6-month plan",
@@ -153,6 +161,7 @@ export const pricingData = {
         duration: "1 Month",
         sessions: "12 Sessions",
         price: "₹24,000",
+        originalPrice: "₹30,000",
         popular: false,
         features: [
           "12 live 1-on-1 sessions",
@@ -166,6 +175,7 @@ export const pricingData = {
         duration: "2 Months",
         sessions: "24 Sessions",
         price: "₹44,000",
+        originalPrice: "₹55,000",
         popular: true,
         features: [
           "24 live 1-on-1 sessions",
@@ -179,7 +189,8 @@ export const pricingData = {
         id: 3,
         duration: "3 Months",
         sessions: "36 Sessions",
-        price: "₹66,000",
+        price: "₹60,000",
+        originalPrice: "₹75,000",
         popular: false,
         features: [
           "36 live 1-on-1 sessions",
@@ -220,7 +231,7 @@ export const heroData = {
   video: "https://res.cloudinary.com/db9wu2abk/video/upload/q_auto/f_auto/v1779365980/vidssave.com_Fitness_coaching_in_Mumbai___Protoletics_720P_yrbsiq.mp4",
   stats: [
     { value: "6000+", label: "Clients Transformed" },
-    { value: "Since 2016", label: "Coaching" },
+    { value: "2016", label: "Coaching Since" },
     { value: "4.9★", label: "Google Rating" },
     { value: "90 Days", label: "Guaranteed Results" },
   ],
@@ -327,7 +338,7 @@ export const founderData = {
   quote: "\"Strength is not about how you look. It's about how you feel in your own skin. Every mother deserves to feel powerful again.\"",
   quoteAuthor: "Abhi, Founder",
   stats: [
-    { value: "Since 2016", label: "Coaching" },
+    { value: "2016", label: "Coaching Since" },
     { value: "6000+", label: "Clients Transformed" },
     { value: "8+", label: "Specialisations" },
     { value: "Mumbai", label: "Maharashtra" },
@@ -349,7 +360,7 @@ export const communityData = {
 export const ctaData = {
   headline: "Start Your 90-Day Transformation",
   desc: "Join 6000+ mothers who reclaimed their strength. 90-day personalised coaching program.",
-  price: "₹15,000",
+  price: "₹16,500",
   duration: "for 3 months",
   ctaPrimary: "Enrol Now — Pay Securely",
   securityNote: "Secure payment · EMI available · 7-day refund guarantee",
@@ -362,17 +373,31 @@ export const groupClassesData = {
     eyebrow: "Limited Spots · Only 10 Women Per Batch",
     headline: "Online Group Classes\nFor Postpartum Women",
     subheadline: "Heal your body, lose weight, and rebuild strength — with a community of women just like you. Personal attention in a small group setting.",
-    price: "₹5,000",
+    price: "₹4,999",
+    originalPrice: "₹6,999",
     duration: "per month",
     includes: "Workout + Diet Plan Included",
   },
+  plans: [
+    { id: 1, duration: "1 Month", sessions: "12 Sessions", price: "₹4,999", originalPrice: "₹6,999", popular: false },
+    { id: 2, duration: "3 Months", sessions: "36 Sessions", price: "₹10,999", originalPrice: "₹14,999", popular: true },
+  ],
   slots: [
-    { id: 1, time: "7:00 AM – 8:00 AM", label: "Morning", tag: "Most Popular", desc: "Best for moms who want to train before the day gets busy.", days: "Mon – Sat" },
-    { id: 2, time: "8:30 AM – 9:30 AM", label: "Late Morning", tag: null, desc: "After school drop-off — perfect for stay-at-home moms.", days: "Mon – Sat" },
-    { id: 3, time: "4:30 PM – 5:30 PM", label: "Evening", tag: null, desc: "Post-nap time slot — great for moms with young toddlers.", days: "Mon – Sat" },
-    { id: 4, time: "6:00 PM – 7:00 PM", label: "Late Evening", tag: "Fast Filling", desc: "For working moms who are free after office hours.", days: "Mon – Sat" },
+    { id: 1, time: "6:00 AM – 7:00 AM", label: "Early Morning", tag: "Most Popular", desc: "Best for moms who want to train before the day gets busy.", days: "Mon – Sat" },
+    { id: 2, time: "7:00 AM – 8:00 AM", label: "Morning", tag: null, desc: "After early chores — energise before the day begins.", days: "Mon – Sat" },
+    { id: 3, time: "9:00 AM – 10:00 AM", label: "Late Morning", tag: null, desc: "After school drop-off — perfect for stay-at-home moms.", days: "Mon – Sat" },
+    { id: 4, time: "3:00 PM – 4:00 PM", label: "Afternoon", tag: null, desc: "Post-lunch, pre-evening slot for flexible schedules.", days: "Mon – Sat" },
+    { id: 5, time: "6:00 PM – 7:00 PM", label: "Evening", tag: "Fast Filling", desc: "For working moms who are free after office hours.", days: "Mon – Sat" },
+    { id: 6, time: "7:00 PM – 8:00 PM", label: "Late Evening", tag: null, desc: "Wind down the day with a power session.", days: "Mon – Sat" },
   ],
   includes: [
+    "12 live sessions/month",
+    "Access to recordings",
+    "WhatsApp group",
+    "Daily check-ins",
+    "Diet plan included",
+  ],
+  includesFull: [
     { title: "Live Group Sessions", desc: "Daily online sessions with Abhi — not recorded, real-time coaching." },
     { title: "Custom Diet Plan", desc: "Indian diet friendly nutrition plan updated every month." },
     { title: "WhatsApp Group", desc: "Private community group — motivation, recipes, and daily check-ins." },
@@ -382,7 +407,7 @@ export const groupClassesData = {
   ],
   howItWorks: [
     { step: "01", title: "Choose Your Slot", desc: "Pick a time that fits your schedule and fill in your details." },
-    { step: "02", title: "Pay & Confirm", desc: "Pay ₹5,000 via UPI or bank transfer. Share screenshot on WhatsApp." },
+    { step: "02", title: "Pay & Confirm", desc: "Pay ₹4,999 via UPI or bank transfer. Share screenshot on WhatsApp." },
     { step: "03", title: "Get Onboarded", desc: "Receive your diet plan, WhatsApp group link, and session link." },
     { step: "04", title: "Start Training", desc: "Show up daily, train with your batch, and transform in 30 days." },
   ],
@@ -403,14 +428,14 @@ export const footerData = {
     { label: "90-Day Transformation", href: "#programs" },
     { label: "1-on-1 Training", href: "#programs" },
     { label: "Mothers Program", href: "/mothers-program" },
+    { label: "Group Classes", href: "/group-classes" },
+    { label: "Pricing", href: "/pricing" },
   ],
   navigate: [
     { label: "About Abhi", href: "#about" },
     { label: "Results", href: "#results" },
-    { label: "FITMOM Program", href: "/fitmom-program" },
+    { label: "Our Team", href: "/team" },
     { label: "Specialisations", href: "#specialisations" },
-    { label: "Group Classes", href: "/group-classes" },
-    { label: "Pricing", href: "/pricing" },
   ],
   company: [
     // Privacy, Terms, Refund — commented out for now
@@ -425,6 +450,80 @@ export const footerData = {
     email: "mailto:abhishek.munian@gmail.com",
   },
   copyright: "© 2026 Abhi Strength Coach. All rights reserved.",
+};
+
+export const teamData = {
+  eyebrow: "The People Behind Your Transformation",
+  title: "Meet Our Team",
+  subtitle: "Every expert on our team is handpicked for one reason — results for you.",
+  members: [
+    {
+      id: 1,
+      name: "Abhishek Munian",
+      role: "Head Coach & Founder",
+      tag: "Strength & Postpartum Specialist",
+      bio: "With 10+ years of coaching experience and 1000+ women transformed, Abhi specialises in postpartum fitness, DR healing and strength training for women. Every program is designed and delivered personally by him.",
+      image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776880637/SaveClip.App_614869571_18547982899034362_984992251545371894_n_tumqbq.jpg",
+      instagram: "https://instagram.com/abhishekmunian",
+    },
+    {
+      id: 2,
+      name: "Sneha",
+      role: "Group Classes Trainer",
+      tag: "Postpartum Movement Specialist",
+      bio: "Sneha leads all live group classes for postpartum women. She brings energy, patience and a deep understanding of what new moms need — safe movement, community and real results.",
+      image: "https://res.cloudinary.com/db9wu2abk/image/upload/v1790528607/ChatGPT_Image_Sep_27_2026_10_33_12_PM_qqb7g2.png",
+      instagram: null,
+    },
+    {
+      id: 3,
+      name: "Pooja",
+      role: "Nutritionist",
+      tag: "Indian Diet & Postpartum Nutrition",
+      bio: "Pooja creates all customised diet plans for our clients. She specialises in Indian diet-friendly nutrition for postpartum women — no crash diets, just sustainable food plans that work with your lifestyle.",
+      image: null,
+      instagram: null,
+    },
+  ]
+};
+
+export const faqData = {
+  eyebrow: "Common Questions",
+  title: "Frequently Asked Questions",
+  faqs: [
+    {
+      q: "Is this program safe after a C-section?",
+      a: "Yes, absolutely. All programs include specific C-section recovery protocols. We start slow, monitor your healing and progressively build strength at your pace."
+    },
+    {
+      q: "I have Diastasis Recti — can I still train?",
+      a: "DR healing is actually our speciality. We design every workout specifically to close the gap, restore core function and reduce the mommy pooch safely."
+    },
+    {
+      q: "Do I need a gym or any equipment?",
+      a: "No gym needed. All programs are home-based with minimal or no equipment. We design workouts around your home setup."
+    },
+    {
+      q: "How is the diet plan made?",
+      a: "Our nutritionist Pooja creates 100% Indian diet-friendly meal plans — no crash diets, no exotic food. Real food that fits your lifestyle and budget."
+    },
+    {
+      q: "How soon will I see results?",
+      a: "Most women notice visible changes within 3-4 weeks. Full transformation results are best seen at the 90-day mark when followed consistently."
+    },
+    {
+      q: "Can I join if I gave birth more than a year ago?",
+      a: "Yes — it is never too late to heal and get strong. Many of our clients join 1-3 years postpartum and still get incredible results."
+    },
+    {
+      q: "What if I miss a session?",
+      a: "Group class recordings are shared in the WhatsApp group. For 1-on-1 clients, sessions can be rescheduled with 12 hours notice."
+    },
+    {
+      q: "Is there a refund policy?",
+      a: "We offer a 7-day satisfaction guarantee. If you feel the program is not right for you in the first 7 days, we will process a full refund — no questions asked."
+    },
+  ]
 };
 
 export const landingPageData = {

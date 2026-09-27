@@ -9,6 +9,7 @@ import Certifications from '../components/Certifications';
 import Programs from '../components/Programs';
 import Specialisations from '../components/Specialisations';
 import Testimonials from '../components/Testimonials';
+import FAQ from '../components/FAQ';
 import HowItWorks from '../components/HowItWorks';
 import FinalCTA from '../components/FinalCTA';
 import Footer from '../components/Footer';
@@ -45,6 +46,7 @@ const Home = () => {
         <Programs onEnrol={openEnrol} />
         <Specialisations />
         <Testimonials />
+        <FAQ />
         <HowItWorks />
         {/* <Community /> */}
         <FinalCTA />

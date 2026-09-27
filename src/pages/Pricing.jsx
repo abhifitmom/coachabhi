@@ -16,7 +16,10 @@ const PricingCard = ({ plan, type }) => (
       <div className="pricing-card__sessions">{plan.sessions}</div>
     )}
 
-    <div className="pricing-card__price">{plan.price}</div>
+    <div className="pricing-card__price-wrap">
+      {plan.originalPrice && <span className="pricing-card__original">{plan.originalPrice}</span>}
+      <div className="pricing-card__price">{plan.price}</div>
+    </div>
 
     {/* Features list */}
     <ul className="pricing-card__features">
