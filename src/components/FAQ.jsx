@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { ChevronDown } from 'lucide-react';
 import { faqData } from '../data/siteData';
 import useScrollAnimation from '../hooks/useScrollAnimation';
@@ -11,6 +12,11 @@ const FAQ = () => {
 
   const toggle = (i) => setOpenIndex(openIndex === i ? null : i);
 
+  const faqsList = Array.isArray(faqData) ? faqData : (faqData?.faqs || []);
+  const visibleFaqs = faqsList.slice(0, 6);
+  const eyebrowText = Array.isArray(faqData) ? 'Common Questions' : (faqData?.eyebrow || 'Common Questions');
+  const titleText = Array.isArray(faqData) ? 'Frequently Asked Questions' : (faqData?.title || 'Frequently Asked Questions');
+
   return (
     <section className="faq-section" id="faq">
       <div className="container">
@@ -19,15 +25,15 @@ const FAQ = () => {
           ref={headerRef}
           className={`faq-header anim-fade-up ${headerVisible ? 'anim-visible' : ''}`}
         >
-          <span className="section-eyebrow">{faqData.eyebrow}</span>
-          <h2 className="section-title">{faqData.title}</h2>
+          <span className="section-eyebrow">{eyebrowText}</span>
+          <h2 className="section-title">{titleText}</h2>
         </div>
 
         <div
           ref={listRef}
           className={`faq-list anim-fade-up ${listVisible ? 'anim-visible' : ''}`}
         >
-          {faqData.faqs.map((faq, i) => (
+          {visibleFaqs.map((faq, i) => (
             <div
               key={i}
               className={`faq-item ${openIndex === i ? 'faq-item--open' : ''}`}
@@ -49,6 +55,26 @@ const FAQ = () => {
             </div>
           ))}
         </div>
+
+        {faqsList.length > 6 && (
+          <div style={{ textAlign: 'center', marginTop: '2.5rem' }}>
+            <Link
+              to="/faq"
+              className="btn"
+              style={{
+                display: 'inline-flex',
+                alignItems: 'center',
+                gap: '0.5rem',
+                border: '1px solid var(--color-border)',
+                background: 'white',
+                color: 'var(--color-ink)',
+                textDecoration: 'none'
+              }}
+            >
+              View All FAQs →
+            </Link>
+          </div>
+        )}
 
       </div>
     </section>

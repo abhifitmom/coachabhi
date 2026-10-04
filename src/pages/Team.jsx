@@ -56,6 +56,11 @@ const Team = () => {
               <div className="team-card__tag">{member.tag}</div>
               <h2 className="team-card__name">{member.name}</h2>
               <div className="team-card__role">{member.role}</div>
+              {member.qualification && (
+                <div className="team-card__qualification" style={{ fontSize: '0.85rem', color: 'var(--color-brand)', fontWeight: 600, margin: '0.25rem 0 0.5rem 0' }}>
+                  {member.qualification}
+                </div>
+              )}
               <p className="team-card__bio">{member.bio}</p>
 
               {member.instagram && (

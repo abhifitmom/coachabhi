@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { ArrowRight, MessageCircle, Play, Pause, Volume2, VolumeX } from 'lucide-react';
+import React from 'react';
+import { ArrowRight, MessageCircle } from 'lucide-react';
 import { heroData, siteConfig } from '../data/siteData';
 import StatNumber from './StatNumber';
 import useScrollAnimation from '../hooks/useScrollAnimation';
@@ -7,60 +7,6 @@ import '../styles/Hero.css';
 
 const Hero = ({ onEnrol }) => {
   const [ref, visible] = useScrollAnimation({ threshold: 0.1 });
-  const videoRef = useRef(null);
-  const mobileVideoRef = useRef(null);
-  const [isPlaying, setIsPlaying] = useState(true);
-  const [isMuted, setIsMuted] = useState(true);
-  const [progress, setProgress] = useState(0);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  // Autoplay on mount
-  useEffect(() => {
-    [videoRef, mobileVideoRef].forEach(vRef => {
-      const video = vRef.current;
-      if (!video) return;
-      video.muted = true;
-      video.setAttribute('playsinline', '');    // ← iOS ke liye
-      video.play().catch(() => setIsPlaying(false));
-    });
-  }, []);
-
-  // Progress update
-  const handleTimeUpdate = (e) => {
-    const video = e.currentTarget;
-    if (!video) return;
-    const pct = (video.currentTime / video.duration) * 100;
-    setProgress(isNaN(pct) ? 0 : pct);
-  };
-
-  const togglePlay = (isMobile = false) => {
-    const video = isMobile ? mobileVideoRef.current : videoRef.current;
-    if (!video) return;
-    if (video.paused) {
-      video.play();
-      setIsPlaying(true);
-    } else {
-      video.pause();
-      setIsPlaying(false);
-    }
-  };
-
-  const toggleMute = (isMobile = false) => {
-    const video = isMobile ? mobileVideoRef.current : videoRef.current;
-    if (!video) return;
-    video.muted = !video.muted;
-    setIsMuted(video.muted);
-  };
-
-  const handleSeek = (e, isMobile = false) => {
-    const video = isMobile ? mobileVideoRef.current : videoRef.current;
-    if (!video) return;
-    const rect = e.currentTarget.getBoundingClientRect();
-    const x = e.clientX - rect.left;
-    const pct = x / rect.width;
-    video.currentTime = pct * video.duration;
-    setProgress(pct * 100);
-  };
 
   return (
     <section className="hero-section" id="home">
@@ -75,45 +21,6 @@ const Hero = ({ onEnrol }) => {
             Get Strong.<br />
             <span className="hero__headline--italic">Feel Like You Again.</span>
           </h1>
-
-          {/* VIDEO — mobile only — shows after headline */}
-          <div className="hero__video-mobile">
-            <div className="hero__video-wrapper">
-              <video
-                ref={mobileVideoRef}
-                src={heroData.video}
-                autoPlay
-                loop
-                muted
-                playsInline
-                preload="metadata"
-                onTimeUpdate={handleTimeUpdate}
-                onLoadedData={() => setIsLoaded(true)}
-                className="hero__video"
-              />
-              {/* Controls */}
-              <div className="hero__video-controls">
-                <button className="hero__video-btn" onClick={() => togglePlay(true)} aria-label="Play/Pause">
-                  {isPlaying ? <Pause size={16} /> : <Play size={16} />}
-                </button>
-                {/* Progress bar */}
-                <div
-                  className="hero__video-progress"
-                  onClick={(e) => handleSeek(e, true)}
-                  role="slider"
-                  aria-label="Video progress"
-                >
-                  <div
-                    className="hero__video-progress-fill"
-                    style={{ width: `${progress}%` }}
-                  />
-                </div>
-                <button className="hero__video-btn" onClick={() => toggleMute(true)} aria-label="Mute/Unmute">
-                  {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-                </button>
-              </div>
-            </div>
-          </div>
 
           <p className="hero__subheadline">{heroData.subheadline}</p>
 
@@ -137,9 +44,9 @@ const Hero = ({ onEnrol }) => {
           </div>
 
           {/* Stats */}
-          <div className="hero__stats">
+          <div className="hero__stats" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '1.5rem 1rem', width: '100%' }}>
             {heroData.stats.map((stat, i) => (
-              <div key={i} className="hero__stat">
+              <div key={i} className="hero__stat" style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
                 <StatNumber
                   value={stat.value}
                   className="number-display"
@@ -151,42 +58,20 @@ const Hero = ({ onEnrol }) => {
           </div>
         </div>
 
-        {/* RIGHT — VIDEO desktop only */}
-        <div className="hero__video-desktop">
-          <div className="hero__video-wrapper">
-            <video
-              ref={videoRef}
-              src={heroData.video}
-              autoPlay
-              loop
-              muted
-              playsInline
-              preload="metadata"
-              onTimeUpdate={handleTimeUpdate}
-              onLoadedData={() => setIsLoaded(true)}
-              className="hero__video"
-            />
-            {/* Controls overlay */}
-            <div className="hero__video-controls">
-              <button className="hero__video-btn" onClick={() => togglePlay(false)} aria-label="Play/Pause">
-                {isPlaying ? <Pause size={16} /> : <Play size={16} />}
-              </button>
-              <div
-                className="hero__video-progress"
-                onClick={(e) => handleSeek(e, false)}
-                role="slider"
-                aria-label="Video progress"
-              >
-                <div
-                  className="hero__video-progress-fill"
-                  style={{ width: `${progress}%` }}
-                />
-              </div>
-              <button className="hero__video-btn" onClick={() => toggleMute(false)} aria-label="Mute/Unmute">
-                {isMuted ? <VolumeX size={16} /> : <Volume2 size={16} />}
-              </button>
-            </div>
-          </div>
+        {/* RIGHT — IMAGE desktop only */}
+        <div className="hero__video-desktop" style={{ width: '100%', maxWidth: '480px', margin: '0 auto' }}>
+          <img
+            src="https://res.cloudinary.com/db9wu2abk/image/upload/v1791120324/WhatsApp_Image_2026-09-28_at_08.25.39_awi16b.jpg"
+            alt="Abhi Strength Coach"
+            style={{
+              width: '100%',
+              maxWidth: '480px',
+              height: 'auto',
+              objectFit: 'cover',
+              borderRadius: '1rem',
+              display: 'block'
+            }}
+          />
         </div>
       </div>
     </section>

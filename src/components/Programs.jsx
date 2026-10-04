@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Check, MessageCircle, ArrowRight } from 'lucide-react';
-import { pricingData, siteConfig } from '../data/siteData';
+import { pricingData, groupClassesData, siteConfig } from '../data/siteData';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import '../styles/Programs.css';
 
@@ -18,17 +18,26 @@ const ProgramCard = ({ plan, categoryTitle }) => (
       <div className="program-duration-card__sessions">{plan.sessions}</div>
     )}
 
-    <div className="program-duration-card__price">{plan.price}</div>
+    <div className="program-duration-card__price-wrap" style={{ display: 'flex', alignItems: 'baseline', gap: '0.5rem', marginBottom: '1rem' }}>
+      {plan.originalPrice && plan.originalPrice !== plan.price && (
+        <span className="pricing-card__original" style={{ textDecoration: 'line-through', opacity: 0.6, fontSize: '0.9rem' }}>
+          {plan.originalPrice}
+        </span>
+      )}
+      <div className="program-duration-card__price" style={{ margin: 0 }}>{plan.price}</div>
+    </div>
 
     {/* Features */}
-    <ul className="program-duration-card__features">
-      {plan.features.map((feature, i) => (
-        <li key={i} className="program-duration-card__feature">
-          <Check size={13} className="program-duration-card__check" />
-          <span>{feature}</span>
-        </li>
-      ))}
-    </ul>
+    {plan.features && (
+      <ul className="program-duration-card__features">
+        {plan.features.map((feature, i) => (
+          <li key={i} className="program-duration-card__feature">
+            <Check size={13} className="program-duration-card__check" />
+            <span>{feature}</span>
+          </li>
+        ))}
+      </ul>
+    )}
 
     {/* CTA */}
     <a
@@ -82,6 +91,12 @@ const Programs = () => {
             >
               {pricingData.onlineTraining.title}
             </button>
+            <button
+              className={`programs-tab ${activeTab === 'group' ? 'programs-tab--active' : ''}`}
+              onClick={() => setActiveTab('group')}
+            >
+              Group Classes
+            </button>
           </div>
         </div>
 
@@ -134,6 +149,38 @@ const Programs = () => {
                       key={plan.id}
                       plan={plan}
                       categoryTitle={pricingData.onlineTraining.title}
+                    />
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+
+          {/* Divider if showing all */}
+          {activeTab === 'all' && <div className="programs-divider" />}
+
+          {/* ── GROUP CLASSES SECTION ── */}
+          {(activeTab === 'all' || activeTab === 'group') && (
+            <div className="programs-category">
+              <div className="programs-category__header">
+                <h3 className="programs-category__title">
+                  Online Group Classes
+                </h3>
+                <p className="programs-category__sub">
+                  Live group sessions for postpartum women — small batch (max 10)
+                </p>
+              </div>
+
+              <div className="programs-track-wrapper">
+                <div className="programs-track programs-track--2cols">
+                  {groupClassesData.plans.map((plan) => (
+                    <ProgramCard
+                      key={plan.id}
+                      plan={{
+                        ...plan,
+                        features: plan.features || groupClassesData.includes
+                      }}
+                      categoryTitle="Group Classes"
                     />
                   ))}
                 </div>

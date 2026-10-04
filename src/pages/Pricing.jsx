@@ -17,7 +17,7 @@ const PricingCard = ({ plan, type }) => (
     )}
 
     <div className="pricing-card__price-wrap">
-      {plan.originalPrice && <span className="pricing-card__original">{plan.originalPrice}</span>}
+      {plan.originalPrice && plan.originalPrice !== plan.price && <span className="pricing-card__original">{plan.originalPrice}</span>}
       <div className="pricing-card__price">{plan.price}</div>
     </div>
 

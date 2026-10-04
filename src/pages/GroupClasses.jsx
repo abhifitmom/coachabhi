@@ -72,14 +72,12 @@ const GroupClasses = () => {
           ))}
         </h1>
         <p className="gc-hero__sub">{d.hero.subheadline}</p>
-        <div className="gc-hero__price">
-          <div className="pricing-card__price-wrap" style={{ alignItems: 'center' }}>
-            {d.hero.originalPrice && (
-              <span className="pricing-card__original" style={{ fontSize: '1.1rem' }}>{d.hero.originalPrice}</span>
-            )}
-            <span className="gc-hero__amount">{d.hero.price}</span>
-          </div>
-          <span className="gc-hero__duration">{d.hero.duration}</span>
+        <div className="gc-hero__price" style={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline', justifyContent: 'center', gap: '0.75rem', margin: '1.5rem auto' }}>
+          {d.hero.originalPrice && (
+            <span style={{ fontSize: '1rem', color: '#999', textDecoration: 'line-through' }}>{d.hero.originalPrice}</span>
+          )}
+          <span style={{ fontSize: '2.5rem', fontWeight: 700, color: '#FF6835', fontFamily: 'var(--font-mono)' }}>{d.hero.price}</span>
+          <span style={{ fontSize: '1rem', color: '#999' }}>/ month</span>
         </div>
         <div className="gc-hero__includes">
           <Check size={15} color="#FF6835" />
@@ -197,9 +195,10 @@ const GroupClasses = () => {
             <p className="gc-form-header__sub">
               Fill in your details. You'll be redirected to WhatsApp to complete payment and get confirmed.
             </p>
-            <div className="gc-form-price">
-              <span className="pricing-card__original" style={{ fontSize: '1rem', marginRight: '0.5rem', color: 'rgba(255,255,255,0.5)' }}>₹6,999</span>
-              ₹4,999 <span>/ month</span>
+            <div className="gc-form-price" style={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline', justifyContent: 'center', gap: '0.75rem', margin: '1rem auto' }}>
+              <span style={{ fontSize: '1rem', color: '#999', textDecoration: 'line-through' }}>₹6,999</span>
+              <span style={{ fontSize: '2.5rem', fontWeight: 700, color: '#FF6835', fontFamily: 'var(--font-mono)' }}>₹4,999</span>
+              <span style={{ fontSize: '1rem', color: '#999' }}>/ month</span>
             </div>
           </div>
 

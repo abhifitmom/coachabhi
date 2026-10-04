@@ -17,7 +17,7 @@ export const programs = [
     months: 1,
     tag: "Starter",
     price: "₹7,500",
-    originalPrice: "₹9,999",
+    originalPrice: "₹7,500",
     popular: false,
     features: [
       "Initial health & body assessment",
@@ -32,10 +32,10 @@ export const programs = [
     id: 2,
     duration: "3 Months",
     months: 3,
-    tag: "Most Popular",
+    tag: "Transformation",
     price: "₹16,500",
-    originalPrice: "₹22,499",
-    popular: true,
+    originalPrice: "₹22,500",
+    popular: false,
     features: [
       "Complete DR healing & core restoration",
       "Personalised workout program for moms",
@@ -51,10 +51,10 @@ export const programs = [
     id: 3,
     duration: "6 Months",
     months: 6,
-    tag: "Best Value",
+    tag: "Most Popular",
     price: "₹27,000",
-    originalPrice: "₹35,999",
-    popular: false,
+    originalPrice: "₹45,000",
+    popular: true,
     features: [
       "Everything in 3-month program",
       "Advanced strength & conditioning",
@@ -70,7 +70,7 @@ export const programs = [
     id: 4,
     duration: "12 Months",
     months: 12,
-    tag: "Complete Transform",
+    tag: "Best Value",
     price: "₹45,000",
     originalPrice: "₹59,999",
     popular: false,
@@ -96,7 +96,7 @@ export const pricingData = {
         id: 1,
         duration: "1 Month",
         price: "₹7,500",
-        originalPrice: "₹9,999",
+        originalPrice: "₹7,500",
         popular: false,
         features: [
           "Health & body assessment",
@@ -109,8 +109,8 @@ export const pricingData = {
         id: 2,
         duration: "3 Months",
         price: "₹16,500",
-        originalPrice: "₹22,499",
-        popular: true,
+        originalPrice: "₹22,500",
+        popular: false,
         features: [
           "DR healing & core restoration",
           "Custom workout program",
@@ -124,8 +124,8 @@ export const pricingData = {
         id: 3,
         duration: "6 Months",
         price: "₹27,000",
-        originalPrice: "₹35,999",
-        popular: false,
+        originalPrice: "₹45,000",
+        popular: true,
         features: [
           "Everything in 3-month plan",
           "Advanced strength training",
@@ -231,7 +231,7 @@ export const heroData = {
   video: "https://res.cloudinary.com/db9wu2abk/video/upload/q_auto/f_auto/v1779365980/vidssave.com_Fitness_coaching_in_Mumbai___Protoletics_720P_yrbsiq.mp4",
   stats: [
     { value: "6000+", label: "Clients Transformed" },
-    { value: "2016", label: "Coaching Since" },
+    { value: "Coaching Since", label: "2016" },
     { value: "4.9★", label: "Google Rating" },
     { value: "90 Days", label: "Guaranteed Results" },
   ],
@@ -338,7 +338,7 @@ export const founderData = {
   quote: "\"Strength is not about how you look. It's about how you feel in your own skin. Every mother deserves to feel powerful again.\"",
   quoteAuthor: "Abhi, Founder",
   stats: [
-    { value: "2016", label: "Coaching Since" },
+    { value: "Coaching Since", label: "2016" },
     { value: "6000+", label: "Clients Transformed" },
     { value: "8+", label: "Specialisations" },
     { value: "Mumbai", label: "Maharashtra" },
@@ -383,12 +383,12 @@ export const groupClassesData = {
     { id: 2, duration: "3 Months", sessions: "36 Sessions", price: "₹10,999", originalPrice: "₹14,999", popular: true },
   ],
   slots: [
-    { id: 1, time: "6:00 AM – 7:00 AM", label: "Early Morning", tag: "Most Popular", desc: "Best for moms who want to train before the day gets busy.", days: "Mon – Sat" },
+    { id: 1, time: "6:00 AM – 7:00 AM", label: "Early Morning", tag: "Fast Filling", desc: "Best for moms who want to train before the day gets busy.", days: "Mon – Sat" },
     { id: 2, time: "7:00 AM – 8:00 AM", label: "Morning", tag: null, desc: "After early chores — energise before the day begins.", days: "Mon – Sat" },
     { id: 3, time: "9:00 AM – 10:00 AM", label: "Late Morning", tag: null, desc: "After school drop-off — perfect for stay-at-home moms.", days: "Mon – Sat" },
-    { id: 4, time: "3:00 PM – 4:00 PM", label: "Afternoon", tag: null, desc: "Post-lunch, pre-evening slot for flexible schedules.", days: "Mon – Sat" },
-    { id: 5, time: "6:00 PM – 7:00 PM", label: "Evening", tag: "Fast Filling", desc: "For working moms who are free after office hours.", days: "Mon – Sat" },
-    { id: 6, time: "7:00 PM – 8:00 PM", label: "Late Evening", tag: null, desc: "Wind down the day with a power session.", days: "Mon – Sat" },
+    { id: 4, time: "5:00 PM – 6:00 PM", label: "Early Evening", tag: null, desc: "Post-work/chores slot for busy moms.", days: "Mon – Sat" },
+    { id: 5, time: "6:00 PM – 7:00 PM", label: "Evening", tag: null, desc: "For working moms who are free after office hours.", days: "Mon – Sat" },
+    { id: 6, time: "7:00 PM – 8:00 PM", label: "Late Evening", tag: "Most Popular", desc: "Wind down the day with a power session.", days: "Mon – Sat" },
   ],
   includes: [
     "12 live sessions/month",
@@ -463,7 +463,7 @@ export const teamData = {
       role: "Head Coach & Founder",
       tag: "Strength & Postpartum Specialist",
       bio: "With 10+ years of coaching experience and 1000+ women transformed, Abhi specialises in postpartum fitness, DR healing and strength training for women. Every program is designed and delivered personally by him.",
-      image: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776880637/SaveClip.App_614869571_18547982899034362_984992251545371894_n_tumqbq.jpg",
+      image: "https://res.cloudinary.com/db9wu2abk/image/upload/v1791120324/WhatsApp_Image_2026-09-28_at_08.25.39_awi16b.jpg",
       instagram: "https://instagram.com/abhishekmunian",
     },
     {
@@ -477,54 +477,48 @@ export const teamData = {
     },
     {
       id: 3,
-      name: "Pooja",
-      role: "Nutritionist",
+      name: "Pooja Patil",
+      role: "Clinical Nutritionist & Dietitian",
+      qualification: "BSc Hons in Nutrition & Dietetics, Master's in Food Science & Technology",
       tag: "Indian Diet & Postpartum Nutrition",
-      bio: "Pooja creates all customised diet plans for our clients. She specialises in Indian diet-friendly nutrition for postpartum women — no crash diets, just sustainable food plans that work with your lifestyle.",
-      image: null,
+      bio: "Personalized nutrition for postpartum mothers, diabetes, thyroid & clinical conditions.",
+      image: "https://res.cloudinary.com/db9wu2abk/image/upload/v1791120324/WhatsApp_Image_2026-09-28_at_08.18.25_twkzgu.jpg",
       instagram: null,
     },
   ]
 };
 
-export const faqData = {
-  eyebrow: "Common Questions",
-  title: "Frequently Asked Questions",
-  faqs: [
-    {
-      q: "Is this program safe after a C-section?",
-      a: "Yes, absolutely. All programs include specific C-section recovery protocols. We start slow, monitor your healing and progressively build strength at your pace."
-    },
-    {
-      q: "I have Diastasis Recti — can I still train?",
-      a: "DR healing is actually our speciality. We design every workout specifically to close the gap, restore core function and reduce the mommy pooch safely."
-    },
-    {
-      q: "Do I need a gym or any equipment?",
-      a: "No gym needed. All programs are home-based with minimal or no equipment. We design workouts around your home setup."
-    },
-    {
-      q: "How is the diet plan made?",
-      a: "Our nutritionist Pooja creates 100% Indian diet-friendly meal plans — no crash diets, no exotic food. Real food that fits your lifestyle and budget."
-    },
-    {
-      q: "How soon will I see results?",
-      a: "Most women notice visible changes within 3-4 weeks. Full transformation results are best seen at the 90-day mark when followed consistently."
-    },
-    {
-      q: "Can I join if I gave birth more than a year ago?",
-      a: "Yes — it is never too late to heal and get strong. Many of our clients join 1-3 years postpartum and still get incredible results."
-    },
-    {
-      q: "What if I miss a session?",
-      a: "Group class recordings are shared in the WhatsApp group. For 1-on-1 clients, sessions can be rescheduled with 12 hours notice."
-    },
-    {
-      q: "Is there a refund policy?",
-      a: "We offer a 7-day satisfaction guarantee. If you feel the program is not right for you in the first 7 days, we will process a full refund — no questions asked."
-    },
-  ]
-};
+export const faqData = [
+  { q: "What is diastasis recti?", a: "Diastasis recti is a gap between the two sides of your \"six-pack\" muscle. During pregnancy, your belly stretches to make room for baby, and the tissue joining these muscles down the middle becomes thin and wide. It is a normal body change, not an injury you caused." },
+  { q: "How common is diastasis recti?", a: "Very common. Most women have some separation by the end of pregnancy, and many still have it months after delivery. You are not alone, and it is not a sign that you did anything wrong." },
+  { q: "How do I know if I have DR?", a: "Common signs include: a belly that still looks pregnant months after delivery (the \"mummy pooch\"), a ridge or dome that pops up down the middle of your tummy when you sit up, a soft sinking gap above or below your belly button, lower back pain, weak core, poor posture, or leaking urine when you cough, sneeze, laugh or jump." },
+  { q: "How can I check for DR at home?", a: "Lie on your back, knees bent, feet flat on the floor. Place your fingertips across the middle of your tummy at the belly button. Gently lift your head and shoulders off the floor and feel for a gap. A gap wider than two fingers usually means DR. We also check this for you in your first session." },
+  { q: "What causes DR?", a: "The growing baby stretches the belly, and pregnancy hormones soften the tissues. It is more likely with twins, a big baby, more than one pregnancy, or pregnancy after 35. Heavy lifting or crunches with poor technique can make it worse." },
+  { q: "When can I start exercising after delivery?", a: "Gentle breathing, pelvic floor work and short walks can usually begin in the first few days. Most women get the go-ahead for structured exercise at their 6-week check-up. Always get clearance from your doctor first." },
+  { q: "I had a C-section. Is it different for me?", a: "Yes. A C-section is major surgery, so we go slower. Most moms start gentle core rehab around 8 weeks, once the doctor clears it and the scar has healed. We work around your scar and never rush the process." },
+  { q: "Is it too late if it has been over a year since delivery?", a: "No. The core can get stronger at any stage. We work with moms who are months and even years postpartum and still see real changes in strength, posture and belly shape." },
+  { q: "What is the pelvic floor and why does it matter?", a: "The pelvic floor is a group of muscles that support your bladder, uterus and bowel. If it is weak, you may leak urine, feel heaviness or struggle to engage your core. Healing DR always includes pelvic floor work." },
+  { q: "Is it safe to exercise while breastfeeding?", a: "Yes. Moderate exercise does not affect milk supply. Feed or pump before class, drink plenty of water and wear a supportive bra." },
+  { q: "What warning signs mean I should stop and see a doctor?", a: "Stop exercising and speak to your doctor if you experience: heavy bleeding or bleeding that returns after it had stopped, pain or pulling at your C-section scar, a bulge or heaviness in the vagina, sharp pain in your belly, pelvis or back, or dizziness, chest pain or breathlessness." },
+  { q: "Can diastasis recti heal without surgery?", a: "In most cases, yes. The right exercises help the deep core muscles get strong again. Surgery is only needed for a small number of severe cases, such as when there is also a hernia." },
+  { q: "How long does it take to heal?", a: "Many moms feel a stronger core and see a flatter belly within 8–12 weeks of regular practice. Bigger gaps may take longer. Consistency matters more than intensity." },
+  { q: "Does the gap need to close fully?", a: "Not always. What matters most is that the middle of your tummy feels firm and your core works well. Many women have a small gap but a strong, flat, pain-free core." },
+  { q: "Should I avoid crunches and planks?", a: "At the start, yes. Crunches, sit-ups, full planks and heavy lifting can push your belly outward and slow healing. We begin with breathing and deep core work, then slowly add harder moves once your core can control them." },
+  { q: "Will a belly belt or binder fix my DR?", a: "A belt can give support and comfort in the early weeks. It cannot rebuild muscle strength on its own. Real healing comes from training your core to hold itself." },
+  { q: "Why does my belly still look pregnant?", a: "This \"mummy pooch\" is often a weak deep core, not just fat. Your tummy muscles are not holding everything in yet. Core rehab, good posture and healthy eating together make the biggest difference." },
+  { q: "What daily habits help my core heal?", a: "Roll to your side to get out of bed instead of sitting straight up. Breathe out and gently draw your belly in when lifting your baby. Avoid holding your breath while straining. Stand and sit tall, especially while feeding. Carry baby close to your body, switching sides often." },
+  { q: "Will I lose weight in this program?", a: "Most moms lose inches from the waist as the core gets stronger, and many lose weight too. Our focus is a strong, healthy body first. Fat loss follows naturally with exercise and sensible eating." },
+  { q: "Can I diet while breastfeeding?", a: "You should not crash diet. Eating too little can lower your energy and milk supply. We help you make small, steady changes: balanced meals with enough protein, vegetables, whole grains and water." },
+  { q: "Do I need special foods or supplements?", a: "No special products are needed. Simple home-cooked Indian meals work well. Take any supplements your doctor has prescribed, such as iron or calcium." },
+  { q: "How fast should I expect results on the scale?", a: "Slow and steady is safest after delivery, especially if you are breastfeeding. Fast weight loss usually comes back. We track inches, strength and how you feel, not just the scale." },
+  { q: "What is the DR Reset Program?", a: "It is a live online group program for postpartum moms focusing on healing diastasis recti, strengthening the core and pelvic floor, and helping you feel like yourself again." },
+  { q: "Do I need any equipment?", a: "No. All you need is a mat, a little space at home and your phone or laptop." },
+  { q: "How many people are in each class?", a: "A maximum of 10 moms per batch. This keeps the group small so your form is checked and your questions are answered." },
+  { q: "I'm a beginner. Can I join?", a: "Yes. The program starts with the basics, and every exercise has an easier and a harder option." },
+  { q: "Can I try a class before joining?", a: "Yes. You can book a demo class for ₹199. You will learn the basics, see how classes run, and get all program details at the end." },
+  { q: "What if my baby needs me during class?", a: "That is completely fine. Attend to your baby and join back when you can. Moms are always welcome to have babies nearby." },
+  { q: "When does the program start?", a: "The first batch begins on 15 November 2026." },
+];
 
 export const landingPageData = {
   announcementBar: "Only 5 Spots Remaining This Batch — Book Your Free Call Now",

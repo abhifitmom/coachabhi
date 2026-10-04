@@ -64,7 +64,12 @@ const Footer = () => {
           <div className="footer__column">
             <h4 className="footer__col-title">Navigate</h4>
             <ul className="footer__links">
-              {footerData.navigate.map((link, i) => (
+              {footerData.navigate.flatMap((link) => {
+                if (link.label === "Our Team") {
+                  return [link, { label: "FAQ", href: "/#faq" }];
+                }
+                return [link];
+              }).map((link, i) => (
                 <li key={i}>
                   {link.href.startsWith('/') && !link.href.startsWith('/#') ? (
                     <Link to={link.href} className="footer__link">
