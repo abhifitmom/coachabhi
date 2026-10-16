@@ -1,21 +1,8 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { ChevronLeft, ChevronRight, Play } from 'lucide-react';
+import { testimonialImages } from '../data/siteData';
 import useScrollAnimation from '../hooks/useScrollAnimation';
 import '../styles/Testimonials.css';
-
-/* ── Data — hardcoded here, not in siteData.js ── */
-const testimonialImages = [
-  { id: 1, url: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776877649/4_uech5w.jpg", alt: "Client Result 1" },
-  { id: 2, url: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776877647/11_bhqnyi.jpg", alt: "Client Result 2" },
-  { id: 3, url: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776877647/7_v1aezv.jpg", alt: "Client Result 3" },
-  { id: 4, url: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776877647/10_usgejz.jpg", alt: "Client Result 4" },
-  { id: 5, url: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776877647/5_dzp6x1.jpg", alt: "Client Result 5" },
-  { id: 6, url: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776877646/8_g7mxrn.jpg", alt: "Client Result 6" },
-  { id: 7, url: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776877646/6_mtov14.jpg", alt: "Client Result 7" },
-  { id: 8, url: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776877645/3_biqudb.jpg", alt: "Client Result 8" },
-  { id: 9, url: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776877645/2_e2hdhv.jpg", alt: "Client Result 9" },
-  { id: 10, url: "https://res.cloudinary.com/db9wu2abk/image/upload/q_auto/f_auto/v1776877645/1_ocxsak.jpg", alt: "Client Result 10" },
-];
 
 const testimonialVideos = [
   {

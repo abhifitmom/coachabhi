@@ -282,6 +282,30 @@ export const specialisations = [
   { icon: "🧠", title: "Stress, Sleep & Mental Wellness", desc: "Nutrition and lifestyle changes for better mental health." },
 ];
 
+export const resultsImages = [
+  "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154866/1_1_g73sbf.png",
+  "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154866/3_nspcxv.png",
+  "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154867/13_f9mgkc.png",
+  "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154867/24_csv0jc.png",
+  "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154870/23_cipiei.png",
+  "https://res.cloudinary.com/db9wu2abk/image/upload/v1792155914/3_qvk7xu.png",
+  "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154871/26_a1qj7y.png",
+  "https://res.cloudinary.com/db9wu2abk/image/upload/v1792155913/20_tajodo.png",
+];
+
+export const testimonialImages = [
+  { id: 1, url: "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154866/1_1_g73sbf.png", alt: "Client Result 1" },
+  { id: 2, url: "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154866/3_nspcxv.png", alt: "Client Result 2" },
+  { id: 3, url: "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154867/13_f9mgkc.png", alt: "Client Result 3" },
+  { id: 4, url: "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154867/24_csv0jc.png", alt: "Client Result 4" },
+  { id: 5, url: "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154870/23_cipiei.png", alt: "Client Result 5" },
+  { id: 6, url: "https://res.cloudinary.com/db9wu2abk/image/upload/v1792155914/3_qvk7xu.png", alt: "Client Result 6" },
+  { id: 7, url: "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154871/26_a1qj7y.png", alt: "Client Result 7" },
+  { id: 8, url: "https://res.cloudinary.com/db9wu2abk/image/upload/v1792155913/20_tajodo.png", alt: "Client Result 8" },
+];
+
+export const transformationImages = resultsImages;
+
 export const testimonials = [
   {
     name: "Ratna Mam", age: "42", city: "Mumbai",
@@ -383,9 +407,9 @@ export const groupClassesData = {
     { id: 2, duration: "3 Months", sessions: "36 Sessions", price: "₹10,999", originalPrice: "₹14,999", popular: true },
   ],
   slots: [
-    { id: 1, time: "6:00 AM – 7:00 AM", label: "Early Morning", tag: "Fast Filling", desc: "Best for moms who want to train before the day gets busy.", days: "Mon – Sat" },
-    { id: 2, time: "7:00 AM – 8:00 AM", label: "Morning", tag: null, desc: "After early chores — energise before the day begins.", days: "Mon – Sat" },
-    { id: 3, time: "9:00 AM – 10:00 AM", label: "Late Morning", tag: null, desc: "After school drop-off — perfect for stay-at-home moms.", days: "Mon – Sat" },
+    { id: 1, time: "6:30–7:30 am", label: "Early Morning", tag: "Fast Filling", desc: "Best for moms who want to train before the day gets busy.", days: "Mon – Sat" },
+    { id: 2, time: "7:30–8:30 am", label: "Morning", tag: null, desc: "After early chores — energise before the day begins.", days: "Mon – Sat" },
+    { id: 3, time: "9:30–10:30 am", label: "Late Morning", tag: null, desc: "After school drop-off — perfect for stay-at-home moms.", days: "Mon – Sat" },
     { id: 4, time: "5:00 PM – 6:00 PM", label: "Early Evening", tag: null, desc: "Post-work/chores slot for busy moms.", days: "Mon – Sat" },
     { id: 5, time: "6:00 PM – 7:00 PM", label: "Evening", tag: null, desc: "For working moms who are free after office hours.", days: "Mon – Sat" },
     { id: 6, time: "7:00 PM – 8:00 PM", label: "Late Evening", tag: "Most Popular", desc: "Wind down the day with a power session.", days: "Mon – Sat" },
@@ -472,7 +496,7 @@ export const teamData = {
       role: "Group Classes Trainer",
       tag: "Postpartum Movement Specialist",
       bio: "Sneha leads all live group classes for postpartum women. She brings energy, patience and a deep understanding of what new moms need — safe movement, community and real results.",
-      image: "https://res.cloudinary.com/db9wu2abk/image/upload/v1790528607/ChatGPT_Image_Sep_27_2026_10_33_12_PM_qqb7g2.png",
+      image: "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154870/WhatsApp_Image_2026-10-16_at_08.45.13_fnh0kt.jpg",
       instagram: null,
     },
     {

@@ -1,13 +1,57 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowLeft, ArrowRight, Check, Users, Clock, IndianRupee } from 'lucide-react';
+import { ArrowLeft, ArrowRight, Check, Users, Clock, IndianRupee, ChevronLeft, ChevronRight } from 'lucide-react';
 import { groupClassesData, siteConfig } from '../data/siteData';
 import '../styles/GroupClasses.css';
+
+const groupResultsImages = [
+  "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154869/40_dekgau.png",
+  "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154867/24_csv0jc.png",
+  "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154870/23_cipiei.png",
+  "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154868/35_lphf05.png",
+  "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154871/26_a1qj7y.png",
+  "https://res.cloudinary.com/db9wu2abk/image/upload/v1792155913/20_tajodo.png",
+  "https://res.cloudinary.com/db9wu2abk/image/upload/v1792154869/39_b7jgvc.png",
+];
 
 const GroupClasses = () => {
   const navigate = useNavigate();
   const d = groupClassesData;
+  const resultsTrackRef = useRef(null);
   const [form, setForm] = useState({ name: '', phone: '', email: '', city: '', slot: '' });
+
+  const scrollResults = (dir) => {
+    if (!resultsTrackRef.current) return;
+    const scrollAmount = 350;
+    resultsTrackRef.current.scrollBy({
+      left: dir === 'next' ? scrollAmount : -scrollAmount,
+      behavior: 'smooth',
+    });
+  };
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('gc-visible');
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      {
+        threshold: 0.12,
+        rootMargin: '0px 0px -30px 0px',
+      }
+    );
+
+    const animElements = document.querySelectorAll(
+      '.gc-anim-heading, .gc-anim-card, .gc-anim-price, .gc-anim-result, .gc-anim-cta'
+    );
+    animElements.forEach((el) => observer.observe(el));
+
+    return () => observer.disconnect();
+  }, []);
   const [errors, setErrors] = useState({});
 
   const handleChange = (e) => {
@@ -61,7 +105,7 @@ const GroupClasses = () => {
       </div>
 
       {/* Hero */}
-      <div className="gc-hero">
+      <div className="gc-hero gc-anim-heading">
         <span className="section-eyebrow">{d.hero.eyebrow}</span>
         <h1 className="gc-hero__title">
           {d.hero.headline.split('\n').map((line, i) => (
@@ -72,7 +116,7 @@ const GroupClasses = () => {
           ))}
         </h1>
         <p className="gc-hero__sub">{d.hero.subheadline}</p>
-        <div className="gc-hero__price" style={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline', justifyContent: 'center', gap: '0.75rem', margin: '1.5rem auto' }}>
+        <div className="gc-hero__price gc-anim-price" style={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline', justifyContent: 'center', gap: '0.75rem', margin: '1.5rem auto' }}>
           {d.hero.originalPrice && (
             <span style={{ fontSize: '1rem', color: '#999', textDecoration: 'line-through' }}>{d.hero.originalPrice}</span>
           )}
@@ -102,13 +146,13 @@ const GroupClasses = () => {
       {/* Plans Section */}
       {d.plans && d.plans.length > 0 && (
         <div className="gc-section">
-          <div className="gc-section__header">
+          <div className="gc-section__header gc-anim-heading">
             <span className="section-eyebrow">Pricing Plans</span>
             <h2 className="gc-section__title">Choose Your Batch Plan</h2>
           </div>
           <div className="gc-plans">
             {d.plans.map((plan) => (
-              <div key={plan.id} className={`gc-plan-card ${plan.popular ? 'gc-plan-card--popular' : ''}`}>
+              <div key={plan.id} className={`gc-plan-card gc-anim-card ${plan.popular ? 'gc-plan-card--popular' : ''}`}>
                 {plan.popular && <span className="gc-plan-card__badge">Most Popular</span>}
                 <div className="gc-plan-card__duration">{plan.duration}</div>
                 {plan.sessions && <div className="gc-plan-card__sessions">{plan.sessions}</div>}
@@ -124,14 +168,14 @@ const GroupClasses = () => {
 
       {/* Time Slots */}
       <div className="gc-section">
-        <div className="gc-section__header">
+        <div className="gc-section__header gc-anim-heading">
           <span className="section-eyebrow">Batch Timings</span>
           <h2 className="gc-section__title">Available Time Slots</h2>
           <p className="gc-section__sub">All slots run Monday to Saturday. Sunday is rest day.</p>
         </div>
         <div className="gc-slots">
           {d.slots.map((slot) => (
-            <div key={slot.id} className="gc-slot">
+            <div key={slot.id} className="gc-slot gc-anim-card">
               {slot.tag && <span className="gc-slot__tag">{slot.tag}</span>}
               <div className="gc-slot__time">{slot.time}</div>
               <div className="gc-slot__label">{slot.label}</div>
@@ -147,13 +191,13 @@ const GroupClasses = () => {
 
       {/* What's Included */}
       <div className="gc-section gc-section--warm">
-        <div className="gc-section__header">
+        <div className="gc-section__header gc-anim-heading">
           <span className="section-eyebrow">What You Get</span>
           <h2 className="gc-section__title">Everything Included</h2>
         </div>
         <div className="gc-includes">
           {d.includes.map((item, i) => (
-            <div key={i} className="gc-include-card">
+            <div key={i} className="gc-include-card gc-anim-card">
               <div className="gc-include-card__icon">
                 <Check size={18} />
               </div>
@@ -172,13 +216,13 @@ const GroupClasses = () => {
 
       {/* How It Works */}
       <div className="gc-section">
-        <div className="gc-section__header">
+        <div className="gc-section__header gc-anim-heading">
           <span className="section-eyebrow">How It Works</span>
           <h2 className="gc-section__title">4 Simple Steps</h2>
         </div>
         <div className="gc-steps">
           {d.howItWorks.map((step, i) => (
-            <div key={i} className="gc-step">
+            <div key={i} className="gc-step gc-anim-card">
               <div className="gc-step__number">{step.step}</div>
               <h3 className="gc-step__title">{step.title}</h3>
               <p className="gc-step__desc">{step.desc}</p>
@@ -187,15 +231,56 @@ const GroupClasses = () => {
         </div>
       </div>
 
+      {/* Results */}
+      <div className="gc-section">
+        <div className="gc-section__header gc-anim-heading">
+          <span className="section-eyebrow">Transformations</span>
+          <h2 className="gc-section__title">Real Results</h2>
+        </div>
+        <div className="gc-results-wrap">
+          <button
+            type="button"
+            className="gc-results-arrow gc-results-arrow--left"
+            onClick={() => scrollResults('prev')}
+            aria-label="Previous results"
+          >
+            <ChevronLeft size={22} />
+          </button>
+
+          <div className="gc-results-track" ref={resultsTrackRef}>
+            {groupResultsImages.map((src, i) => (
+              <div key={i} className="gc-results-card gc-anim-result">
+                <img
+                  src={src}
+                  alt={`Real Result ${i + 1}`}
+                  className="gc-results-img"
+                  loading="lazy"
+                  draggable={false}
+                />
+              </div>
+            ))}
+          </div>
+
+          <button
+            type="button"
+            className="gc-results-arrow gc-results-arrow--right"
+            onClick={() => scrollResults('next')}
+            aria-label="Next results"
+          >
+            <ChevronRight size={22} />
+          </button>
+        </div>
+      </div>
+
       {/* Enrol Form */}
       <div className="gc-section gc-section--dark" id="enrol">
         <div className="gc-form-wrap">
-          <div className="gc-form-header">
+          <div className="gc-form-header gc-anim-heading">
             <h2 className="gc-form-header__title">Reserve Your Spot</h2>
             <p className="gc-form-header__sub">
               Fill in your details. You'll be redirected to WhatsApp to complete payment and get confirmed.
             </p>
-            <div className="gc-form-price" style={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline', justifyContent: 'center', gap: '0.75rem', margin: '1rem auto' }}>
+            <div className="gc-form-price gc-anim-price" style={{ display: 'flex', flexDirection: 'row', alignItems: 'baseline', justifyContent: 'center', gap: '0.75rem', margin: '1rem auto' }}>
               <span style={{ fontSize: '1rem', color: '#999', textDecoration: 'line-through' }}>₹6,999</span>
               <span style={{ fontSize: '2.5rem', fontWeight: 700, color: '#FF6835', fontFamily: 'var(--font-mono)' }}>₹4,999</span>
               <span style={{ fontSize: '1rem', color: '#999' }}>/ month</span>
@@ -272,7 +357,7 @@ const GroupClasses = () => {
               </div>
             </div>
 
-            <button type="submit" className="gc-form__submit">
+            <button type="submit" className="gc-form__submit gc-anim-cta">
               Proceed to Payment (₹4,999)
               <ArrowRight size={18} />
             </button>
