@@ -99,10 +99,11 @@ export const pricingData = {
         originalPrice: "₹7,500",
         popular: false,
         features: [
-          "Health & body assessment",
-          "Personalised workout plan",
-          "Basic nutrition guidance",
-          "WhatsApp support 7 days",
+          "Lose up to 3 kg in just 30 days",
+          "Personalised workout plan for your body",
+          "Nutrition guidance that fits Indian diet",
+          "Body assessment to start you right",
+          "WhatsApp support — ask anything, anytime",
         ]
       },
       {
@@ -112,11 +113,11 @@ export const pricingData = {
         originalPrice: "₹22,500",
         popular: false,
         features: [
-          "DR healing & core restoration",
-          "Custom workout program",
+          "Lose up to 10 kg in 90 days — visible results",
+          "DR healing & mommy pooch reduction",
+          "Custom workout + Indian diet plan",
           "Weekly 1-on-1 video check-ins",
-          "Indian diet nutrition plan",
-          "Mommy pooch reduction",
+          "Core restoration from the inside out",
           "WhatsApp support 7 days",
         ]
       },
@@ -127,11 +128,11 @@ export const pricingData = {
         originalPrice: "₹45,000",
         popular: true,
         features: [
-          "Everything in 3-month plan",
-          "Advanced strength training",
-          "Full body recomposition",
-          "Monthly progress review",
-          "Bi-weekly video check-ins",
+          "Lose up to 22–25 kg — the smartest investment",
+          "Everything in 3-month plan included",
+          "Advanced strength + full body recomposition",
+          "Bi-weekly video check-ins for faster results",
+          "Monthly progress reviews to keep you on track",
           "WhatsApp support 7 days",
         ]
       },
@@ -142,12 +143,12 @@ export const pricingData = {
         originalPrice: "₹59,999",
         popular: false,
         features: [
-          "Everything in 6-month plan",
-          "Full year transformation",
-          "Monthly custom diet plan",
-          "Weekly video check-ins",
-          "Lifestyle & habit coaching",
-          "Lifetime community access",
+          "Lose 30+ kg & completely transform your life",
+          "Everything in 6-month plan included",
+          "Full year of expert guidance — never feel lost",
+          "Monthly custom diet plan updated for your progress",
+          "Lifestyle & habit coaching for results that last",
+          "Lifetime community access for ongoing support",
         ]
       },
     ]
@@ -164,10 +165,11 @@ export const pricingData = {
         originalPrice: "₹30,000",
         popular: false,
         features: [
-          "12 live 1-on-1 sessions",
-          "Custom workout plan",
-          "Form correction & feedback",
-          "WhatsApp support",
+          "Direct access to Coach every session",
+          "Live 1-hour sessions — no guesswork, just results",
+          "Workout plan built around your exact body & goals",
+          "Real-time form correction so you never get injured",
+          "WhatsApp support between sessions",
         ]
       },
       {
@@ -178,11 +180,11 @@ export const pricingData = {
         originalPrice: "₹55,000",
         popular: true,
         features: [
-          "24 live 1-on-1 sessions",
-          "Progressive training plan",
-          "Nutrition guidance",
-          "Weekly progress tracking",
-          "WhatsApp support 7 days",
+          "This is where real transformations happen",
+          "Progressive plan that adapts as you get stronger",
+          "Nutrition guidance personalised to your lifestyle",
+          "Weekly tracking — you'll see the numbers change",
+          "Priority WhatsApp support — Coach Abhi is with you daily",
         ]
       },
       {
@@ -193,11 +195,11 @@ export const pricingData = {
         originalPrice: "₹75,000",
         popular: false,
         features: [
-          "36 live 1-on-1 sessions",
-          "Complete transformation plan",
-          "Custom diet + workout",
-          "Monthly assessments",
-          "Priority WhatsApp support",
+          "90 days of complete 1-on-1 transformation",
+          "Custom diet + workout — everything done for you",
+          "Monthly body assessments with real measurable data",
+          "Habit & lifestyle coaching built into every week",
+          "Priority WhatsApp — fastest response, always",
         ]
       },
     ]
