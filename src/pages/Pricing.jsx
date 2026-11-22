@@ -113,6 +113,19 @@ const Pricing = () => {
       {/* Divider */}
       <div className="pricing-divider" />
 
+      <div style={{maxWidth: '900px', margin: '4rem auto', padding: '0 1.5rem'}}>
+        <h2 style={{fontFamily: 'var(--font-serif)', fontSize: '2rem', textAlign: 'center', marginBottom: '1.5rem', color: 'var(--dark)'}}>See Coach Abhi in Action</h2>
+        <div style={{position: 'relative', paddingBottom: '56.25%', height: 0, overflow: 'hidden', borderRadius: '12px'}}>
+          <iframe
+            src="https://fathom.video/embed/JHfnQhRkdDRyNsyWNRdxUWjAY2yBp3vx?autoplay=0"
+            style={{position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', border: 'none'}}
+            scrolling="no"
+            allowFullScreen
+            allow="encrypted-media *; fullscreen *;"
+          />
+        </div>
+      </div>
+
       {/* ── TRIAL SESSION ── */}
       <div className="pricing-trial">
         <div className="pricing-trial__content">

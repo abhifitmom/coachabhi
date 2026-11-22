@@ -1,0 +1,709 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Choose Your Plan — Abhi Strength Coach</title>
+  <meta name="description" content="Transparent pricing for Online Coaching and 1-on-1 Training with Coach Abhi. No hidden fees. No lock-ins. Just results." />
+  <meta name="theme-color" content="#FF6835" />
+  <link rel="icon" href="/favicon.svg" />
+
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,800;0,900;1,400;1,700&family=DM+Sans:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap"
+    rel="stylesheet"
+  />
+
+  <style>
+    /* ============================================================
+       DESIGN SYSTEM & CSS VARIABLES
+       ============================================================ */
+    :root {
+      --color-brand: #FF6835;
+      --color-brand-dark: #E5521A;
+      --color-brand-light: #FF8A5C;
+      --color-brand-muted: #FFF0E8;
+      --color-brand-glow: rgba(255, 104, 53, 0.15);
+      --color-ink: #1A1A1A;
+      --color-ink-secondary: #4A4A4A;
+      --color-ink-muted: #8A8A8A;
+      --color-surface: #FFFFFF;
+      --color-surface-warm: #FFF8F3;
+      --color-surface-sunken: #F5F0EB;
+      --color-surface-dark: #1A1A1A;
+      --color-border: #EBEBEB;
+      --color-border-strong: #D0D0D0;
+
+      --font-display: 'Playfair Display', Georgia, serif;
+      --font-body: 'DM Sans', -apple-system, sans-serif;
+      --font-mono: 'Space Mono', monospace;
+
+      --max-width: 1280px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--color-surface-warm);
+    }
+
+    body {
+      font-family: var(--font-body);
+      color: var(--color-ink);
+      background: var(--color-surface-warm);
+      line-height: 1.6;
+      min-height: 100vh;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    /* Page container */
+    .pricing-page {
+      min-height: 100vh;
+      background: var(--color-surface-warm);
+      padding-bottom: 5rem;
+    }
+
+    /* Eyebrow badge */
+    .section-eyebrow {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--color-brand);
+      margin-bottom: 0.75rem;
+    }
+
+    /* Header */
+    .pricing-header {
+      text-align: center;
+      padding: 4rem 1.25rem 2rem;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+
+    .pricing-header__title {
+      font-family: var(--font-display);
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 800;
+      color: var(--color-ink);
+      margin-bottom: 0.75rem;
+      line-height: 1.15;
+    }
+
+    .pricing-header__sub {
+      font-size: 1rem;
+      color: var(--color-ink-secondary);
+    }
+
+    /* Section */
+    .pricing-section {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: 2rem 0;
+    }
+
+    .pricing-section__header {
+      padding: 0 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+
+    .pricing-section__title {
+      font-family: var(--font-display);
+      font-size: clamp(1.25rem, 3vw, 1.75rem);
+      font-weight: 700;
+      color: var(--color-ink);
+      margin-bottom: 0.375rem;
+    }
+
+    .pricing-section__sub {
+      font-size: 0.875rem;
+      color: var(--color-ink-secondary);
+    }
+
+    /* Horizontal scroll track on mobile, grid on desktop */
+    .pricing-track-wrapper {
+      overflow-x: auto;
+      scrollbar-width: none;
+      -ms-overflow-style: none;
+      padding: 0.5rem 1.25rem 1.5rem;
+      -webkit-overflow-scrolling: touch;
+    }
+
+    .pricing-track-wrapper::-webkit-scrollbar {
+      display: none;
+    }
+
+    .pricing-track {
+      display: flex;
+      gap: 1.25rem;
+      width: max-content;
+    }
+
+    @media (min-width: 1024px) {
+      .pricing-track {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 1.25rem;
+      }
+
+      .pricing-track--3cols {
+        grid-template-columns: repeat(3, 1fr);
+        max-width: 1050px;
+        margin: 0 auto;
+      }
+    }
+
+    /* Cards */
+    .pricing-card {
+      position: relative;
+      background: white;
+      border: 1.5px solid var(--color-border);
+      border-radius: 1.25rem;
+      padding: 1.75rem 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+      transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+      width: 250px;
+      min-width: 250px;
+      flex-shrink: 0;
+    }
+
+    .pricing-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.08);
+      border-color: var(--color-border-strong);
+    }
+
+    @media (min-width: 1024px) {
+      .pricing-card {
+        width: auto;
+        min-width: 0;
+      }
+    }
+
+    /* Most Popular dark card */
+    .pricing-card--popular {
+      background: #1A1A1A;
+      border-color: var(--color-brand);
+      box-shadow: 0 8px 24px rgba(255, 104, 53, 0.15);
+      color: white;
+    }
+
+    .pricing-card--popular:hover {
+      box-shadow: 0 12px 32px rgba(255, 104, 53, 0.28);
+      border-color: var(--color-brand-light);
+    }
+
+    .pricing-card--popular .pricing-card__duration {
+      color: white;
+    }
+
+    .pricing-card--popular .pricing-card__price {
+      color: var(--color-brand);
+    }
+
+    /* Popular badge */
+    .pricing-card__badge {
+      position: absolute;
+      top: -12px;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-brand);
+      color: white;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      padding: 3px 12px;
+      border-radius: 999px;
+      white-space: nowrap;
+      box-shadow: 0 2px 8px rgba(255, 104, 53, 0.35);
+    }
+
+    /* Duration heading */
+    .pricing-card__duration {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-ink);
+      line-height: 1.2;
+    }
+
+    /* Price wrap */
+    .pricing-card__price-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 0.2rem;
+      margin-top: 0.25rem;
+    }
+
+    .pricing-card__original {
+      font-size: 0.85rem;
+      color: var(--color-ink-muted);
+      text-decoration: line-through;
+    }
+
+    .pricing-card--popular .pricing-card__original {
+      color: rgba(255, 255, 255, 0.5);
+    }
+
+    .pricing-card__price {
+      font-family: var(--font-mono);
+      font-size: 1.375rem;
+      font-weight: 700;
+      color: var(--color-brand);
+    }
+
+    /* Features list */
+    .pricing-card__features {
+      list-style: none;
+      padding: 0;
+      margin: 0.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.625rem;
+      flex: 1;
+      border-top: 1px solid var(--color-border);
+      padding-top: 0.875rem;
+    }
+
+    .pricing-card--popular .pricing-card__features {
+      border-top-color: rgba(255, 255, 255, 0.1);
+    }
+
+    .pricing-card__feature {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.5rem;
+      font-size: 0.8rem;
+      color: var(--color-ink-secondary);
+      line-height: 1.4;
+    }
+
+    .pricing-card--popular .pricing-card__feature {
+      color: rgba(255, 255, 255, 0.7);
+    }
+
+    .pricing-card__check {
+      color: var(--color-brand);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+
+    /* Enrol Button */
+    .pricing-card__btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 0.625rem 1rem;
+      border-radius: 0.75rem;
+      border: 1.5px solid var(--color-border-strong);
+      background: transparent;
+      color: var(--color-ink);
+      font-size: 0.8rem;
+      font-weight: 700;
+      text-decoration: none;
+      margin-top: 0.5rem;
+      transition: all 0.2s ease;
+      text-align: center;
+    }
+
+    .pricing-card__btn:hover {
+      border-color: var(--color-brand);
+      color: var(--color-brand);
+    }
+
+    .pricing-card__btn--popular {
+      background: var(--color-brand);
+      border-color: var(--color-brand);
+      color: white;
+    }
+
+    .pricing-card__btn--popular:hover {
+      background: var(--color-brand-dark);
+      border-color: var(--color-brand-dark);
+      color: white;
+    }
+
+    /* Divider */
+    .pricing-divider {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      height: 1px;
+      background: var(--color-border);
+      margin-left: 1.25rem;
+      margin-right: 1.25rem;
+    }
+
+    @media (min-width: 1280px) {
+      .pricing-divider {
+        margin: 0 auto;
+      }
+    }
+
+    /* Video embed container */
+    .pricing-video-wrap {
+      padding: 0 1.25rem;
+      max-width: var(--max-width);
+      margin: 0 auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="pricing-page">
+
+    <!-- Header -->
+    <div class="pricing-header">
+      <span class="section-eyebrow">Transparent Pricing</span>
+      <h1 class="pricing-header__title">Choose Your Plan</h1>
+      <p class="pricing-header__sub">No hidden fees. No lock-ins. Just results.</p>
+    </div>
+
+    <!-- ── ONLINE COACHING ── -->
+    <section class="pricing-section">
+      <div class="pricing-section__header">
+        <h2 class="pricing-section__title">Online Coaching</h2>
+        <p class="pricing-section__sub">Personalised program — train from home</p>
+      </div>
+      <div class="pricing-track-wrapper">
+        <div class="pricing-track">
+
+          <!-- 1 Month — Kickstart -->
+          <div class="pricing-card">
+            <div class="pricing-card__duration">1 Month — Kickstart</div>
+            <div class="pricing-card__price-wrap">
+              <div class="pricing-card__price">₹7,500</div>
+            </div>
+            <ul class="pricing-card__features">
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Lose 1–2 kg in 30 days</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Personalised DR-safe workout programme</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Simple meal guidelines with calorie &amp; protein targets</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Weekly check-in with Coach Abhi</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Money-back guarantee or you get coached till your goal is achieved</span>
+              </li>
+            </ul>
+            <a
+              href="https://wa.me/919833422053?text=Hi%20Abhi!%20I%27m%20interested%20in%20the%20Online%20Coaching%20-%201%20Month%20%E2%80%94%20Kickstart%20plan%20(%E2%82%B97%2C500).%20Can%20you%20share%20more%20details%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="pricing-card__btn"
+            >
+              Enrol Now
+            </a>
+          </div>
+
+          <!-- 3 Months — Momentum -->
+          <div class="pricing-card">
+            <div class="pricing-card__duration">3 Months — Momentum</div>
+            <div class="pricing-card__price-wrap">
+              <span class="pricing-card__original">₹22,500</span>
+              <div class="pricing-card__price">₹16,500</div>
+            </div>
+            <ul class="pricing-card__features">
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Lose 4–5 kg in 12 weeks</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Personalised workouts with core rehab progressions</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Custom meal plan with notes for each meal</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Weekly check-ins + WhatsApp support on weekdays</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Money-back guarantee or you get coached till your goal is achieved</span>
+              </li>
+            </ul>
+            <a
+              href="https://wa.me/919833422053?text=Hi%20Abhi!%20I%27m%20interested%20in%20the%20Online%20Coaching%20-%203%20Months%20%E2%80%94%20Momentum%20plan%20(%E2%82%B916%2C500).%20Can%20you%20share%20more%20details%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="pricing-card__btn"
+            >
+              Enrol Now
+            </a>
+          </div>
+
+          <!-- 6 Months — Complete Transformation (Most Popular) -->
+          <div class="pricing-card pricing-card--popular">
+            <div class="pricing-card__badge">Most Popular</div>
+            <div class="pricing-card__duration">6 Months — Complete Transformation</div>
+            <div class="pricing-card__price-wrap">
+              <span class="pricing-card__original">₹45,000</span>
+              <div class="pricing-card__price">₹27,000</div>
+            </div>
+            <ul class="pricing-card__features">
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Lose 8–10 kg in 6 months</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Full strength &amp; core rehab programme, updated every month</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Custom meal plan refreshed every 4 weeks</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Priority WhatsApp support + exercise form-check videos</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Money-back guarantee or you get coached till your goal is achieved</span>
+              </li>
+            </ul>
+            <a
+              href="https://wa.me/919833422053?text=Hi%20Abhi!%20I%27m%20interested%20in%20the%20Online%20Coaching%20-%206%20Months%20%E2%80%94%20Complete%20Transformation%20plan%20(%E2%82%B927%2C000).%20Can%20you%20share%20more%20details%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="pricing-card__btn pricing-card__btn--popular"
+            >
+              Enrol Now
+            </a>
+          </div>
+
+          <!-- 12 Months — Ultimate Reset -->
+          <div class="pricing-card">
+            <div class="pricing-card__duration">12 Months — Ultimate Reset</div>
+            <div class="pricing-card__price-wrap">
+              <span class="pricing-card__original">₹59,999</span>
+              <div class="pricing-card__price">₹45,000</div>
+            </div>
+            <ul class="pricing-card__features">
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Lose 12–15 kg in a year</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Year-long programme in 3 phases: rebuild, strength, maintain</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Custom meal plan, habit coaching &amp; monthly 1:1 video call</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Priority support + monthly progress report</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Money-back guarantee or you get coached till your goal is achieved</span>
+              </li>
+            </ul>
+            <a
+              href="https://wa.me/919833422053?text=Hi%20Abhi!%20I%27m%20interested%20in%20the%20Online%20Coaching%20-%2012%20Months%20%E2%80%94%20Ultimate%20Reset%20plan%20(%E2%82%B945%2C000).%20Can%20you%20share%20more%20details%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="pricing-card__btn"
+            >
+              Enrol Now
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Divider -->
+    <div class="pricing-divider"></div>
+
+    <!-- ── ONLINE 1-ON-1 TRAINING ── -->
+    <section class="pricing-section">
+      <div class="pricing-section__header">
+        <h2 class="pricing-section__title">Online 1-on-1 Training</h2>
+        <p class="pricing-section__sub">Live sessions directly with Abhi</p>
+      </div>
+      <div class="pricing-track-wrapper">
+        <div class="pricing-track pricing-track--3cols">
+
+          <!-- 12 Sessions -->
+          <div class="pricing-card">
+            <div class="pricing-card__duration">12 Sessions</div>
+            <div class="pricing-card__price-wrap">
+              <span class="pricing-card__original">₹50,000</span>
+              <div class="pricing-card__price">₹36,000</div>
+            </div>
+            <ul class="pricing-card__features">
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Personalised diastasis recti &amp; core rehab programme</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Custom strength training built around your goals</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Live form coaching with real-time rep corrections</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Regular progress tracking with plan upgrades</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Recording of every session provided</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Access to premium coaching tools &amp; resources</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Dietitian support for personalised nutrition</span>
+              </li>
+            </ul>
+            <a
+              href="https://wa.me/919833422053?text=Hi%20Abhi!%20I%27m%20interested%20in%20the%20Online%201-on-1%20Training%20-%2012%20Sessions%20plan%20(%E2%82%B936%2C000).%20Can%20you%20share%20more%20details%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="pricing-card__btn"
+            >
+              Enrol Now
+            </a>
+          </div>
+
+          <!-- 24 Sessions (Most Popular) -->
+          <div class="pricing-card pricing-card--popular">
+            <div class="pricing-card__badge">Most Popular</div>
+            <div class="pricing-card__duration">24 Sessions</div>
+            <div class="pricing-card__price-wrap">
+              <span class="pricing-card__original">₹80,000</span>
+              <div class="pricing-card__price">₹60,000</div>
+            </div>
+            <ul class="pricing-card__features">
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Everything in 12-session plan included</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Deeper core rehab + advanced strength progressions</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Precision nutrition plan with notes on every meal</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Live form coaching — zero guesswork, maximum results</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Recording of every session provided</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Access to premium coaching tools &amp; resources</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Dietitian support for personalised nutrition</span>
+              </li>
+            </ul>
+            <a
+              href="https://wa.me/919833422053?text=Hi%20Abhi!%20I%27m%20interested%20in%20the%20Online%201-on-1%20Training%20-%2024%20Sessions%20plan%20(%E2%82%B960%2C000).%20Can%20you%20share%20more%20details%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="pricing-card__btn pricing-card__btn--popular"
+            >
+              Enrol Now
+            </a>
+          </div>
+
+          <!-- 36 Sessions -->
+          <div class="pricing-card">
+            <div class="pricing-card__duration">36 Sessions</div>
+            <div class="pricing-card__price-wrap">
+              <span class="pricing-card__original">₹1,00,000</span>
+              <div class="pricing-card__price">₹72,000</div>
+            </div>
+            <ul class="pricing-card__features">
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Everything in 24-session plan included</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Full 3-phase programme: rebuild → strength → maintain</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Monthly body assessments with real measurable data</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Habit &amp; lifestyle coaching woven into every week</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Recording of every session provided</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Access to premium coaching tools &amp; resources</span>
+              </li>
+              <li class="pricing-card__feature">
+                <svg xmlns="http://www.w3.org/2000/svg" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" class="pricing-card__check"><polyline points="20 6 9 17 4 12"></polyline></svg>
+                <span>Dietitian support for personalised nutrition</span>
+              </li>
+            </ul>
+            <a
+              href="https://wa.me/919833422053?text=Hi%20Abhi!%20I%27m%20interested%20in%20the%20Online%201-on-1%20Training%20-%2036%20Sessions%20plan%20(%E2%82%B972%2C000).%20Can%20you%20share%20more%20details%3F"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="pricing-card__btn"
+            >
+              Enrol Now
+            </a>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- Fathom Video Embed -->
+    <div class="pricing-video-wrap">
+      <div style="position:relative;padding-bottom:56.25%;height:0;overflow:hidden;border-radius:12px;max-width:900px;margin:3rem auto;">
+        <iframe src="https://fathom.video/embed/JHfnQhRkdDRyNsyWNRdxUWjAY2yBp3vx?autoplay=0" style="position:absolute;top:0;left:0;width:100%;height:100%;border:none;" scrolling="no" allowfullscreen allow="encrypted-media *; fullscreen *;"></iframe>
+      </div>
+    </div>
+
+  </div>
+</body>
+</html>
